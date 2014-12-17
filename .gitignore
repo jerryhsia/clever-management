@@ -1,0 +1,9 @@
+.idea
+.DS_Store
+.temp
+.dist
+
+bower_components
+node_modules
+dist/*
+!.gitkeep
