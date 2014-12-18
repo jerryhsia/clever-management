@@ -11,7 +11,7 @@ angular.module(app.name, [
 
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
-  $httpProvider.interceptors.push('interceptor');
+  //$httpProvider.interceptors.push('interceptor');
 
   $stateProvider.state('login', {
     url: '/login',
@@ -25,6 +25,10 @@ angular.module(app.name, [
     url: '/roles',
     templateUrl: 'views/role/index.html',
     controller: 'roleIndexCtrl'
+  }).state('module', {
+    url: '/modules',
+    templateUrl: 'views/module/index.html',
+    controller: 'moduleIndexCtrl'
   });
 
   $translateProvider.useStaticFilesLoader({

@@ -1,10 +1,21 @@
 {
   "app": "",
   "app_name": "Clever CMS",
+  "operate": "操作",
+  "close": "关闭",
+  "save": "保存",
+  "please_input": "请输入 ",
 
   "role": "角色",
 
-  "module": "模块",
+  "module": "模型",
+  "create_module": "创建模型",
+
+  "field": "字段",
+  "field_name": "字段标识",
+  "field_title": "字段名称",
+  "create_field": "创建字段",
+  "edit_field": "编辑字段",
 
   "data": "数据",
 

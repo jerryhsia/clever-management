@@ -1,0 +1,41 @@
+<ng-include src="'views/header.html'" ng-controller="headerCtrl"></ng-include>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <button class="btn btn-primary">{{'create_module'|translate}}</button>
+      <ul class="nav nav-sidebar">
+        <li ng-class="{active: selectedModule.id == module.id}" ng-repeat="module in modules">
+          <a href="#">{{module.title}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div>
+        <span>{{'field'|translate}}</span>
+        <button class="btn btn-primary pull-right" ng-click="editField({})">{{'create_field'|translate}}</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>{{'field_name'|translate}}</th>
+              <th>{{'field_title'|translate}}</th>
+              <th></th>
+              <th>{{'operate'|translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="field in fields">
+              <td>{{field.id}}</td>
+              <td>{{field.name}}</td>
+              <td>{{field.title}}</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" ng-click="close()">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only ng-cloak" ng-cloak>{{'close'|translate}}</span>
+  </button>
+  <h3 class="modal-title ng-cloak" ng-cloak>{{field?'edit_field':'create_field'|translate}}</h3>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal field-form" method="post" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="name">
+        <span class="text-danger">*</span>
+        {{'field_name'|translate}}
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="name" placeholder="{{'please_input'|translate}}{{'field_name'|translate}}" ng-model="form.name" required>
+      </div>
+      <label class="col-sm-2 control-label" for="title">
+        <span class="text-danger">*</span>
+        {{'field_title'|translate}}
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="title" placeholder="{{'please_input'|translate}}{{'field_title'|translate}}" ng-model="form.title" required>
+      </div>
+    </div>
+    <input type="submit" class="form-submit">
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" onclick="$('.field-form').find('input[type=submit]').click();" ng-disabled="userForm.submiting">{{'save'|translate}}</button>
+  <button class="btn btn-default" ng-click="close()">{{'close'|translate}}</button>
+</div>
