@@ -15,9 +15,7 @@ angular.module(app.name).service('$moduleService',
     };
 
     this.createField = function (module, field) {
-      return $http.post(app.api + '/modules/' + module.id + '/fields', field, {
-        withCredentials: true
-      });
+      return $http.post(app.api + '/modules/' + module.id + '/fields', field);
     };
 
     this.patchField = function (module, field) {
