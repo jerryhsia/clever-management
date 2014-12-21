@@ -13,3 +13,11 @@ function inArray(object, array) {
   }
   return false;
 }
+
+function indexBy (array, column) {
+  var result = {};
+  for (var index in array) {
+    result[array[index][column]] = array[index];
+  }
+  return result;
+}

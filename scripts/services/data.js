@@ -1,17 +1,19 @@
 'use strict';
 angular.module(app.name).service('$dataService',
-  function ($http, $translate)
+  function ($http)
   {
-    this.searchModule = function (params) {
-      return $http.get(app.api + '/modules', {
+    this.search = function (module, params) {
+      return $http.get(app.api + '/datas/' + module.name, {
         params: params
       });
     };
 
-    this.searchField = function (module, params) {
-      return $http.get(app.api + '/modules/' + module.id + '/fields', {
-        params: params
-      });
+    this.create = function (module, data) {
+      return $http.post(app.api + '/datas/' + module.name, data);
+    };
+
+    this.patch = function (module, data) {
+      return $http.put(app.api + '/datas/' + module.name + '/' + data.id, data);
     };
 
     this.createField = function (module, field) {

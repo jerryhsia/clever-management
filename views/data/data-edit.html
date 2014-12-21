@@ -6,14 +6,14 @@
   <h3 class="modal-title ng-cloak" ng-cloak>{{data?'edit_data':'create_data'|translate}}</h3>
 </div>
 <div class="modal-body">
-  <form class="form-horizontal field-form" method="post" ng-submit="save()">
+  <form class="form-horizontal data-form" method="post" ng-submit="save()">
     <div class="form-group" ng-repeat="field in fields">
       <label class="col-sm-2 control-label" for="{{field.name}}">
         {{field.title}}
         <span class="text-danger">*</span>
       </label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="{{field.name}}" placeholder="{{'please_input'|translate}}{{field.title}}" ng-model="fields[$index].value" required>
+        <input type="text" class="form-control" id="{{field.name}}" placeholder="{{'please_input'|translate}}{{field.title}}" ng-model="form[field.name]" required>
       </div>
       <!--<label class="col-sm-2 control-label" for="title">
         {{'field_title'|translate}}
@@ -27,6 +27,6 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" onclick="$('.field-form').find('input[type=submit]').click();" ng-disabled="submiting">{{'save'|translate}}</button>
+  <button class="btn btn-primary" onclick="$('.data-form').find('input[type=submit]').click();" ng-disabled="submiting">{{'save'|translate}}</button>
   <button class="btn btn-default" ng-click="cancel()">{{'close'|translate}}</button>
 </div>

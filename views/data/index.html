@@ -18,18 +18,14 @@
           <thead>
             <tr>
               <th width="60">#</th>
-              <th>{{'field_name'|translate}}</th>
-              <th>{{'field_title'|translate}}</th>
-              <th>{{'field_input'|translate}}</th>
+              <th ng-repeat="(name, field) in fields">{{field.title}}</th>
               <th width="80">{{'operate'|translate}}</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="field in fields">
-              <td>{{field.id}}</td>
-              <td>{{field.name}}</td>
-              <td>{{field.title}}</td>
-              <td>{{'field_input_' + field.input|translate}}</td>
+            <tr ng-repeat="data in datas">
+              <td>{{data.id}}</td>
+              <td ng-repeat="(name, field) in fields">{{data[name]}}</td>
               <td>
                 <i class="glyphicon glyphicon-edit pointer" ng-click="editField(field)"></i>&nbsp;&nbsp;
                 <i class="glyphicon glyphicon-remove pointer" ng-click="deleteField(field)"></i>
