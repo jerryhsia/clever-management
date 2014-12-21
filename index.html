@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
   </head>
 <body class="{{toState.name}}">
   <!--[if lt IE 9]>
@@ -15,6 +17,10 @@
   <![endif]-->
 
   <div ui-view></div>
+
+  <div class="alert-container" ng-controller="alertCtrl">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="close($index)">{{alert.message}}</alert>
+  </div>
 
   <!-- build:js scripts/vendor.js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -28,6 +34,8 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+  <script src="bower_components/angular-ui-select/dist/select.js"></script>
+  <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
   <!-- endbuild -->
 
   <!-- build:js scripts/scripts.js -->
@@ -44,6 +52,7 @@
 
   <script src="scripts/controllers/login.js"></script>
   <script src="scripts/controllers/header.js"></script>
+  <script src="scripts/controllers/alert.js"></script>
   <script src="scripts/controllers/index.js"></script>
   <script src="scripts/controllers/role/index.js"></script>
   <script src="scripts/controllers/module/index.js"></script>

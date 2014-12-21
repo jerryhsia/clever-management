@@ -23,6 +23,20 @@
         <input type="text" class="form-control" id="title" placeholder="{{'please_input'|translate}}{{'field_title'|translate}}" ng-model="form.title" required>
       </div>
     </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">
+        <span class="text-danger">*</span>
+        {{'field_type'|translate}}
+      </label>
+      <div class="col-sm-4">
+        <ui-select ng-model="form.type">
+          <ui-select-match ng-click="form.type = '';" placeholder="{{'please_select'|translate}}{{'field_type'|translate}}">{{'field_type_'+$select.selected|translate}}</ui-select-match>
+          <ui-select-choices repeat="type in app.field_types">
+            <div ng-bind-html="'field_type_'+type |translate |highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
     <input type="submit" class="form-submit">
   </form>
 </div>

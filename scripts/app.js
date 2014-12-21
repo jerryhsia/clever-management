@@ -4,14 +4,19 @@ angular.module(app.name, [
   'ngSanitize',
   'ui.bootstrap',
   'ui.router',
+  'ui.select',
   'ngCookies',
   'angularFileUpload',
-  'pascalprecht.translate'
-]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $cookieStoreProvider, $translateProvider, $httpProvider) {
+  'pascalprecht.translate',
+  'angular-loading-bar'
+]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $cookieStoreProvider, $translateProvider, $httpProvider, uiSelectConfig) {
 
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
   $httpProvider.interceptors.push('interceptor');
+
+  uiSelectConfig.theme = 'bootstrap';
+  uiSelectConfig.resetSearchInput = true;
 
   $stateProvider.state('login', {
     url: '/login',
@@ -37,6 +42,7 @@ angular.module(app.name, [
   });
 }).run(function ($rootScope, $translate, $state) {
   $rootScope.app = app;
+  $rootScope.alerts = [];
   $translate.use('zh-CN');
   $state.go('index');
 

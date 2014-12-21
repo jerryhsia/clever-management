@@ -1,6 +1,6 @@
 'use strict';
 angular.module(app.name).factory('interceptor',
-  function($rootScope)
+  function($rootScope, $q, $alertService)
   {
     return {
       'request': function(config) {
@@ -10,14 +10,20 @@ angular.module(app.name).factory('interceptor',
         return config;
       },
 
+      'requestError': function(rejection) {
+        $rootScope.submiting = false;
+        return $q.reject(rejection);
+      },
+
       'response': function(response) {
         $rootScope.submiting = false;
         return response;
       },
 
-      'responseError': function(response) {
+      'responseError': function(rejection) {
         $rootScope.submiting = false;
-        return response;
+        $alertService.push('danger', rejection.data.message);
+        return $q.reject(rejection);
       }
     };
   }

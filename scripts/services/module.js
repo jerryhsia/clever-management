@@ -1,6 +1,6 @@
 'use strict';
 angular.module(app.name).service('$moduleService',
-  function ($http)
+  function ($http, $translate)
   {
     this.searchModule = function (params) {
       return $http.get(app.api + '/modules', {
@@ -19,7 +19,11 @@ angular.module(app.name).service('$moduleService',
     };
 
     this.patchField = function (module, field) {
-      return $http.put(app.api + '/modules/' + module.id + '/fields/' + field.id, field);
+      return $http.put(app.api + '/modules/8' + module.id + '/fields/' + field.id, field);
+    };
+
+    this.deleteField = function (module, field) {
+      return $http.delete(app.api + '/modules/' + module.id + '/fields/' + field.id);
     };
   }
 );
