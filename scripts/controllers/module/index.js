@@ -9,18 +9,41 @@ angular.module(app.name).controller('moduleIndexCtrl',
       loadFields();
     };
 
-    function loadFields() {
-      $moduleService.searchField($scope.selectedModule).success(function(data) {
-        $scope.fields = data;
-      });
-    }
-
     function loadModules() {
       $moduleService.searchModule().success(function(data) {
         $scope.modules = data;
         if ($scope.modules.length > 0) {
           $scope.selectModule($scope.modules[0]);
         }
+      });
+    }
+
+    $scope.editModule = function (module) {
+      var modal = $modal.open({
+        templateUrl: 'views/module/module-edit.html',
+        controller: 'moduleEditCtrl',
+        windowClass: 'middle-modal',
+        resolve: {
+          module: function () {
+            return module;
+          }
+        }
+      });
+      modal.result.then(function(module) {
+        loadModules();
+      });
+    };
+
+    $scope.deleteModule = function (module) {
+      if (!confirm($translate.instant('confirm_delete'))) return false;
+      $moduleService.deleteModule(module).success(function(data) {
+        loadModules();
+      });
+    };
+
+    function loadFields() {
+      $moduleService.searchField($scope.selectedModule).success(function(data) {
+        $scope.fields = data;
       });
     }
 
@@ -44,11 +67,10 @@ angular.module(app.name).controller('moduleIndexCtrl',
     };
 
     $scope.deleteField = function(field) {
-      if (confirm($translate.instant('confirm_delete'))) {
-        $moduleService.deleteField($scope.selectedModule, field).success(function(data) {
-          loadFields();
-        });
-      }
+      if (!confirm($translate.instant('confirm_delete'))) return false;
+      $moduleService.deleteField($scope.selectedModule, field).success(function(data) {
+        loadFields();
+      });
     };
 
     (function () {

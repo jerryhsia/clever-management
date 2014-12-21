@@ -21,7 +21,6 @@ angular.module(app.name).factory('interceptor',
       },
 
       'responseError': function(rejection) {
-        console.log(rejection);
         $rootScope.submiting = false;
         if (rejection.status == 422) {
           var messages = [];
@@ -29,6 +28,8 @@ angular.module(app.name).factory('interceptor',
             messages.push({type: 'danger', message: rejection.data[key].message});
           }
           $alertService.push(messages);
+        } else {
+          $alertService.push({type: 'danger', message: rejection.data.message});
         }
         return $q.reject(rejection);
       }

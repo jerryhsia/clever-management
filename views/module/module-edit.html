@@ -3,24 +3,24 @@
     <span aria-hidden="true">&times;</span>
     <span class="sr-only">{{'close'|translate}}</span>
   </button>
-  <h3 class="modal-title ng-cloak" ng-cloak>{{form.id?'edit_field':'create_field'|translate}}</h3>
+  <h3 class="modal-title ng-cloak" ng-cloak>{{form.id?'edit_module':'create_module'|translate}}</h3>
 </div>
 <div class="modal-body">
   <form class="form-horizontal field-form" method="post" ng-submit="save()">
     <div class="form-group">
       <label class="col-sm-2 control-label" for="name">
-        {{'field_name'|translate}}
+        {{'module_name'|translate}}
         <span class="text-danger">*</span>
       </label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="name" placeholder="{{'please_input'|translate}}{{'field_name'|translate}}" ng-model="form.name" required>
+        <input type="text" class="form-control" id="name" placeholder="{{'please_input'|translate}}{{'module_name'|translate}}" ng-model="form.name" required>
       </div>
       <label class="col-sm-2 control-label" for="title">
-        {{'field_title'|translate}}
+        {{'module_title'|translate}}
         <span class="text-danger">*</span>
       </label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="title" placeholder="{{'please_input'|translate}}{{'field_title'|translate}}" ng-model="form.title" required>
+        <input type="text" class="form-control" id="title" placeholder="{{'please_input'|translate}}{{'module_title'|translate}}" ng-model="form.title" required>
       </div>
     </div>
     <div class="form-group">

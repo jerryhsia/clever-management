@@ -14,6 +14,9 @@
 
   "module": "模型",
   "create_module": "新建模型",
+  "edit_module": "编辑模型",
+  "module_name": "模型标识",
+  "module_title": "模型名称",
 
   "field": "字段",
   "field_name": "字段标识",
@@ -30,6 +33,7 @@
   "field_input_file": "单文件上传",
   "field_input_multiple_file": "多文件上传",
   "create_field": "新建字段",
+  "edit_field": "编辑字段",
 
   "data": "数据",
   "create_data": "新建数据",

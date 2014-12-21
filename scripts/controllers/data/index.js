@@ -1,17 +1,17 @@
 'use strict';
 angular.module(app.name).controller('dataIndexCtrl',
-  function($scope, $modal, $moduleService, $translate)
+  function($scope, $modal, $moduleService, $dataService, $translate)
   {
     $scope.selectedModule = null;
 
     $scope.selectModule = function (module) {
       $scope.selectedModule = module;
-      loadFields();
+      loadDatas();
     };
 
-    function loadFields() {
-      $moduleService.searchField($scope.selectedModule).success(function(data) {
-        $scope.fields = data;
+    function loadDatas() {
+      $dataService.search($scope.selectedModule).success(function(data) {
+        $scope.datas = data;
       });
     }
 
@@ -45,8 +45,8 @@ angular.module(app.name).controller('dataIndexCtrl',
 
     $scope.deleteData = function(data) {
       if (confirm($translate.instant('confirm_delete'))) {
-        $moduleService.deleteField($scope.selectedModule, data).success(function(data) {
-          loadFields();
+        $dataService.delete($scope.selectedModule, data).success(function(data) {
+          loadDatas();
         });
       }
     };

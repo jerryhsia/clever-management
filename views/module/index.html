@@ -2,12 +2,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
-      <button class="btn btn-primary">{{'create_module'|translate}}</button>
       <ul class="nav nav-sidebar">
         <li ng-class="{active: selectedModule.id == module.id}" ng-repeat="module in modules">
-          <a href="#">{{module.title}}</a>
+          <a class="module" href="#" ng-click="selectModule(module)">{{module.title}}</a>
+          <a class="edit" href="#" ng-click="editModule(module)"><span class="glyphicon glyphicon-edit"></span></a>
+          <a class="trash" href="#" ng-click="deleteModule(module)"><span class="glyphicon glyphicon-trash"></span></a>
         </li>
       </ul>
+      <button class="btn btn-primary" ng-click="editModule({})">{{'create_module'|translate}}</button>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-view">
       <div class="header">
