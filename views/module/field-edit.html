@@ -9,15 +9,15 @@
   <form class="form-horizontal field-form" method="post" ng-submit="save()">
     <div class="form-group">
       <label class="col-sm-2 control-label" for="name">
-        <span class="text-danger">*</span>
         {{'field_name'|translate}}
+        <span class="text-danger">*</span>
       </label>
       <div class="col-sm-4">
         <input type="text" class="form-control" id="name" placeholder="{{'please_input'|translate}}{{'field_name'|translate}}" ng-model="form.name" required>
       </div>
       <label class="col-sm-2 control-label" for="title">
-        <span class="text-danger">*</span>
         {{'field_title'|translate}}
+        <span class="text-danger">*</span>
       </label>
       <div class="col-sm-4">
         <input type="text" class="form-control" id="title" placeholder="{{'please_input'|translate}}{{'field_title'|translate}}" ng-model="form.title" required>
@@ -25,14 +25,14 @@
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">
+        {{'field_input'|translate}}
         <span class="text-danger">*</span>
-        {{'field_type'|translate}}
       </label>
       <div class="col-sm-4">
-        <ui-select ng-model="form.type">
-          <ui-select-match ng-click="form.type = '';" placeholder="{{'please_select'|translate}}{{'field_type'|translate}}">{{'field_type_'+$select.selected|translate}}</ui-select-match>
-          <ui-select-choices repeat="type in app.field_types">
-            <div ng-bind-html="'field_type_'+type |translate |highlight: $select.search"></div>
+        <ui-select ng-model="form.input">
+          <ui-select-match ng-click="form.input = '';" placeholder="{{'please_select'|translate}}{{'field_input'|translate}}">{{'field_input_'+$select.selected|translate}}</ui-select-match>
+          <ui-select-choices repeat="input in app.field_inputs">
+            <div ng-bind-html="'field_input_'+input |translate |highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
       </div>

@@ -28,7 +28,7 @@ angular.module(app.name).controller('moduleIndexCtrl',
       var modal = $modal.open({
         templateUrl: 'views/module/field-edit.html',
         controller: 'fieldEditCtrl',
-        windowClass: '',
+        windowClass: 'middle-modal',
         resolve: {
           module: function () {
             return $scope.selectedModule;

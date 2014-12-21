@@ -4,7 +4,7 @@ var app = {
   api : 'http://backend.clever.ts',
   debug: true,
   alert_time: 3000,
-  field_types: [
+  field_inputs: [
     'input',
     'textarea',
     'radio',
