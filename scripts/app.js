@@ -34,6 +34,10 @@ angular.module(app.name, [
     url: '/modules',
     templateUrl: 'views/module/index.html',
     controller: 'moduleIndexCtrl'
+  }).state('data', {
+    url: '/datas',
+    templateUrl: 'views/data/index.html',
+    controller: 'dataIndexCtrl'
   });
 
   $translateProvider.useStaticFilesLoader({

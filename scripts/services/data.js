@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).service('$moduleService',
+angular.module(app.name).service('$dataService',
   function ($http, $translate)
   {
     this.searchModule = function (params) {

@@ -2,6 +2,7 @@
 angular.module(app.name).service('$alertService',
   function ($rootScope, $timeout)
   {
+
     function shift () {
       $timeout(function(){
         $rootScope.alerts.splice(0, 1);
@@ -11,8 +12,14 @@ angular.module(app.name).service('$alertService',
       }, app.alert_time);
     }
 
-    this.push = function (type, message) {
-      $rootScope.alerts.push({'type': type, message: message});
+    this.push = function (message) {
+      if (angular.isDefined(message.type)) {
+        $rootScope.alerts.push(message);
+      } else {
+        for (var key in message) {
+          $rootScope.alerts.push(message[key]);
+        }
+      }
       shift();
     };
 

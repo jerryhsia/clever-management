@@ -1,0 +1,43 @@
+<ng-include src="'views/header.html'" ng-controller="headerCtrl"></ng-include>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li ng-class="{active: selectedModule.id == module.id}" ng-repeat="module in modules">
+          <a href="#">{{module.title}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-view">
+      <div class="header">
+        <span class="h3">{{'data'|translate}}</span>
+        <button class="btn btn-primary pull-right" ng-click="editData({})">{{'create_data'|translate}}</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th width="60">#</th>
+              <th>{{'field_name'|translate}}</th>
+              <th>{{'field_title'|translate}}</th>
+              <th>{{'field_input'|translate}}</th>
+              <th width="80">{{'operate'|translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="field in fields">
+              <td>{{field.id}}</td>
+              <td>{{field.name}}</td>
+              <td>{{field.title}}</td>
+              <td>{{'field_input_' + field.input|translate}}</td>
+              <td>
+                <i class="glyphicon glyphicon-edit pointer" ng-click="editField(field)"></i>&nbsp;&nbsp;
+                <i class="glyphicon glyphicon-remove pointer" ng-click="deleteField(field)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
