@@ -27,8 +27,8 @@
               <td>{{data.id}}</td>
               <td ng-repeat="(name, field) in fields">{{data[name]}}</td>
               <td>
-                <i class="glyphicon glyphicon-edit pointer" ng-click="editField(field)"></i>&nbsp;&nbsp;
-                <i class="glyphicon glyphicon-remove pointer" ng-click="deleteField(field)"></i>
+                <i class="glyphicon glyphicon-edit pointer" ng-click="editData(data)"></i>&nbsp;&nbsp;
+                <i class="glyphicon glyphicon-remove pointer" ng-click="deleteData(data)"></i>
               </td>
             </tr>
           </tbody>

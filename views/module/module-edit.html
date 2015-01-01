@@ -13,7 +13,7 @@
         <span class="text-danger">*</span>
       </label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="name" placeholder="{{'please_input'|translate}}{{'module_name'|translate}}" ng-model="form.name" required>
+        <input type="text" ng-disabled="form.id" class="form-control" id="name" placeholder="{{'please_input'|translate}}{{'module_name'|translate}}" ng-model="form.name" required>
       </div>
       <label class="col-sm-2 control-label" for="title">
         {{'module_title'|translate}}
@@ -25,16 +25,12 @@
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">
-        {{'field_input'|translate}}
+        {{'user_module'|translate}}
         <span class="text-danger">*</span>
       </label>
-      <div class="col-sm-4">
-        <ui-select ng-model="form.input">
-          <ui-select-match ng-click="form.input = '';" placeholder="{{'please_select'|translate}}{{'field_input'|translate}}">{{'field_input_'+$select.selected|translate}}</ui-select-match>
-          <ui-select-choices repeat="input in app.field_inputs">
-            <div ng-bind-html="'field_input_'+input |translate |highlight: $select.search"></div>
-          </ui-select-choices>
-        </ui-select>
+      <div class="col-sm-4 radio-button">
+        <input type="radio" ng-disabled="form.id" name="is_user" value="1" ng-model="form.is_user"> {{'yes'|translate}}
+        <input type="radio" ng-disabled="form.id" name="is_user" value="0" ng-model="form.is_user"> {{'no'|translate}}
       </div>
     </div>
     <input type="submit" class="form-submit">

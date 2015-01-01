@@ -30,7 +30,7 @@
       </label>
       <div class="col-sm-4">
         <ui-select ng-model="form.input">
-          <ui-select-match ng-click="form.input = '';" placeholder="{{'please_select'|translate}}{{'field_input'|translate}}">{{'field_input_'+$select.selected|translate}}</ui-select-match>
+          <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_input'|translate}}">{{'field_input_'+$select.selected|translate}}</ui-select-match>
           <ui-select-choices repeat="input in app.field_inputs">
             <div ng-bind-html="'field_input_'+input |translate |highlight: $select.search"></div>
           </ui-select-choices>

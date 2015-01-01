@@ -21,11 +21,8 @@ angular.module(app.name).controller('dataEditCtrl',
     };
 
     function loadFields() {
-      $moduleService.searchField(module).success(function(data) {
-        $scope.fields = data;
-        for (var key in data) {
-          $scope.form[data[key].name] = '';
-        }
+      $moduleService.searchField(module).success(function(fields) {
+        $scope.fields = fields;
       });
     }
 

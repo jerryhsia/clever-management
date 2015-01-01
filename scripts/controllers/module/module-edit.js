@@ -2,7 +2,10 @@
 angular.module(app.name).controller('moduleEditCtrl',
   function($scope, $modalInstance, $moduleService, module)
   {
-    $scope.form = module ? angular.copy(module) : {};
+    if (!angular.isDefined(module.id)) {
+      module.is_user = 0;
+    }
+    $scope.form = module;
 
     $scope.save = function () {
       var p;

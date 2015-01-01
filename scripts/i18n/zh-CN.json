@@ -9,6 +9,8 @@
   "please_input": "请输入 ",
   "please_select": "请选择 ",
   "confirm_delete": "确定删除吗，将不可恢复？",
+  "yes": "是",
+  "no": "否",
 
   "role": "角色",
 
@@ -17,6 +19,7 @@
   "edit_module": "编辑模型",
   "module_name": "模型标识",
   "module_title": "模型名称",
+  "user_module": "用户模型",
 
   "field": "字段",
   "field_name": "字段标识",

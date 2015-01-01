@@ -16,16 +16,8 @@ angular.module(app.name).service('$dataService',
       return $http.put(app.api + '/datas/' + module.name + '/' + data.id, data);
     };
 
-    this.createField = function (module, field) {
-      return $http.post(app.api + '/modules/' + module.id + '/fields', field);
-    };
-
-    this.patchField = function (module, field) {
-      return $http.put(app.api + '/modules/' + module.id + '/fields/' + field.id, field);
-    };
-
-    this.deleteField = function (module, field) {
-      return $http.delete(app.api + '/modules/' + module.id + '/fields/' + field.id);
+    this.delete = function (module, data) {
+      return $http.delete(app.api + '/datas/' + module.name + '/' + data.id);
     };
   }
 );
