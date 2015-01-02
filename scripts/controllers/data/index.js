@@ -7,7 +7,7 @@ angular.module(app.name).controller('dataIndexCtrl',
     $scope.selectModule = function (module) {
       $scope.selectedModule = module;
       $moduleService.searchField(module).success(function(data) {
-        $scope.fields = indexBy(data, 'name');
+        $scope.fields = data;
         loadDatas();
       });
     };

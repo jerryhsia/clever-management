@@ -11,6 +11,7 @@
   "confirm_delete": "确定删除吗，将不可恢复？",
   "yes": "是",
   "no": "否",
+  "operate_success": "操作成功",
 
   "role": "角色",
 
@@ -27,6 +28,9 @@
   "field_input": "录入方式",
   "field_type": "字段类型",
   "field_size": "最大长度",
+  "is_null": "允许为空",
+  "is_search": "允许搜索",
+  "is_list": "列表显示",
   "field_input_input": "单行输入",
   "field_input_textarea": "多行输入",
   "field_input_radio": "单选按钮",

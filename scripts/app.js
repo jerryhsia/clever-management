@@ -9,7 +9,7 @@ angular.module(app.name, [
   'angularFileUpload',
   'pascalprecht.translate',
   'angular-loading-bar'
-]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $cookieStoreProvider, $translateProvider, $httpProvider, uiSelectConfig) {
+]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $cookieStoreProvider, $translateProvider, $httpProvider, uiSelectConfig, cfpLoadingBarProvider) {
 
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
@@ -17,6 +17,8 @@ angular.module(app.name, [
 
   uiSelectConfig.theme = 'bootstrap';
   uiSelectConfig.resetSearchInput = true;
+
+  cfpLoadingBarProvider.includeSpinner = false;
 
   $stateProvider.state('login', {
     url: '/login',

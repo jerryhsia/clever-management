@@ -1,6 +1,6 @@
 'use strict';
 angular.module(app.name).factory('interceptor',
-  function($rootScope, $q, $alertService)
+  function($rootScope, $q, $alertService, $translate)
   {
     return {
       'request': function(config) {
@@ -17,6 +17,9 @@ angular.module(app.name).factory('interceptor',
 
       'response': function(response) {
         $rootScope.submiting = false;
+        if (inArray(response.config.method, ['POST', 'PUT', 'DELETE'])) {
+          $alertService.push({type: 'success', message: $translate.instant('operate_success')});
+        }
         return response;
       },
 
