@@ -13,12 +13,12 @@ angular.module(app.name).service('$alertService',
     }
 
     this.push = function (message) {
-      if (angular.isDefined(message.type)) {
-        $rootScope.alerts.push(message);
-      } else {
+      if (angular.isArray(message)) {
         for (var key in message) {
           $rootScope.alerts.push(message[key]);
         }
+      } else {
+        $rootScope.alerts.push(message);
       }
       shift();
     };

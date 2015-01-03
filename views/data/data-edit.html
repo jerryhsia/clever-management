@@ -3,7 +3,7 @@
     <span aria-hidden="true">&times;</span>
     <span class="sr-only">{{'close'|translate}}</span>
   </button>
-  <h3 class="modal-title ng-cloak" ng-cloak>{{data?'edit_data':'create_data'|translate}}</h3>
+  <h3 class="modal-title ng-cloak" ng-cloak>{{form.id?'edit_data':'create_data'|translate}}</h3>
 </div>
 <div class="modal-body">
   <form class="form-horizontal data-form" method="post" ng-submit="save()">
@@ -15,13 +15,6 @@
       <div class="col-sm-4">
         <input type="text" class="form-control" id="{{field.name}}" placeholder="{{'please_input'|translate}}{{field.title}}" ng-model="form[field.name]" required>
       </div>
-      <!--<label class="col-sm-2 control-label" for="title">
-        {{'field_title'|translate}}
-        <span class="text-danger">*</span>
-      </label>
-      <div class="col-sm-4">
-        <input type="text" class="form-control" id="title" placeholder="{{'please_input'|translate}}{{'field_title'|translate}}" ng-model="form.title" required>
-      </div>-->
     </div>
     <input type="submit" class="form-submit">
   </form>

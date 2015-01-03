@@ -21,7 +21,13 @@ angular.module(app.name).controller('dataEditCtrl',
     };
 
     function loadFields() {
-      $moduleService.searchField(module).success(function(fields) {
+      $moduleService.searchField(module).success(function(data) {
+        var fields = [];
+        angular.forEach(data, function(field, key) {
+          if (field.can_edit) {
+            fields.push(field);
+          }
+        });
         $scope.fields = fields;
       });
     }
