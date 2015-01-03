@@ -17,13 +17,13 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th ng-repeat="field in fields">{{field.title}}</th>
+              <th ng-if="field.is_list" ng-repeat="field in fields">{{field.title}}</th>
               <th width="80">{{'operate'|translate}}</th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="data in datas">
-              <td ng-repeat="field in fields">{{data[field.name]}}</td>
+              <td ng-if="field.is_list" ng-repeat="field in fields">{{data[field.name]}}</td>
               <td>
                 <i class="glyphicon glyphicon-edit pointer" ng-click="editData(data)"></i>&nbsp;&nbsp;
                 <i class="glyphicon glyphicon-remove pointer" ng-click="deleteData(data)"></i>
