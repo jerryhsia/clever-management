@@ -8,11 +8,23 @@ var app = {
   field_inputs: [
     'input',
     'textarea',
-    'radio',
-    'checkbox',
     'select',
+    'multiple_select',
     'date',
-    'file',
-    'multiple_file'
-  ]
+    'files'
+  ],
+  pagination: {
+    maxSize: 7,
+    perPage: 15,
+    currentPage: 1,
+    selectNums: [
+      '5',
+      '10',
+      '15',
+      '20',
+      '30',
+      '40',
+      '50'
+    ]
+  }
 };

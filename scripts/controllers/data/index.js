@@ -12,15 +12,23 @@ angular.module(app.name).controller('dataIndexCtrl',
     function loadFields() {
       $moduleService.searchField($scope.selectedModule).success(function(data) {
         $scope.fields = data;
-        loadDatas();
+        $scope.loadDatas();
       });
     }
 
-    function loadDatas() {
-      $dataService.search($scope.selectedModule).success(function(data) {
+    $scope.pagination = getPagination();
+    $scope.params = {
+      per_page: $scope.pagination.perPage,
+      page: $scope.pagination.currentPage
+    };
+
+    $scope.loadDatas = function() {
+      $scope.params.page = $scope.pagination.currentPage;
+      $dataService.search($scope.selectedModule, $scope.params).success(function(data, status, headers) {
         $scope.datas = data;
+        $scope.pagination = getPagination(headers);
       });
-    }
+    };
 
     function loadModules() {
       $moduleService.searchModule().success(function(data) {
@@ -32,7 +40,6 @@ angular.module(app.name).controller('dataIndexCtrl',
     }
 
     $scope.editData = function (data, index) {
-      console.log(index);
       var modal = $modal.open({
         templateUrl: 'views/data/data-edit.html',
         controller: 'dataEditCtrl',
@@ -50,7 +57,7 @@ angular.module(app.name).controller('dataIndexCtrl',
         if (angular.isDefined(index)) {
           $scope.datas[index] = data;
         } else {
-          loadDatas();
+          $scope.loadDatas();
         }
       });
     };
