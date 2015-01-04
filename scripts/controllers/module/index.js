@@ -9,6 +9,12 @@ angular.module(app.name).controller('moduleIndexCtrl',
       loadFields();
     };
 
+    function loadFields() {
+      $moduleService.searchField($scope.selectedModule).success(function(data) {
+        $scope.fields = data;
+      });
+    }
+
     function loadModules() {
       $moduleService.searchModule().success(function(data) {
         $scope.modules = data;
@@ -45,12 +51,6 @@ angular.module(app.name).controller('moduleIndexCtrl',
       });
     };
 
-    function loadFields() {
-      $moduleService.searchField($scope.selectedModule).success(function(data) {
-        $scope.fields = data;
-      });
-    }
-
     $scope.editField = function (field, index) {
       var modal = $modal.open({
         templateUrl: 'views/module/field-edit.html',
@@ -66,10 +66,10 @@ angular.module(app.name).controller('moduleIndexCtrl',
         }
       });
       modal.result.then(function(field) {
-        if (angular.isDefined(field)) {
+        if (angular.isDefined(index)) {
           $scope.fields[index] = field;
         } else {
-          $scope.selectModule($scope.selectedModule);
+          loadFields();
         }
       });
     };

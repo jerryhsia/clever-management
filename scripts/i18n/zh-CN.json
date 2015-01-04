@@ -12,6 +12,7 @@
   "yes": "是",
   "no": "否",
   "operate_success": "操作成功",
+  "null_not_change": "留空不修改",
 
   "role": "角色",
 
@@ -21,6 +22,9 @@
   "module_name": "模型标识",
   "module_title": "模型名称",
   "user_module": "用户模型",
+
+  "user": "用户",
+  "password": "密码",
 
   "field": "字段",
   "field_name": "字段标识",

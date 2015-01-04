@@ -4,7 +4,7 @@
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
         <li ng-class="{active: selectedModule.id == module.id}" ng-repeat="module in modules">
-          <a href="#">{{module.title}}</a>
+          <a href="javascript:void(0)" ng-click="selectModule(module)">{{module.title}}</a>
         </li>
       </ul>
     </div>
@@ -25,8 +25,8 @@
             <tr ng-repeat="data in datas">
               <td ng-if="field.is_list" ng-repeat="field in fields">{{data[field.name]}}</td>
               <td>
-                <i class="glyphicon glyphicon-edit pointer" ng-click="editData(data)"></i>&nbsp;&nbsp;
-                <i class="glyphicon glyphicon-remove pointer" ng-click="deleteData(data)"></i>
+                <i class="glyphicon glyphicon-edit pointer" ng-click="editData(data, $index)"></i>&nbsp;&nbsp;
+                <i class="glyphicon glyphicon-remove pointer" ng-click="deleteData(data, $index)"></i>
               </td>
             </tr>
           </tbody>

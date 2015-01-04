@@ -6,11 +6,15 @@ angular.module(app.name).controller('dataIndexCtrl',
 
     $scope.selectModule = function (module) {
       $scope.selectedModule = module;
-      $moduleService.searchField(module).success(function(data) {
+      loadFields();
+    };
+
+    function loadFields() {
+      $moduleService.searchField($scope.selectedModule).success(function(data) {
         $scope.fields = data;
         loadDatas();
       });
-    };
+    }
 
     function loadDatas() {
       $dataService.search($scope.selectedModule).success(function(data) {
@@ -27,7 +31,8 @@ angular.module(app.name).controller('dataIndexCtrl',
       });
     }
 
-    $scope.editData = function (data) {
+    $scope.editData = function (data, index) {
+      console.log(index);
       var modal = $modal.open({
         templateUrl: 'views/data/data-edit.html',
         controller: 'dataEditCtrl',
@@ -42,14 +47,18 @@ angular.module(app.name).controller('dataIndexCtrl',
         }
       });
       modal.result.then(function(data) {
-        $scope.selectModule($scope.selectedModule);
+        if (angular.isDefined(index)) {
+          $scope.datas[index] = data;
+        } else {
+          loadDatas();
+        }
       });
     };
 
-    $scope.deleteData = function(data) {
+    $scope.deleteData = function(data, index) {
       if (confirm($translate.instant('confirm_delete'))) {
         $dataService.delete($scope.selectedModule, data).success(function(data) {
-          loadDatas();
+          $scope.datas.splice(index, 1);
         });
       }
     };
