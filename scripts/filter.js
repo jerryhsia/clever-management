@@ -1,31 +1,22 @@
 'use strict';
-angular.module(app.name).filter('propsFilter', function() {
-  return function(items, props) {
-    var out = [];
-
-    if (angular.isArray(items)) {
-      items.forEach(function(item) {
-        var itemMatches = false;
-
-        var keys = Object.keys(props);
-        for (var i = 0; i < keys.length; i++) {
-          var prop = keys[i];
-          var text = props[prop].toLowerCase();
-          if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
-            itemMatches = true;
-            break;
-          }
+angular.module(app.name).filter('toString', function() {
+  return function(item) {
+    if (angular.isArray(item)) {
+      var result = [];
+      for (var i = 0; i < item.length; i++) {
+        if (angular.isObject(item[i])) {
+          result.push(item[i].to_string);
+        } else {
+          return item.join(',');
         }
-
-        if (itemMatches) {
-          out.push(item);
-        }
-      });
-    } else {
-      // Let the output be the input untouched
-      out = items;
+      }
+      return result.join(',');
     }
 
-    return out;
+    if (angular.isObject(item)) {
+      return item.to_string;
+    }
+
+    return item;
   };
 });

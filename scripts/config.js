@@ -5,14 +5,19 @@ var app = {
   debug: true,
   alert_time: 5000,
   default_module_id: 1,
-  field_inputs: [
-    'input',
-    'textarea',
-    'select',
-    'multiple_select',
-    'date',
-    'files'
-  ],
+  field: {
+    input: [
+      'input',
+      'textarea',
+      'select',
+      'multiple_select',
+      'date',
+      'files'
+    ],
+    relation_type: [
+      'has_one', 'has_many'
+    ]
+  },
   pagination: {
     maxSize: 7,
     perPage: 15,

@@ -8,6 +8,7 @@
   "delete": "删除",
   "please_input": "请输入 ",
   "please_select": "请选择 ",
+  "please_input_search": "搜索并选择 ",
   "confirm_delete": "确定删除吗，将不可恢复？",
   "yes": "是",
   "no": "否",
@@ -16,12 +17,12 @@
 
   "role": "角色",
 
-  "module": "模型",
-  "create_module": "新建模型",
-  "edit_module": "编辑模型",
-  "module_name": "模型标识",
-  "module_title": "模型名称",
-  "user_module": "用户模型",
+  "module": "模块",
+  "create_module": "新建模块",
+  "edit_module": "编辑模块",
+  "module_name": "模块标识",
+  "module_title": "模块名称",
+  "user_module": "用户模块",
 
   "user": "用户",
   "password": "密码",
@@ -41,6 +42,10 @@
   "field_input_multiple_select": "多项选择",
   "field_input_date": "日期选择",
   "field_input_files": "文件上传",
+  "field_relation_module": "关联模块",
+  "field_relation_type": "关联类型",
+  "field_relation_type_has_one": "一对一",
+  "field_relation_type_has_many": "一对多",
   "create_field": "新建字段",
   "edit_field": "编辑字段",
 

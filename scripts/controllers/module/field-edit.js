@@ -16,8 +16,25 @@ angular.module(app.name).controller('fieldEditCtrl',
       });
     };
 
+    function loadModules() {
+      $moduleService.searchModule().success(function(data) {
+        angular.forEach(data, function(value, key) {
+          if (value.id == module.id) {
+            data.splice(key, 1);
+          }
+        });
+        $scope.modules = data;
+      });
+    }
+
     $scope.cancel = function () {
       $modalInstance.dismiss();
     };
+
+    (function(){
+      if (!angular.isDefined($scope.form.id)) {
+        loadModules();
+      }
+    })();
   }
 );

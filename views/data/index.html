@@ -23,7 +23,9 @@
           </thead>
           <tbody>
             <tr ng-repeat="data in datas">
-              <td ng-if="field.is_list" ng-repeat="field in fields">{{data[field.name]}}</td>
+              <td ng-if="field.is_list" ng-repeat="field in fields">
+                {{field.has_relation?data[field.name + '_model']:data[field.name]|toString}}
+              </td>
               <td>
                 <i class="glyphicon glyphicon-edit pointer" ng-click="editData(data, $index)"></i>&nbsp;&nbsp;
                 <i class="glyphicon glyphicon-remove pointer" ng-click="deleteData(data, $index)"></i>

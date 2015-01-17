@@ -56,10 +56,18 @@
     <div class="form-group" ng-repeat="field in fields">
       <label class="col-sm-2 control-label" for="{{field.name}}">
         {{field.title}}
-        <span class="text-danger">*</span>
+        <span class="text-danger" ng-if="field.is_null == 0">*</span>
       </label>
-      <div class="col-sm-4">
-        <input type="text" class="form-control" id="{{field.name}}" placeholder="{{'please_input'|translate}}{{field.title}}" ng-model="form[field.name]" required>
+      <div ng-if="field.input == 'input'" class="col-sm-4">
+        <input ng-required="field.is_null == 0" type="text" class="form-control" id="{{field.name}}" placeholder="{{'please_input'|translate}}{{field.title}}" ng-model="form[field.name]">
+      </div>
+      <div ng-if="field.input == 'select'" class="col-sm-4">
+        <ui-select ng-model="form[field.name]">
+          <ui-select-match allow-clear="true" placeholder="{{'please_input_search'|translate}}{{field.title}}">{{sources[field.name] ? $select.selected:form[field.name+'_model']|toString}}</ui-select-match>
+          <ui-select-choices repeat="item.id as item in sources[field.name]" refresh="getSources(field, $select.search)" refresh-delay="500">
+            <div ng-bind-html="item|toString|highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
       </div>
     </div>
     <input type="submit" class="form-submit">

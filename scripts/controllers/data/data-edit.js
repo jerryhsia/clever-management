@@ -52,6 +52,14 @@ angular.module(app.name).controller('dataEditCtrl',
       });
     }
 
+    $scope.sources = {};
+    $scope.getSources = function(field, keyword) {
+      if (!keyword) return false;
+      $dataService.search(field.relation_module, {keyword: keyword}).success(function(data) {
+        $scope.sources[field.name] = data;
+      });
+    };
+
     (function() {
       loadFields();
     })();

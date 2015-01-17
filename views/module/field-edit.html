@@ -31,7 +31,7 @@
       <div class="col-sm-4">
         <ui-select ng-if="!form.id" ng-model="form.input">
           <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_input'|translate}}">{{'field_input_'+$select.selected|translate}}</ui-select-match>
-          <ui-select-choices repeat="input in app.field_inputs">
+          <ui-select-choices repeat="input in app.field.input">
             <div ng-bind-html="'field_input_'+input |translate |highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
@@ -46,7 +46,28 @@
       </div>
     </div>
     <div class="form-group">
-
+      <label class="col-sm-2 control-label">
+        {{'field_relation_module'|translate}}
+      </label>
+      <div class="col-sm-4">
+        <ui-select ng-if="!form.id" ng-model="form.relation_id">
+          <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_relation_module'|translate}}">{{$select.selected.title}}</ui-select-match>
+          <ui-select-choices repeat="item.id as item in modules">
+            <div ng-bind-html="item.title|highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <label class="col-sm-2 control-label">
+        {{'field_relation_type'|translate}}
+      </label>
+      <div class="col-sm-4">
+        <ui-select ng-if="!form.id" ng-model="form.relation_type">
+          <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_relation_type'|translate}}">{{'field_relation_type_'+$select.selected|translate}}</ui-select-match>
+          <ui-select-choices repeat="type in app.field.relation_type">
+            <div ng-bind-html="'field_relation_type_'+type|translate|highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
     </div>
     <input type="submit" class="form-submit">
   </form>
