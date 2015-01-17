@@ -49,10 +49,26 @@ angular.module(app.name).controller('dataEditCtrl',
             $scope.roles = data;
           });
         }
+        initSources();
       });
     }
 
-    $scope.sources = {};
+    function initSources() {
+      $scope.sources = {};
+      angular.forEach($scope.fields, function(field, key) {
+        if (field.has_relation) {
+          if (field.relation_type == 'has_one') {
+            var temp = [];
+            temp.push($scope.form[field.name+'_model']);
+            $scope.sources[field.name] = temp;
+          }
+          if (field.relation_type == 'has_many') {
+            $scope.sources[field.name] = $scope.form[field.name+'_model'];
+          }
+        }
+      });
+    }
+
     $scope.getSources = function(field, keyword) {
       if (!keyword) return false;
       $dataService.search(field.relation_module, {keyword: keyword}).success(function(data) {

@@ -46,6 +46,7 @@
   "field_relation_type": "关联类型",
   "field_relation_type_has_one": "一对一",
   "field_relation_type_has_many": "一对多",
+  "option_tip": "请输入待选值，多个用,分割，如：男,女",
   "create_field": "新建字段",
   "edit_field": "编辑字段",
 
