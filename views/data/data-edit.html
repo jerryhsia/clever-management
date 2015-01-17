@@ -62,6 +62,24 @@
         <div ng-if="field.input == 'input'" class="col-sm-8 input">
           <input ng-required="field.is_null == 0" type="text" class="form-control" id="{{field.name}}" placeholder="{{'please_input'|translate}}{{field.title}}" ng-model="form[field.name]">
         </div>
+        <div ng-if="field.input == 'checkbox'" class="col-sm-8 input fix-height">
+          <span ng-repeat="item in field.option">
+            <input type="checkbox" value="{{item}}" ng-model="form[field.name+'_temp'][item]"> {{item}}
+          </span>
+        </div>
+        <div ng-if="field.input == 'date'" class="col-sm-8 input">
+          <p class="input-group" ng-controller="datepickerCtrl">
+            <input type="text" class="form-control"
+                   datepicker-popup="{{format}}"
+                   ng-model="form[field.name+'_temp']" is-open="opened"
+                   ng-required="field.is_null == 0"
+                   datepicker-options="dateOptions"
+              />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
         <div ng-if="field.input == 'select' && field.relation_id > 0" class="col-sm-8 input">
           <ui-select ng-model="form[field.name]">
             <ui-select-match allow-clear="true" placeholder="{{'please_input_search'|translate}}{{field.title}}">{{sources[field.name] ? $select.selected:form[field.name+'_model']|toString}}</ui-select-match>

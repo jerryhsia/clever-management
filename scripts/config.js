@@ -9,6 +9,8 @@ var app = {
     input: [
       'input',
       'textarea',
+      'radio',
+      'checkbox',
       'select',
       'multiple_select',
       'date',

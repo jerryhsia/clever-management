@@ -22,6 +22,24 @@ function indexBy (array, column) {
   return result;
 }
 
+function stringToDate(date) {
+  if (date.indexOf('-') == -1) return date;
+  date = date.substring(0, 10);
+  date = t.split('-');
+  return new Date(date[0], date[1] - 1, date[2]);
+}
+
+function dateToString(date) {
+  if (!(date instanceof Date)) return date;
+
+  var year = date.getFullYear().toString();
+  var month = date.getMonth() + 1;
+  month = month.toString().length < 2 ? '0' + month : month;
+  var day = date.getDate().toString().length < 2 ? '0' + date.getDate() : date.getDate();
+
+  return year + '-' + month + '-' + day;
+}
+
 function getPagination(headers, oldPagination) {
   var pagination = null;
   if (typeof oldPagination !== 'undefined') {

@@ -13,8 +13,26 @@ angular.module(app.name).controller('dataEditCtrl',
       }
     }
 
+    function beforeSave() {
+      angular.forEach($scope.fields, function(field, key) {
+        if (field.input == 'checkbox') {
+          $scope.form[field.name] = [];
+          angular.forEach($scope.form[field.name+'_temp'], function(value, key) {
+            if (value) {
+              $scope.form[field.name].push(key);
+            }
+          });
+        }
+
+        if (field.input == 'date') {
+          $scope.form[field.name] = dateToString($scope.form[field.name + '_temp']);
+        }
+      });
+    }
+
     $scope.save = function () {
       var p;
+      beforeSave();
       if (angular.isDefined($scope.form.id)) {
         p = $dataService.patch(module, $scope.form);
       } else {
@@ -49,11 +67,11 @@ angular.module(app.name).controller('dataEditCtrl',
             $scope.roles = data;
           });
         }
-        initSources();
+        initData();
       });
     }
 
-    function initSources() {
+    function initData() {
       $scope.sources = {};
       angular.forEach($scope.fields, function(field, key) {
         if (field.has_relation) {
@@ -65,6 +83,17 @@ angular.module(app.name).controller('dataEditCtrl',
           if (field.relation_type == 'has_many') {
             $scope.sources[field.name] = $scope.form[field.name+'_model'];
           }
+        }
+
+        if (field.input == 'checkbox') {
+          $scope.form[field.name + '_temp'] = {};
+          angular.forEach($scope.form[field.name], function(value, key) {
+            $scope.form[field.name + '_temp'][value] = true;
+          });
+        }
+
+        if (field.input == 'date') {
+          $scope.form[field.name + '_temp'] = $scope.form[field.name];
         }
       });
     }
