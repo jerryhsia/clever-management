@@ -14,7 +14,8 @@ var app = {
       'select',
       'multiple_select',
       'date',
-      'files'
+      'file',
+      'multiple_file'
     ],
     relation_type: [
       'has_one', 'has_many'

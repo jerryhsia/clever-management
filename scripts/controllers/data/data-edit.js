@@ -1,6 +1,6 @@
 'use strict';
 angular.module(app.name).controller('dataEditCtrl',
-  function($scope, $modalInstance, $translate, $moduleService, $dataService, $roleService, module, data)
+  function($scope, $modalInstance, $translate, $moduleService, $dataService, $roleService, $fileService, module, data)
   {
     $scope.module = module;
     $scope.form = data ? angular.copy(data) : {};
@@ -103,6 +103,25 @@ angular.module(app.name).controller('dataEditCtrl',
       $dataService.search(field.relation_module, {keyword: keyword}).success(function(data) {
         $scope.sources[field.name] = data;
       });
+    };
+
+    $scope.files = {};
+    $scope.uploadInfo = {};
+
+    $scope.upload = function(field) {
+      if (angular.isArray($scope.files[field.name]) && $scope.files[field.name].length > 0) {
+        $scope.uploadInfo[field.name] = {uploading: true, uploaded: 0};
+        $fileService.upload(app.api + '/files', $scope.files[field.name][0])
+          .success(function(data) {
+            delete $scope.files[field.name];
+            delete $scope.uploadInfo[field.name];
+          }).progress(function (evt) {
+            $scope.uploadInfo[field.name].uploaded = parseInt(100 * evt.loaded / evt.total);
+          }).error(function (data) {
+            delete $scope.files[field.name];
+            delete $scope.uploadInfo[field.name];
+          });
+      }
     };
 
     (function() {
