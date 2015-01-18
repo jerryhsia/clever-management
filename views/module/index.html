@@ -41,7 +41,7 @@
               <td><i ng-click="toggle(field, 'is_search', $index)" class="glyphicon pointer" ng-class="{'glyphicon-remove-circle danger':field.is_search == 0,'glyphicon glyphicon-ok-circle primary':field.is_search == 1}"></i></td>
               <td>
                 <i class="glyphicon glyphicon-edit pointer" ng-class="{'vhidden': !field.can_edit}" ng-click="editField(field, $index)"></i>&nbsp;&nbsp;
-                <i class="glyphicon glyphicon-remove pointer" ng-class="{'vhidden': !field.can_delete}" ng-click="deleteField(field, $index)"></i>
+                <i class="glyphicon glyphicon-remove pointer" ng-class="{'vhidden': field.is_default == 1}" ng-click="deleteField(field, $index)"></i>
               </td>
             </tr>
           </tbody>
