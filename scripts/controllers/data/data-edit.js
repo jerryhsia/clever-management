@@ -77,11 +77,11 @@ angular.module(app.name).controller('dataEditCtrl',
         if (field.has_relation) {
           if (field.relation_type == 'has_one') {
             var temp = [];
-            temp.push($scope.form[field.name+'_model']);
+            temp.push($scope.form[field.model_field]);
             $scope.sources[field.name] = temp;
           }
           if (field.relation_type == 'has_many') {
-            $scope.sources[field.name] = $scope.form[field.name+'_model'];
+            $scope.sources[field.name] = $scope.form[field.model_field];
           }
         }
 
@@ -113,6 +113,8 @@ angular.module(app.name).controller('dataEditCtrl',
         $scope.uploadInfo[field.name] = {uploading: true, uploaded: 0};
         $fileService.upload(app.api + '/files', $scope.files[field.name][0])
           .success(function(data) {
+            $scope.form[field.name] = data.id;
+            $scope.form[field.model] = data;
             delete $scope.files[field.name];
             delete $scope.uploadInfo[field.name];
           }).progress(function (evt) {
@@ -121,6 +123,15 @@ angular.module(app.name).controller('dataEditCtrl',
             delete $scope.files[field.name];
             delete $scope.uploadInfo[field.name];
           });
+      }
+    };
+
+    $scope.deleteFile = function(field) {
+      if (confirm($translate.instant('confirm_delete'))) {
+        if (field.input == 'file') {
+          $scope.form[field.name] = '';
+          $scope.form[field.model] = null;
+        }
       }
     };
 

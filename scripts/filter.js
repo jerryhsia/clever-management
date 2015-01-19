@@ -19,4 +19,9 @@ angular.module(app.name).filter('toString', function() {
 
     return item;
   };
+}).filter('getFileUrl', function() {
+  return function(file) {
+    if (!angular.isDefined(file)) return '';
+    return app.api+'/uploads/'+file.url;
+  };
 });

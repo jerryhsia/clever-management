@@ -82,13 +82,17 @@
         </div>
         <div ng-if="field.input == 'file'" class="col-sm-8 input">
           <p class="input-group">
-            <a type="button" ng-if="form[file.name]" class="btn btn-default">
-              <i class="glyphicon glyphicon-cloud-upload"></i>
+            <a ng-dblclick="alert(1)" type="button" target="_blank" ng-if="form[field.name]" class="btn btn-default btn-file" href="{{form[field.name+'_model']|getFileUrl}}" title="{{form[field.name+'_model'].name}}">
+              <img width="32" height="32" src="{{form[field.name+'_model']|getFileUrl}}" ng-if="form[field.name+'_model'].is_image">
+              <i class="glyphicon glyphicon-paperclip" ng-if="!form[field.name+'_model'].is_image"></i>
             </a>
-            <button ng-if="!files[field.name]" type="button" ng-file-select ng-model="files[field.name]" class="btn btn-primary">
+            <button ng-if="form[field.name]" type="button" ng-click="deleteFile(field)" class="btn btn-danger btn-xs btn-bottom">
+              <i class="glyphicon glyphicon-remove"></i>
+            </button>
+            <button ng-if="!files[field.name]" type="button" ng-file-select ng-model="files[field.name]" class="btn btn-primary btn-xs btn-bottom">
               <i class="glyphicon glyphicon-folder-open"></i>
             </button>
-            <button ng-if="files[field.name]" ng-disabled="uploading[field.name]" type="button" class="btn btn-primary" ng-click="upload(field)">
+            <button ng-if="files[field.name]" type="button" ng-click="upload(field)" ng-disabled="uploading[field.name]" class="btn btn-primary btn-xs btn-bottom">
               <i ng-if="!uploadInfo[field.name].uploading" class="glyphicon glyphicon-cloud-upload"></i>
               <span ng-if="uploadInfo[field.name].uploading">{{uploadInfo[field.name].uploaded}}%</span>
             </button>
@@ -96,7 +100,7 @@
         </div>
         <div ng-if="field.input == 'select' && field.relation_id > 0" class="col-sm-8 input">
           <ui-select ng-model="form[field.name]">
-            <ui-select-match allow-clear="true" placeholder="{{'please_input_search'|translate}}{{field.title}}">{{sources[field.name] ? $select.selected:form[field.name+'_model']|toString}}</ui-select-match>
+            <ui-select-match allow-clear="true" placeholder="{{'please_input_search'|translate}}{{field.title}}">{{sources[field.name] ? $select.selected:form[field.model_field]|toString}}</ui-select-match>
             <ui-select-choices repeat="item.id as item in sources[field.name]" refresh="getSources(field, $select.search)" refresh-delay="500">
               <div ng-bind-html="item|toString|highlight: $select.search"></div>
             </ui-select-choices>
