@@ -41,7 +41,7 @@ angular.module(app.name).controller('dataIndexCtrl',
 
     $scope.editData = function (data, index) {
       var modal = $modal.open({
-        templateUrl: 'views/data/data-edit.html',
+        templateUrl: 'views/data/edit.html',
         controller: 'dataEditCtrl',
         windowClass: 'middle-modal',
         resolve: {

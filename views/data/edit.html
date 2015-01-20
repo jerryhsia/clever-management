@@ -82,8 +82,8 @@
         </div>
         <div ng-if="field.input == 'file'" class="col-sm-8 input">
           <p class="input-group">
-            <a ng-dblclick="alert(1)" type="button" target="_blank" ng-if="form[field.name]" class="btn btn-default btn-file" href="{{form[field.name+'_model']|getFileUrl}}" title="{{form[field.name+'_model'].name}}">
-              <img width="32" height="32" src="{{form[field.name+'_model']|getFileUrl}}" ng-if="form[field.name+'_model'].is_image">
+            <a type="button" target="_blank" ng-if="form[field.name]" class="btn btn-default btn-file" href="{{form[field.model_field]|getFileUrl}}" title="{{form[field.model_field].name}}">
+              <img width="32" height="32" ng-src="{{form[field.model_field]|getFileUrl}}" ng-if="form[field.model_field].is_image">
               <i class="glyphicon glyphicon-paperclip" ng-if="!form[field.name+'_model'].is_image"></i>
             </a>
             <button ng-if="form[field.name]" type="button" ng-click="deleteFile(field)" class="btn btn-danger btn-xs btn-bottom">

@@ -17,13 +17,14 @@ angular.module(app.name).factory('interceptor',
 
       'response': function(response) {
         $rootScope.submiting = false;
-        if (inArray(response.config.method, ['POST', 'PUT', 'DELETE'])) {
+        if (angular.isDefined(response.config) && inArray(response.config.method, ['POST', 'PUT', 'DELETE'])) {
           $alertService.push({type: 'success', message: $translate.instant('operate_success')});
         }
         return response;
       },
 
       'responseError': function(rejection) {
+        console.log(rejection);
         $rootScope.submiting = false;
         if (rejection.status == 422) {
           var messages = [];
@@ -32,7 +33,13 @@ angular.module(app.name).factory('interceptor',
           }
           $alertService.push(messages);
         } else {
-          $alertService.push({type: 'danger', message: rejection.data.message});
+          var message = '';
+          if (rejection.data && angular.isDefined(rejection.data.message)) {
+            message = rejection.data.message;
+          } else {
+            message = $translate.instant('system_error_tip');
+          }
+          $alertService.push({type: 'danger', message: message});
         }
         return $q.reject(rejection);
       }

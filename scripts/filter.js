@@ -21,7 +21,10 @@ angular.module(app.name).filter('toString', function() {
   };
 }).filter('getFileUrl', function() {
   return function(file) {
-    if (!angular.isDefined(file)) return '';
-    return app.api+'/uploads/'+file.url;
+    if (angular.isDefined(file) && angular.isDefined(file.url)) {
+      return file.url;
+    } else {
+      return '';
+    }
   };
 });

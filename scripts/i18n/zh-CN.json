@@ -14,6 +14,7 @@
   "no": "否",
   "operate_success": "操作成功",
   "null_not_change": "留空不修改",
+  "system_error_tip": "系统出错了，请稍后再试",
 
   "role": "角色",
 
