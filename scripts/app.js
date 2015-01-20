@@ -54,8 +54,5 @@ angular.module(app.name, [
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState, fromState) {
     $rootScope.toState = toState;
-    if (angular.isDefined(fromState.name)) {
-      debug('State chenged from \''+fromState.name+'\' to \''+toState.name+'\'');
-    }
   });
 });

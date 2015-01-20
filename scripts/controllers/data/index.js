@@ -10,7 +10,7 @@ angular.module(app.name).controller('dataIndexCtrl',
     };
 
     function loadFields() {
-      $moduleService.searchField($scope.selectedModule).success(function(data) {
+      $moduleService.getFields($scope.selectedModule).success(function(data) {
         $scope.fields = data;
         $scope.loadDatas();
       });
@@ -31,7 +31,7 @@ angular.module(app.name).controller('dataIndexCtrl',
     };
 
     function loadModules() {
-      $moduleService.searchModule().success(function(data) {
+      $moduleService.getModules().success(function(data) {
         $scope.modules = data;
         if ($scope.modules.length > 0) {
           $scope.selectModule($scope.modules[0]);

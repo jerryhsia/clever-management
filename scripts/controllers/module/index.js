@@ -10,13 +10,13 @@ angular.module(app.name).controller('moduleIndexCtrl',
     };
 
     function loadFields() {
-      $moduleService.searchField($scope.selectedModule).success(function(data) {
+      $moduleService.getFields($scope.selectedModule).success(function(data) {
         $scope.fields = data;
       });
     }
 
     function loadModules() {
-      $moduleService.searchModule().success(function(data) {
+      $moduleService.getModules().success(function(data) {
         $scope.modules = data;
         if ($scope.modules.length > 0) {
           $scope.selectModule($scope.modules[0]);
@@ -26,7 +26,7 @@ angular.module(app.name).controller('moduleIndexCtrl',
 
     $scope.editModule = function (module, index) {
       var modal = $modal.open({
-        templateUrl: 'views/module/module-edit.html',
+        templateUrl: 'views/module/edit.html',
         controller: 'moduleEditCtrl',
         windowClass: 'middle-modal',
         resolve: {
@@ -53,7 +53,7 @@ angular.module(app.name).controller('moduleIndexCtrl',
 
     $scope.editField = function (field, index) {
       var modal = $modal.open({
-        templateUrl: 'views/module/field-edit.html',
+        templateUrl: 'views/module/edit.html',
         controller: 'fieldEditCtrl',
         windowClass: 'middle-modal',
         resolve: {

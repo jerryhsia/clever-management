@@ -2,7 +2,7 @@
 angular.module(app.name).service('$moduleService',
   function ($http)
   {
-    this.searchModule = function (params) {
+    this.getModules = function (params) {
       return $http.get(app.api + '/modules', {
         params: params
       });
@@ -20,7 +20,7 @@ angular.module(app.name).service('$moduleService',
       return $http.delete(app.api + '/modules/' + module.id);
     };
 
-    this.searchField = function (module, params) {
+    this.getFields = function (module, params) {
       return $http.get(app.api + '/modules/' + module.id + '/fields', {
         params: params
       });

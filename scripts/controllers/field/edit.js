@@ -17,7 +17,7 @@ angular.module(app.name).controller('fieldEditCtrl',
     };
 
     function loadModules() {
-      $moduleService.searchModule().success(function(data) {
+      $moduleService.getModules().success(function(data) {
         angular.forEach(data, function(value, key) {
           if (value.id == module.id) {
             data.splice(key, 1);

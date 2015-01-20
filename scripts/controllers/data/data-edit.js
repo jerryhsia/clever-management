@@ -48,7 +48,7 @@ angular.module(app.name).controller('dataEditCtrl',
     };
 
     function loadFields() {
-      $moduleService.searchField(module).success(function(data) {
+      $moduleService.getFields(module).success(function(data) {
         var fields = [];
         var userFields = {};
         angular.forEach(data, function(field, key) {
