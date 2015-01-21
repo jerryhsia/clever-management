@@ -12,7 +12,7 @@ angular.module(app.name).service('$moduleService',
       return $http.post(app.api + '/modules', module);
     };
 
-    this.patchModule = function (module) {
+    this.updateModule = function (module) {
       return $http.put(app.api + '/modules/' + module.id, module);
     };
 
@@ -30,8 +30,12 @@ angular.module(app.name).service('$moduleService',
       return $http.post(app.api + '/modules/' + module.id + '/fields', field);
     };
 
-    this.patchField = function (module, field) {
+    this.updateField = function (module, field) {
       return $http.put(app.api + '/modules/' + module.id + '/fields/' + field.id, field);
+    };
+
+    this.batchUpdateField = function (module, fields) {
+      return $http.put(app.api + '/modules/' + module.id + '/fields', fields);
     };
 
     this.deleteField = function (module, field) {

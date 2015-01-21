@@ -5,6 +5,7 @@ angular.module(app.name, [
   'ui.bootstrap',
   'ui.router',
   'ui.select',
+  'ui.sortable',
   'ngCookies',
   'angularFileUpload',
   'pascalprecht.translate',
@@ -52,7 +53,7 @@ angular.module(app.name, [
   $translate.use('zh-CN');
   $state.go('index');
 
-  $rootScope.$on('$stateChangeSuccess', function (event, toState, fromState) {
-    $rootScope.toState = toState;
+  $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    $rootScope.currentState = toState;
   });
 });

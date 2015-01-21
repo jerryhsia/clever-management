@@ -9,15 +9,24 @@
           <a class="trash" ng-class="{'vhidden':module.id == app.default_module_id}" href="#" ng-click="deleteModule(module)"><span class="glyphicon glyphicon-trash"></span></a>
         </li>
       </ul>
-      <button class="btn btn-primary" ng-click="editModule({})">{{'create_module'|translate}}</button>
+      <button class="btn btn-primary" ng-click="editModule({})">
+        <span class="glyphicon glyphicon-plus"></span> {{'create_module'|translate}}
+      </button>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-view">
       <div class="header">
         <span class="h3">{{'field'|translate}}</span>
-        <button class="btn btn-primary pull-right" ng-click="editField({})">{{'create_field'|translate}}</button>
+        <button class="btn btn-primary pull-right" ng-click="editField({})">
+          <span class="glyphicon glyphicon-plus"></span> {{'create_field'|translate}}
+        </button>
       </div>
       <div class="table-responsive">
-        <table class="table table-striped">
+        <ul ui-sortable="sortableOptions" ng-model="list" class="list">
+          <li ng-repeat="item in list" class="item">
+            {{item.text}}
+          </li>
+        </ul>
+        <table class="table table-striped field-list">
           <thead>
             <tr>
               <th width="60">#</th>
@@ -30,8 +39,8 @@
               <th width="80">{{'operate'|translate}}</th>
             </tr>
           </thead>
-          <tbody>
-            <tr ng-repeat="field in fields">
+          <tbody ui-sortable="sortableOptions" ng-model="fields">
+            <tr ng-repeat="field in fields" class="field-item" title="">
               <td>{{field.id}}</td>
               <td>{{field.name}}</td>
               <td>{{field.title}}</td>

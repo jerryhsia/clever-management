@@ -7,7 +7,7 @@ angular.module(app.name).controller('fieldEditCtrl',
     $scope.save = function () {
       var p;
       if (angular.isDefined($scope.form.id)) {
-        p = $moduleService.patchField(module, $scope.form);
+        p = $moduleService.updateField(module, $scope.form);
       } else {
         p = $moduleService.createField(module, $scope.form);
       }

@@ -10,7 +10,7 @@ angular.module(app.name).controller('moduleEditCtrl',
     $scope.save = function () {
       var p;
       if (angular.isDefined($scope.form.id)) {
-        p = $moduleService.patchModule($scope.form);
+        p = $moduleService.updateModule($scope.form);
       } else {
         p = $moduleService.createModule($scope.form);
       }

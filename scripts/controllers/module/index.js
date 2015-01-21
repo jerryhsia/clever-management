@@ -53,7 +53,7 @@ angular.module(app.name).controller('moduleIndexCtrl',
 
     $scope.editField = function (field, index) {
       var modal = $modal.open({
-        templateUrl: 'views/module/edit.html',
+        templateUrl: 'views/field/edit.html',
         controller: 'fieldEditCtrl',
         windowClass: 'middle-modal',
         resolve: {
@@ -83,9 +83,19 @@ angular.module(app.name).controller('moduleIndexCtrl',
 
     $scope.toggle = function(field, name, index) {
       field[name] = field[name] == 1 ? 0 : 1;
-      $moduleService.patchField($scope.selectedModule, field).success(function(data) {
+      $moduleService.updateField($scope.selectedModule, field).success(function(data) {
         $scope.fields[index] = data;
       });
+    };
+
+    $scope.sortableOptions = {
+      stop: function(e, ui) {
+        var result = [];
+        angular.forEach($scope.fields, function(field, index) {
+          result.push({id: field.id, sort: index});
+        });
+        $moduleService.batchUpdateField($scope.selectedModule, result);
+      }
     };
 
     (function () {

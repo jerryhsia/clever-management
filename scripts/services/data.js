@@ -12,7 +12,7 @@ angular.module(app.name).service('$dataService',
       return $http.post(app.api + '/datas/' + module.name, data);
     };
 
-    this.patch = function (module, data) {
+    this.update = function (module, data) {
       return $http.put(app.api + '/datas/' + module.name + '/' + data.id, data);
     };
 

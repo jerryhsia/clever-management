@@ -15,6 +15,7 @@
   "operate_success": "操作成功",
   "null_not_change": "留空不修改",
   "system_error_tip": "系统出错了，请稍后再试",
+  "drag_and_sort": "拖动调整排序",
 
   "role": "角色",
 
@@ -27,6 +28,9 @@
 
   "user": "用户",
   "password": "密码",
+  "edit_profile": "修改资料",
+  "hello_tip": "你好，{{name}}",
+  "log_out": "退出系统",
 
   "field": "字段",
   "field_name": "字段标识",

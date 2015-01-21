@@ -7,16 +7,24 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">{{'app_name'|translate}}</a>
+      <span class="navbar-brand">{{'app_name'|translate}}</span>
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
+    <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="/roles">{{'role'|translate}}</a></li>
-        <li><a href="/modules">{{'module'|translate}}</a></li>
-        <li><a href="/datas">{{'data'|translate}}</a></li>
-        <li><a href="/logs">{{'log'|translate}}</a></li>
-        <li><a href="/settings">{{'setting'|translate}}</a></li>
+        <li ng-repeat="item in menu" ng-class="{'active': currentState.name == item.name}">
+          <a href="{{item.url}}"><span class="{{item.icon}}"></span>&nbsp;{{item.title}}</a>
+        </li>
       </ul>
+      <div class="btn-group pull-right user" dropdown is-open="status.isopen">
+        <button type="button" class="btn btn-success dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+          {{helloTip}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-list-alt"></span> 编辑资料</a></li>
+          <li class="divider"></li>
+          <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-log-out"></span> 退出系统</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
