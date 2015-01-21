@@ -9,7 +9,8 @@ angular.module(app.name, [
   'ngCookies',
   'angularFileUpload',
   'pascalprecht.translate',
-  'angular-loading-bar'
+  'angular-loading-bar',
+  'wysiwyg.module'
 ]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $cookieStoreProvider, $translateProvider, $httpProvider, uiSelectConfig, cfpLoadingBarProvider) {
 
   $urlRouterProvider.otherwise('/');

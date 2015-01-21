@@ -50,6 +50,7 @@
   "field_input_date": "日期选择",
   "field_input_file": "单文件",
   "field_input_multiple_file": "多文件",
+  "field_input_editor": "编辑器",
   "field_relation_module": "关联模块",
   "field_relation_type": "关联类型",
   "field_relation_type_has_one": "一对一",

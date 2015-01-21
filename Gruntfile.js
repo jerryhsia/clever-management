@@ -57,6 +57,25 @@ module.exports = function (grunt) {
       }
     },
 
+    copy: {
+      dev: {
+        files: [
+          {
+            expand: true,
+            cwd: 'bower_components/font-awesome/fonts',
+            src: ['**'],
+            dest: '<%= app.src %>/fonts/'
+          },
+          {
+            expand: true,
+            cwd: 'bower_components/bootstrap/fonts',
+            src: ['**'],
+            dest: '<%= app.src %>/fonts/'
+          }
+        ]
+      }
+    },
+
     concat: {
       options: {
         separator: "\n"
@@ -77,6 +96,7 @@ module.exports = function (grunt) {
       'clean:dev',
       'less:dev',
       'concat:dev',
+      'copy:dev',
       'clean:temp',
       'watch'
     ]);

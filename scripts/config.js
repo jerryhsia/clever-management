@@ -15,7 +15,8 @@ var app = {
       'multiple_select',
       'date',
       'file',
-      'multiple_file'
+      'multiple_file',
+      'editor'
     ],
     relation_type: [
       'has_one', 'has_many'
@@ -35,7 +36,18 @@ var app = {
       '50'
     ]
   },
-  menu: {
-
+  editor: {
+    height: '150px',
+    menu: [
+      ['bold', 'italic', 'underline', 'strikethrough'],
+      ['font-color', 'hilite-color'],
+      /*['font'],*/
+      ['font-size'],
+      ['remove-format'],
+      ['ordered-list', 'unordered-list', /*'outdent', 'indent'*/],
+      ['left-justify', 'center-justify', 'right-justify'],
+      ['code', 'quote', 'paragragh'],
+      ['link', 'image']
+    ]
   }
 };
