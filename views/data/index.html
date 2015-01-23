@@ -11,7 +11,7 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-view">
       <div class="header">
         <span class="h3">{{'data'|translate}}</span>
-        <button class="btn btn-primary pull-right" ng-click="editData({})">{{'create_data'|translate}}</button>
+        <button class="btn btn-primary pull-right" ng-click="editData({})"><i class="glyphicon glyphicon-plus"></i> {{'create_data'|translate}}</button>
       </div>
       <div class="table-responsive">
         <table class="table table-striped">
@@ -36,5 +36,6 @@
         <pagination class="pull-left" boundary-links="true" total-items="pagination.totalItems" max-size="pagination.maxSize" num-pages="pagination.numPages" ng-model="pagination.currentPage" items-per-page="pagination.perPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="loadDatas()"></pagination>
       </div>
     </div>
+    <ng-include ng-controller="dataSearchCtrl" src="'views/data/search.html'"></ng-include>
   </div>
 </div>

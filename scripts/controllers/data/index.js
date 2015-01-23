@@ -17,12 +17,13 @@ angular.module(app.name).controller('dataIndexCtrl',
     }
 
     $scope.pagination = getPagination();
-    $scope.params = {
-      per_page: $scope.pagination.perPage,
-      page: $scope.pagination.currentPage
-    };
+    $scope.params = {};
 
-    $scope.loadDatas = function() {
+    $scope.loadDatas = function(clearPage) {
+      if (angular.isDefined(clearPage)) {
+        $scope.pagination.currentPage = 1;
+      }
+      $scope.params.per_page = $scope.pagination.perPage;
       $scope.params.page = $scope.pagination.currentPage;
       $dataService.search($scope.selectedModule, $scope.params).success(function(data, status, headers) {
         $scope.datas = data;
@@ -69,6 +70,9 @@ angular.module(app.name).controller('dataIndexCtrl',
         });
       }
     };
+
+    $scope.test = {name: 'test'};
+    $scope.aa = 'name';
 
     (function () {
       loadModules();

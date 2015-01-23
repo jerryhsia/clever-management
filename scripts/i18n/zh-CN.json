@@ -6,6 +6,8 @@
   "save": "保存",
   "edit": "编辑",
   "delete": "删除",
+  "search": "搜索",
+  "reset": "重置",
   "please_input": "请输入 ",
   "please_select": "请选择 ",
   "please_input_search": "搜索并选择 ",
@@ -62,6 +64,7 @@
   "data": "数据",
   "create_data": "新建数据",
   "edit_data": "编辑数据",
+  "search_data": "搜索数据",
 
   "log": "日志",
 

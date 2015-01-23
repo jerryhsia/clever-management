@@ -51,3 +51,35 @@
     padding-left: 15px !important;
   }
 }
+
+.data-search {
+  width: 300px;
+  height: 100%;
+  padding: 0 15px 15px 15px;
+  position: fixed;
+  background: rgba(34, 34, 34, 1);
+  top: 0;
+  z-index: 1049;
+  color: #FFF;
+  &.opened {
+    right: 0;
+  }
+  &.closed {
+    right: -300px;
+  }
+  .toggle {
+    position: absolute;
+    left: -40px;
+    top: 40%;
+    width: 40px;
+    height: 80px;
+    line-height: 80px;
+    background: rgba(34, 34, 34, 1);
+    font-size: 20px;
+    border-radius: 10px 0 0 10px;
+    i {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+}

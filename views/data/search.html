@@ -1,0 +1,30 @@
+<div class="data-search" ng-class="{'opened': isOpened,'closed':!isOpened}">
+  <h4 class="header"><i class="glyphicon glyphicon-search"></i>{{isOpened}} {{'search_data'|translate}}</h4>
+  <div class="toggle">
+    <i class="glyphicon" ng-class="{'glyphicon-forward':isOpened,'glyphicon-search':!isOpened}" ng-click="toggle()"></i>
+  </div>
+  <form role="form" ng-submit="search()">
+    <div class="form-group" ng-if="field.is_search" ng-repeat="field in $parent.fields">
+      <label>{{field.title}}</label>
+      <div ng-if="field.input == 'input' || field.input == 'textarea'">
+        <input type="text" class="form-control" ng-model="form[field.name]" placeholder="{{'please_input'|translate}}{{field.title}}">
+      </div>
+      <div ng-if="field.input == 'radio'">
+        <span ng-repeat="item in field.option">
+          <input type="radio" name="{{field.name}}" value="{{item}}" ng-model="form[field.name]"> {{item}}
+        </span>
+      </div>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox">
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">
+      <i class="glyphicon glyphicon-search"></i> {{'search'|translate}}
+    </button>
+    <button type="button" class="btn btn-default" ng-click="reset()">
+      <i class="glyphicon glyphicon-refresh"></i> {{'reset'|translate}}
+    </button>
+  </form>
+</div>
