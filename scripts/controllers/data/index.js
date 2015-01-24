@@ -18,13 +18,39 @@ angular.module(app.name).controller('dataIndexCtrl',
 
     $scope.pagination = getPagination();
     $scope.params = {};
+    $scope.sorts = {};
 
-    $scope.loadDatas = function(clearPage) {
-      if (angular.isDefined(clearPage)) {
-        $scope.pagination.currentPage = 1;
+    $scope.toggleSort = function(name) {
+      if (angular.isDefined($scope.sorts[name])) {
+        $scope.sorts[name] = $scope.sorts[name] == '-' ? '+' : '-';
+      } else {
+        $scope.sorts[name] = '-';
       }
+      $scope.loadDatas();
+    };
+
+    function beforeLoad() {
       $scope.params.per_page = $scope.pagination.perPage;
       $scope.params.page = $scope.pagination.currentPage;
+
+      var sorts = [];
+      angular.forEach($scope.fields, function(field, index) {
+        if (angular.isDefined($scope.sorts[field.name])) {
+          var re = $scope.sorts[field.name] == '-' ? '-' : '';
+          sorts.push(re+field.name);
+        }
+      });
+      $scope.params.sort = sorts.join(',');
+    }
+
+    $scope.clear = function() {
+      $scope.params = {};
+      $scope.pagination.currentPage = 1;
+      $scope.sorts = {};
+    };
+
+    $scope.loadDatas = function() {
+      beforeLoad();
       $dataService.search($scope.selectedModule, $scope.params).success(function(data, status, headers) {
         $scope.datas = data;
         $scope.pagination = getPagination(headers);
@@ -70,9 +96,6 @@ angular.module(app.name).controller('dataIndexCtrl',
         });
       }
     };
-
-    $scope.test = {name: 'test'};
-    $scope.aa = 'name';
 
     (function () {
       loadModules();

@@ -1,24 +1,14 @@
 <div class="data-search" ng-class="{'opened': isOpened,'closed':!isOpened}">
-  <h4 class="header"><i class="glyphicon glyphicon-search"></i>{{isOpened}} {{'search_data'|translate}}</h4>
-  <div class="toggle">
-    <i class="glyphicon" ng-class="{'glyphicon-forward':isOpened,'glyphicon-search':!isOpened}" ng-click="toggle()"></i>
-  </div>
   <form role="form" ng-submit="search()">
+    <h4 class="header"><i class="glyphicon glyphicon-search"></i> {{'search_data'|translate}}</h4>
+    <div class="toggle" ng-class="{'opened': isOpened,'closed':!isOpened}">
+      <i class="glyphicon" ng-class="{'glyphicon-forward':isOpened,'glyphicon-search':!isOpened}" ng-click="toggle()"></i>
+    </div>
     <div class="form-group" ng-if="field.is_search" ng-repeat="field in $parent.fields">
       <label>{{field.title}}</label>
-      <div ng-if="field.input == 'input' || field.input == 'textarea'">
-        <input type="text" class="form-control" ng-model="form[field.name]" placeholder="{{'please_input'|translate}}{{field.title}}">
+      <div>
+        <clever-field field="field" sence="search" ng-model="form"></clever-field>
       </div>
-      <div ng-if="field.input == 'radio'">
-        <span ng-repeat="item in field.option">
-          <input type="radio" name="{{field.name}}" value="{{item}}" ng-model="form[field.name]"> {{item}}
-        </span>
-      </div>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox">
-      </label>
     </div>
     <button type="submit" class="btn btn-primary">
       <i class="glyphicon glyphicon-search"></i> {{'search'|translate}}

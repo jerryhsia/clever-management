@@ -1,0 +1,87 @@
+<input ng-if="field.input == 'input'" ng-required="field.is_null == 0" type="text" class="form-control" id="{{field.name}}" placeholder="{{'please_input'|translate}}{{field.title}}" ng-model="form[field.name]">
+<span ng-if="field.input == 'radio'" ng-repeat="item in field.option">
+  <input type="radio" name="{{field.name}}" value="{{item}}" ng-model="form[field.name]"> {{item}}
+</span>
+<span ng-if="field.input == 'checkbox'" ng-repeat="item in field.option">
+  <input type="checkbox" value="{{item}}" ng-change="change()" ng-model="form[field.name+'_temp'][item]"> {{item}}
+</span>
+<p ng-if="field.input == 'date'" class="input-group datepicker" ng-controller="datepickerCtrl">
+  <input type="text" class="form-control"
+         datepicker-popup="{{format}}"
+         ng-model="form[field.name+'_temp']" is-open="opened"
+         ng-change="change()"
+         ng-required="field.is_null == 0"
+         datepicker-options="dateOptions"
+    />
+  <span class="input-group-btn">
+    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+  </span>
+</p>
+<p ng-if="field.input == 'file'" class="input-group">
+  <a type="button" target="_blank" ng-if="form[field.name]" class="btn btn-default btn-file" href="{{form[field.model_field]|getFileUrl}}" title="{{form[field.model_field].name}}">
+    <img width="32" height="32" ng-src="{{form[field.model_field]|getFileUrl}}" ng-if="form[field.model_field].is_image">
+    <i class="glyphicon glyphicon-paperclip" ng-if="!form[field.name+'_model'].is_image"></i>
+  </a>
+  <button ng-if="form[field.name]" type="button" ng-click="deleteFile(field)" class="btn btn-danger btn-xs btn-bottom">
+    <i class="glyphicon glyphicon-remove"></i>
+  </button>
+  <button ng-if="!files[field.name]" type="button" ng-file-select ng-model="files[field.name]" class="btn btn-primary btn-xs btn-bottom">
+    <i class="glyphicon glyphicon-folder-open"></i>
+  </button>
+  <button ng-if="files[field.name]" type="button" ng-click="upload(field)" ng-disabled="uploading[field.name]" class="btn btn-primary btn-xs btn-bottom">
+    <i ng-if="!uploadInfo[field.name].uploading" class="glyphicon glyphicon-cloud-upload"></i>
+    <span ng-if="uploadInfo[field.name].uploading">{{uploadInfo[field.name].uploaded}}%</span>
+  </button>
+</p>
+<p ng-if="field.input == 'multiple_file'" class="input-group">
+  <span ng-repeat="file in form[field.model_field]">
+    <a type="button" target="_blank" class="btn btn-default btn-file" href="{{file|getFileUrl}}" title="{{file.name}}">
+      <img width="32" height="32" ng-src="{{file|getFileUrl}}" ng-if="file.is_image">
+      <i class="glyphicon glyphicon-paperclip" ng-if="!file.is_image"></i>
+    </a>
+    <button type="button" ng-click="deleteFile(field, $index)" class="btn btn-danger btn-xs btn-bottom">
+      <i class="glyphicon glyphicon-remove"></i>
+    </button>
+  </span>
+  <button ng-if="!files[field.name]" type="button" ng-file-select ng-model="files[field.name]" class="btn btn-primary btn-xs btn-bottom">
+    <i class="glyphicon glyphicon-folder-open"></i>
+  </button>
+  <button ng-if="files[field.name]" type="button" ng-click="upload(field)" ng-disabled="uploading[field.name]" class="btn btn-primary btn-xs btn-bottom">
+    <i ng-if="!uploadInfo[field.name].uploading" class="glyphicon glyphicon-cloud-upload"></i>
+    <span ng-if="uploadInfo[field.name].uploading">{{uploadInfo[field.name].uploaded}}%</span>
+  </button>
+</p>
+<ui-select ng-if="field.input == 'select' && field.relation_id > 0" ng-model="form[field.name]">
+  <ui-select-match allow-clear="true" placeholder="{{'please_input_search'|translate}}{{field.title}}">{{sources[field.name] ? $select.selected:form[field.model_field]|toString}}</ui-select-match>
+  <ui-select-choices repeat="item.id as item in sources[field.name]" refresh="getSources(field, $select.search)" refresh-delay="500">
+    <div ng-bind-html="item|toString|highlight: $select.search"></div>
+  </ui-select-choices>
+</ui-select>
+<ui-select ng-if="field.input == 'select' && field.relation_id == 0" ng-model="form[field.name]">
+  <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{field.title}}">{{$select.selected}}</ui-select-match>
+  <ui-select-choices repeat="item as item in field.option">
+    <div ng-bind-html="item|highlight: $select.search"></div>
+  </ui-select-choices>
+</ui-select>
+<ui-select ng-if="field.input == 'multiple_select' && field.relation_id > 0" multiple ng-model="form[field.name]">
+  <ui-select-match placeholder="{{'please_input_search'|translate}}{{field.title}}">{{$item|toString}}</ui-select-match>
+  <ui-select-choices repeat="item.id as item in sources[field.name]" refresh="getSources(field, $select.search)" refresh-delay="500">
+    <div ng-bind-html="item|toString|highlight: $select.search"></div>
+  </ui-select-choices>
+</ui-select>
+<ui-select ng-if="field.input == 'multiple_select' && field.relation_id == 0" multiple ng-model="form[field.name]">
+  <ui-select-match placeholder="{{'please_input_search'|translate}}{{field.title}}">{{$item}}</ui-select-match>
+  <ui-select-choices repeat="item as item in field.option">
+    <div ng-bind-html="item|highlight: $select.search"></div>
+  </ui-select-choices>
+</ui-select>
+<wysiwyg ng-if="field.input == 'editor'" textarea-id="{{field.name}}"
+         textarea-class="form-control"
+         textarea-height="{{editor.height}}"
+         textarea-name="{{field.name}}"
+         textarea-required="{{field.is_null == 0?'true':'false'}}"
+         ng-model="form[field.name]"
+         enable-bootstrap-title="true"
+         textarea-placeholder="{{'please_input'|translate}}{{field.title}}"
+         textarea-menu="{{editor.menu}}">
+</wysiwyg>

@@ -11,17 +11,23 @@ angular.module(app.name).controller('dataSearchCtrl',
     $scope.form = {};
 
     $scope.search = function() {
-      $scope.$parent.params = $scope.form;
-      $scope.$parent.loadDatas(true);
+      var params = {};
+      angular.forEach($scope.form, function(value, key) {
+        if (angular.isArray(value)) {
+          params[key] = value.join(',');
+        } else {
+          params[key] = value;
+        }
+      });
+      $scope.$parent.clear();
+      $scope.$parent.params = params;
+      $scope.$parent.loadDatas();
     };
 
     $scope.reset = function() {
       $scope.form = {};
-      $scope.search();
+      $scope.$parent.clear();
+      $scope.$parent.loadDatas();
     };
-
-    $scope.$on('searchToggle', function(d,data) {
-      $scope.isOpened = !$scope.isOpened;
-    });
   }
 );

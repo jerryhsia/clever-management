@@ -17,7 +17,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th ng-if="field.is_list" ng-repeat="field in fields">{{field.title}}</th>
+              <th ng-if="field.is_list" ng-repeat="field in fields">{{field.title}} <span class="caret pointer" ng-class="{'text-danger':sorts[field.name], 'up':sorts[field.name] == '+'||!sorts[field.name],'down':sorts[field.name] == '-'}" ng-click="toggleSort(field.name)"></span></th>
               <th width="80">{{'operate'|translate}}</th>
             </tr>
           </thead>
