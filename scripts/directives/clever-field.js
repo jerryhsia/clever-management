@@ -11,7 +11,7 @@ angular.module(app.name).directive('cleverField',
 
       if ($scope.sence == 'search') {
         $scope.field.is_null = 1;
-        if (inArray($scope.field.input, ['editor'])) {
+        if (inArray($scope.field.input, ['textarea', 'editor'])) {
           $scope.field.input = 'input';
         }
       }
@@ -20,7 +20,6 @@ angular.module(app.name).directive('cleverField',
         case 'date':
           $scope.form[tempField] = $scope.form[name];
           $scope.change = function() {
-            console.log('change');
             $scope.form[name] = dateToString($scope.form[tempField]);
           };
           break;
