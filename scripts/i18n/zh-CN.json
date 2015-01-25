@@ -27,6 +27,7 @@
   "module_name": "模块标识",
   "module_title": "模块名称",
   "user_module": "用户模块",
+  "data_to_string": "数据格式",
 
   "user": "用户",
   "password": "密码",

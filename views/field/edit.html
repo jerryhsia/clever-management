@@ -42,15 +42,15 @@
         <span class="text-danger">*</span>
       </label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="size" placeholder="{{'please_input'|translate}}{{'field_size'|translate}}" ng-model="form.size" required>
+        <input type="text" ng-disabled="form.id" class="form-control" id="size" placeholder="{{'please_input'|translate}}{{'field_size'|translate}}" ng-model="form.size" required>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-if="!form.id">
       <label class="col-sm-2 control-label">
         {{'field_relation_module'|translate}}
       </label>
       <div class="col-sm-4">
-        <ui-select ng-if="!form.id" ng-model="form.relation_id">
+        <ui-select ng-model="form.relation_id">
           <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_relation_module'|translate}}">{{$select.selected.title}}</ui-select-match>
           <ui-select-choices repeat="item.id as item in modules">
             <div ng-bind-html="item.title|highlight: $select.search"></div>
@@ -61,7 +61,7 @@
         {{'field_relation_type'|translate}}
       </label>
       <div class="col-sm-4">
-        <ui-select ng-if="!form.id" ng-model="form.relation_type">
+        <ui-select ng-model="form.relation_type">
           <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_relation_type'|translate}}">{{'field_relation_type_'+$select.selected|translate}}</ui-select-match>
           <ui-select-choices repeat="type in app.field.relation_type">
             <div ng-bind-html="'field_relation_type_'+type|translate|highlight: $select.search"></div>
@@ -69,7 +69,7 @@
         </ui-select>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-if="!form.id || (form.id && form.is_multiple && form.is_from_source == 0)">
       <div class="col-sm-12 with-padding">
         <textarea class="form-control" rows="3" ng-model="form.option" placeholder="{{'option_tip'|translate}}"></textarea>
       </div>

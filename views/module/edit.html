@@ -32,6 +32,12 @@
         <input type="radio" ng-disabled="form.id" name="is_user" value="1" ng-model="form.is_user"> {{'yes'|translate}}
         <input type="radio" ng-disabled="form.id" name="is_user" value="0" ng-model="form.is_user"> {{'no'|translate}}
       </div>
+      <label class="col-sm-2 control-label">
+        {{'data_to_string'|translate}}
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" placeholder="{{'please_input'|translate}}{{'data_to_string'|translate}}" ng-model="form.to_string">
+      </div>
     </div>
     <input type="submit" class="form-submit">
   </form>
