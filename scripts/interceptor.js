@@ -24,7 +24,6 @@ angular.module(app.name).factory('interceptor',
       },
 
       'responseError': function(rejection) {
-        console.log(rejection);
         $rootScope.submiting = false;
         if (rejection.status == 422) {
           var messages = [];
