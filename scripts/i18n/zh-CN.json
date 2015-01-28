@@ -30,7 +30,10 @@
   "data_to_string": "数据格式",
 
   "user": "用户",
+  "identity": "用户名或邮箱",
   "password": "密码",
+  "remember_me": "记住我",
+  "sign_in": "登录系统",
   "edit_profile": "修改资料",
   "hello_tip": "你好，{{name}}",
   "log_out": "退出系统",

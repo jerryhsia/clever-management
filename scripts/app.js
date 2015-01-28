@@ -52,7 +52,7 @@ angular.module(app.name, [
   $rootScope.app = app;
   $rootScope.alerts = [];
   $translate.use('zh-CN');
-  $state.go('index');
+  $state.go('login');
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
     $rootScope.currentState = toState;

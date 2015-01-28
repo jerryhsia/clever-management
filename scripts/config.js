@@ -1,6 +1,7 @@
 'use strict';
 var app = {
   name: 'clever-cms',
+  title: 'Clever CMS',
   api : 'http://backend.clever.ts',
   debug: true,
   alert_time: 5000,

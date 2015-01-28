@@ -18,6 +18,13 @@ angular.module(app.name).factory('interceptor',
       'response': function(response) {
         $rootScope.submiting = false;
         if (angular.isDefined(response.config) && inArray(response.config.method, ['POST', 'PUT', 'DELETE'])) {
+          if (angular.isDefined(response.config.data)
+            && angular.isObject(response.config.data)
+            && angular.isDefined(response.config.data.alert)
+            && response.config.data.alert == false
+          ) {
+            return response;
+          }
           $alertService.push({type: 'success', message: $translate.instant('operate_success')});
         }
         return response;
