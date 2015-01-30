@@ -16,8 +16,8 @@
     "angular-ui-select": "0.9.6",
     "angular-ui-sortable": "0.13.3",
     "angular-loading-bar": "0.6.0",
-    "angular-wysiwyg": "1.1.4",
+    "angular-minieditor": "1.0.1",
     "ng-file-upload": "2.0.5",
-    "font-awesome": "4.2.0"
+    "font-awesome": ">= 4.2.0"
   }
 }

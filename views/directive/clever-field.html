@@ -76,13 +76,4 @@
     <div ng-bind-html="item|highlight: $select.search"></div>
   </ui-select-choices>
 </ui-select>
-<wysiwyg ng-if="field.input == 'editor'" textarea-id="{{field.name}}"
-         textarea-class="form-control"
-         textarea-height="{{editor.height}}"
-         textarea-name="{{field.name}}"
-         textarea-required="{{field.is_null == 0?'true':'false'}}"
-         ng-model="form[field.name]"
-         enable-bootstrap-title="true"
-         textarea-placeholder="{{'please_input'|translate}}{{field.title}}"
-         textarea-menu="{{editor.menu}}">
-</wysiwyg>
+<minieditor ng-if="field.input == 'editor'" ng-model="form[field.name]"></minieditor>

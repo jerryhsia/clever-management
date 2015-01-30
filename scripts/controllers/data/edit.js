@@ -14,7 +14,7 @@ angular.module(app.name).controller('dataEditCtrl',
         var fields = [];
         var userFields = {};
         angular.forEach(data, function(field, key) {
-          if (field.can_edit) {
+          if (!(field.name == 'id' || field.name == 'user_id')) {
             if (module.is_user && field.is_user_field) {
               userFields[field.name] = field;
             } else {

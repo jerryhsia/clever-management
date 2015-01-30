@@ -10,7 +10,7 @@ angular.module(app.name, [
   'angularFileUpload',
   'pascalprecht.translate',
   'angular-loading-bar',
-  'wysiwyg.module'
+  'jerryhsia.minieditor'
 ]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $cookieStoreProvider, $translateProvider, $httpProvider, uiSelectConfig, cfpLoadingBarProvider) {
 
   $urlRouterProvider.otherwise('/');
