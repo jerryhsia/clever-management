@@ -6,7 +6,7 @@ angular.module(app.name).controller('loginCtrl',
       identity: '',
       password: '',
       alert: false,
-      remember: false
+      remember: true
     };
 
     $scope.login = function() {

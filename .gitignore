@@ -7,4 +7,5 @@ bower_components
 node_modules
 dist
 fonts/*
+styles/*.css
 !.gitkeep
