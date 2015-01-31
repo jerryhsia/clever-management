@@ -4,13 +4,13 @@
 <span ng-if="field.has_relation && field.input == 'file'">
   <a type="button" target="_blank" ng-if="data[field.name]" class="btn btn-default btn-file" href="{{data[field.model_field]|getFileUrl}}" title="{{data[field.model_field].name}}">
     <img width="32" height="32" ng-src="{{data[field.model_field]|getFileUrl}}" ng-if="data[field.model_field].is_image">
-    <i class="glyphicon glyphicon-paperclip" ng-if="!data[field.name+'_model'].is_image"></i>
+    <i class="fa fa-paperclip" ng-if="!data[field.name+'_model'].is_image"></i>
   </a>
 </span>
 <span ng-if="field.has_relation && field.input == 'multiple_file'">
   <a ng-repeat="file in data[field.model_field]" type="button" target="_blank" class="btn btn-default btn-file" href="{{file|getFileUrl}}" title="{{file.name}}">
     <img width="32" height="32" ng-src="{{file|getFileUrl}}" ng-if="file.is_image">
-    <i class="glyphicon glyphicon-paperclip" ng-if="!file.is_image"></i>
+    <i class="fa fa-paperclip" ng-if="!file.is_image"></i>
   </a>
 </span>
 <span ng-if="!field.has_relation && field.is_multiple">

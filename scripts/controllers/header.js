@@ -1,40 +1,57 @@
 'use strict';
 angular.module(app.name).controller('headerCtrl',
-  function($scope, $translate)
+  function($scope, $translate, $userService, $state)
   {
     $scope.menu = [
       {
         name: 'role',
         title: $translate.instant('role'),
         url: '/roles',
-        icon: 'glyphicon glyphicon-user'
+        icon: 'users'
       },
       {
         name: 'module',
         title: $translate.instant('module'),
         url: '/modules',
-        icon: 'glyphicon glyphicon-th-large'
+        icon: 'th-large'
       },
       {
         name: 'data',
         title: $translate.instant('data'),
         url: '/datas',
-        icon: 'glyphicon glyphicon-hdd'
+        icon: 'hdd-o'
       },
       {
         name: 'log',
         title: $translate.instant('log'),
         url: '/logs',
-        icon: 'glyphicon glyphicon-list'
+        icon: 'list'
       },
       {
         name: 'setting',
         title: $translate.instant('setting'),
         url: '/settings',
-        icon: 'glyphicon glyphicon-cog'
+        icon: 'cog'
       }
     ];
 
-    $scope.helloTip = $translate.instant('hello_tip', {name: 'Jerry'});
+    $scope.logout = function() {
+      if ($userService.logout()) {
+        $state.go('login');
+      }
+    };
+
+    (function() {
+      var hour = (new Date()).getHours();
+      var section = 1;
+      if (hour >= 6 && hour <= 11) {
+        section = 1;
+      } else if (hour >= 12 && hour <= 16) {
+        section = 2;
+      } else {
+        section = 3;
+      }
+      $scope.helloTip = $translate.instant('hello_tip_' + section, {name: $scope.loginedUser.name});
+    })();
   }
 );

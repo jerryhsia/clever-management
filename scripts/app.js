@@ -11,7 +11,7 @@ angular.module(app.name, [
   'pascalprecht.translate',
   'angular-loading-bar',
   'jerryhsia.minieditor'
-]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $cookieStoreProvider, $translateProvider, $httpProvider, uiSelectConfig, cfpLoadingBarProvider) {
+]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $translateProvider, $httpProvider, uiSelectConfig, cfpLoadingBarProvider) {
 
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
@@ -48,11 +48,26 @@ angular.module(app.name, [
     prefix: 'scripts/i18n/',
     suffix: '.json'
   });
-}).run(function ($rootScope, $translate, $state) {
+}).run(function ($rootScope, $translate, $state, $userService, $location) {
   $rootScope.app = app;
   $rootScope.alerts = [];
-  $translate.use('zh-CN');
-  $state.go('login');
+  $translate.use('zh-CN');$state.go('role');
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+    var loginedUser = $userService.getLoginedUser();
+    if (loginedUser) {
+      $rootScope.loginedUser = loginedUser;
+      if (toState.name == 'login') {
+        event.preventDefault();
+        $state.go('index');
+      }
+    } else {
+      if (toState.name != 'login') {
+        event.preventDefault();
+        $state.go('login');
+      }
+    }
+  });
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
     $rootScope.currentState = toState;

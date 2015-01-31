@@ -5,19 +5,19 @@
       <ul class="nav nav-sidebar">
         <li ng-class="{active: selectedModule.id == module.id}" ng-repeat="module in modules">
           <a class="module" href="#" ng-click="selectModule(module)">{{module.title}}</a>
-          <a class="edit" href="#" ng-click="editModule(module, $index)"><span class="glyphicon glyphicon-edit"></span></a>
-          <a class="trash" ng-class="{'vhidden':module.id == app.default_module_id}" href="#" ng-click="deleteModule(module)"><span class="glyphicon glyphicon-trash"></span></a>
+          <a class="edit" href="#" ng-click="editModule(module, $index)"><i class="fa fa-edit"></i></a>
+          <a class="trash" ng-class="{'vhidden':module.id == app.default_module_id}" href="#" ng-click="deleteModule(module)"><i class="fa fa-trash"></i></a>
         </li>
       </ul>
       <button class="btn btn-primary" ng-click="editModule({})">
-        <span class="glyphicon glyphicon-plus"></span> {{'create_module'|translate}}
+        <span class="fa fa-plus"></span> {{'create_module'|translate}}
       </button>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-view">
       <div class="header">
         <span class="h3">{{'field'|translate}}</span>
         <button class="btn btn-primary pull-right" ng-click="editField({})">
-          <span class="glyphicon glyphicon-plus"></span> {{'create_field'|translate}}
+          <span class="fa fa-plus"></span> {{'create_field'|translate}}
         </button>
       </div>
       <div class="table-responsive">
@@ -45,12 +45,12 @@
               <td>{{field.name}}</td>
               <td>{{field.title}}</td>
               <td>{{'field_input_' + field.input|translate}}</td>
-              <td><i ng-click="toggle(field, 'is_null', $index)" class="glyphicon pointer" ng-class="{'glyphicon-remove-circle danger':field.is_null == 0,'glyphicon glyphicon-ok-circle primary':field.is_null == 1}"></i></td>
-              <td><i ng-click="toggle(field, 'is_list', $index)" class="glyphicon pointer" ng-class="{'glyphicon-remove-circle danger':field.is_list == 0,'glyphicon glyphicon-ok-circle primary':field.is_list == 1}"></i></td>
-              <td><i ng-click="toggle(field, 'is_search', $index)" class="glyphicon pointer" ng-class="{'glyphicon-remove-circle danger':field.is_search == 0,'glyphicon glyphicon-ok-circle primary':field.is_search == 1}"></i></td>
+              <td><i ng-click="toggle(field, 'is_null', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_null == 0,'fa fa-check-circle-o text-success':field.is_null == 1}"></i></td>
+              <td><i ng-click="toggle(field, 'is_list', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_list == 0,'fa fa-check-circle-o text-success':field.is_list == 1}"></i></td>
+              <td><i ng-click="toggle(field, 'is_search', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_search == 0,'fa fa-check-circle-o text-success':field.is_search == 1}"></i></td>
               <td>
-                <i class="glyphicon glyphicon-edit pointer" ng-click="editField(field, $index)"></i>&nbsp;&nbsp;
-                <i class="glyphicon glyphicon-remove pointer" ng-class="{'vhidden': field.is_default == 1}" ng-click="deleteField(field, $index)"></i>
+                <i class="fa fa-edit pointer" ng-click="editField(field, $index)"></i>&nbsp;&nbsp;
+                <i class="fa fa-trash pointer" ng-class="{'vhidden': field.is_default == 1}" ng-click="deleteField(field, $index)"></i>
               </td>
             </tr>
           </tbody>

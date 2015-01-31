@@ -10,7 +10,7 @@ angular.module(app.name).directive('fieldInList',
 
     return {
       restrict: 'AE',
-      templateUrl: 'views/widget/field-in-list.html',
+      templateUrl: 'views/directive/field-in-list.html',
       controller: controller
     }
   }

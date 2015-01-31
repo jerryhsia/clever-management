@@ -35,7 +35,9 @@
   "remember_me": "记住我",
   "sign_in": "登录系统",
   "edit_profile": "修改资料",
-  "hello_tip": "你好，{{name}}",
+  "hello_tip_1": "早上好，{{name}}",
+  "hello_tip_2": "下午好，{{name}}",
+  "hello_tip_3": "晚上好，{{name}}",
   "log_out": "退出系统",
 
   "field": "字段",

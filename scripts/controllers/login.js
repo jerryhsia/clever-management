@@ -1,6 +1,6 @@
 'use strict';
 angular.module(app.name).controller('loginCtrl',
-  function($scope, $userService, $http)
+  function($scope, $userService, $state)
   {
     $scope.form = {
       identity: '',
@@ -11,7 +11,8 @@ angular.module(app.name).controller('loginCtrl',
 
     $scope.login = function() {
       $userService.login($scope.form).success(function(data) {
-        debug(data);
+        $userService.setLoginedUser(data);
+        $state.go('index');
       });
     }
   }

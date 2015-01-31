@@ -15,22 +15,22 @@
          datepicker-options="dateOptions"
     />
   <span class="input-group-btn">
-    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
   </span>
 </p>
 <p ng-if="field.input == 'file'" class="input-group">
   <a type="button" target="_blank" ng-if="form[field.name]" class="btn btn-default btn-file" href="{{form[field.model_field]|getFileUrl}}" title="{{form[field.model_field].name}}">
     <img width="32" height="32" ng-src="{{form[field.model_field]|getFileUrl}}" ng-if="form[field.model_field].is_image">
-    <i class="glyphicon glyphicon-paperclip" ng-if="!form[field.name+'_model'].is_image"></i>
+    <i class="fa fa-paperclip" ng-if="!form[field.name+'_model'].is_image"></i>
   </a>
   <button ng-if="form[field.name]" type="button" ng-click="deleteFile(field)" class="btn btn-danger btn-xs btn-bottom">
-    <i class="glyphicon glyphicon-remove"></i>
+    <i class="fa fa-remove"></i>
   </button>
   <button ng-if="!files[field.name]" type="button" ng-file-select ng-model="files[field.name]" class="btn btn-primary btn-xs btn-bottom">
-    <i class="glyphicon glyphicon-folder-open"></i>
+    <i class="fa fa-folder-open"></i>
   </button>
   <button ng-if="files[field.name]" type="button" ng-click="upload(field)" ng-disabled="uploading[field.name]" class="btn btn-primary btn-xs btn-bottom">
-    <i ng-if="!uploadInfo[field.name].uploading" class="glyphicon glyphicon-cloud-upload"></i>
+    <i ng-if="!uploadInfo[field.name].uploading" class="fa fa-cloud-upload"></i>
     <span ng-if="uploadInfo[field.name].uploading">{{uploadInfo[field.name].uploaded}}%</span>
   </button>
 </p>
@@ -38,17 +38,17 @@
   <span ng-repeat="file in form[field.model_field]">
     <a type="button" target="_blank" class="btn btn-default btn-file" href="{{file|getFileUrl}}" title="{{file.name}}">
       <img width="32" height="32" ng-src="{{file|getFileUrl}}" ng-if="file.is_image">
-      <i class="glyphicon glyphicon-paperclip" ng-if="!file.is_image"></i>
+      <i class="fa fa-paperclip" ng-if="!file.is_image"></i>
     </a>
     <button type="button" ng-click="deleteFile(field, $index)" class="btn btn-danger btn-xs btn-bottom">
-      <i class="glyphicon glyphicon-remove"></i>
+      <i class="fa fa-remove"></i>
     </button>
   </span>
   <button ng-if="!files[field.name]" type="button" ng-file-select ng-model="files[field.name]" class="btn btn-primary btn-xs btn-bottom">
-    <i class="glyphicon glyphicon-folder-open"></i>
+    <i class="fa fa-folder-open"></i>
   </button>
   <button ng-if="files[field.name]" type="button" ng-click="upload(field)" ng-disabled="uploading[field.name]" class="btn btn-primary btn-xs btn-bottom">
-    <i ng-if="!uploadInfo[field.name].uploading" class="glyphicon glyphicon-cloud-upload"></i>
+    <i ng-if="!uploadInfo[field.name].uploading" class="fa fa-cloud-upload"></i>
     <span ng-if="uploadInfo[field.name].uploading">{{uploadInfo[field.name].uploaded}}%</span>
   </button>
 </p>
