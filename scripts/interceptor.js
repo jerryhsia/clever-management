@@ -1,11 +1,20 @@
 'use strict';
 angular.module(app.name).factory('interceptor',
-  function($rootScope, $q, $alertService, $translate)
+  function($rootScope, $q, $alertService, $translate, $cookieStore)
   {
     return {
       'request': function(config) {
         if (inArray(config['method'], ['PUT', 'POST'])) {
           $rootScope.submiting = true;
+        }
+
+        if (angular.isDefined($rootScope.loginedUser)) {
+          config.headers['X-Access-Token'] = $rootScope.loginedUser.access_token;
+        }
+
+        var lang = $translate.use();
+        if (lang) {
+          config.headers['Accept-Language'] = lang == 'zh-cn' ? 'zh-CN' : 'en-US';
         }
         return config;
       },
@@ -38,6 +47,9 @@ angular.module(app.name).factory('interceptor',
             messages.push({type: 'danger', message: rejection.data[key].message});
           }
           $alertService.push(messages);
+        } else if (rejection.status == 401) {
+          $cookieStore.remove('loginedUser');
+          delete $rootScope.loginedUser;
         } else {
           var message = '';
           if (rejection.data && angular.isDefined(rejection.data.message)) {
