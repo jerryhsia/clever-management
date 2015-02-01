@@ -12,6 +12,7 @@ angular.module(app.name).controller('dataIndexCtrl',
     function loadFields() {
       $moduleService.getFields($scope.selectedModule).success(function(data) {
         $scope.fields = data;
+        $scope.$broadcast('loadedFields', {module: $scope.selectedModule, fields: data});
         $scope.loadDatas();
       });
     }

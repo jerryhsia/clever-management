@@ -14,12 +14,11 @@ angular.module(app.name).controller('dataEditCtrl',
         var fields = [];
         var userFields = {};
         angular.forEach(data, function(field, key) {
-          if (!(field.name == 'id' || field.name == 'user_id')) {
-            if (module.is_user && field.is_user_field) {
-              userFields[field.name] = field;
-            } else {
-              fields.push(field);
-            }
+          if (field.name == 'id' || (module.is_user && field.name == 'user_id')) return;
+          if (module.is_user && field.is_user_field) {
+            userFields[field.name] = field;
+          } else {
+            fields.push(field);
           }
         });
         $scope.fields = fields;
