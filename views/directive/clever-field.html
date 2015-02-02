@@ -76,4 +76,4 @@
     <div ng-bind-html="item|highlight: $select.search"></div>
   </ui-select-choices>
 </ui-select>
-<minieditor ng-if="field.input == 'editor'" ng-model="form[field.name]"></minieditor>
+<minieditor ng-if="field.input == 'editor'" options="editor" ng-model="form[field.name]"></minieditor>

@@ -33,7 +33,7 @@
         </ui-select>
       </div>
     </div>
-    <div class="form-group" ng-if="field.is_search" ng-repeat="field in fields">
+    <div class="form-group" ng-repeat="field in fields">
       <label>{{field.title}}</label>
       <div>
         <clever-field field="field" sence="search" ng-model="form"></clever-field>

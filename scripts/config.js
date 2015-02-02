@@ -2,6 +2,7 @@
 var app = {
   name: 'clever-cms',
   title: 'Clever CMS',
+  lang: 'zh-CN',//zh-CN or en-US
   api : 'http://backend.clever.ts',
   debug: true,
   alert_time: 5000,
@@ -38,17 +39,14 @@ var app = {
     ]
   },
   editor: {
-    height: '150px',
-    menu: [
+    height: '150',
+    menus: [
       ['bold', 'italic', 'underline', 'strikethrough'],
-      ['font-color', 'hilite-color'],
-      /*['font'],*/
-      ['font-size'],
-      ['remove-format'],
-      ['ordered-list', 'unordered-list', /*'outdent', 'indent'*/],
-      ['left-justify', 'center-justify', 'right-justify'],
-      ['code', 'quote', 'paragragh'],
-      ['link', 'image']
+      ['fontsize'],
+      ['justifyleft', 'justifycenter', 'justifyright'],
+      ['insertunorderedlist', 'insertorderedlist'],
+      ['indent', 'outdent'],
+      ['removeformat', 'createlink', 'insertimage']
     ]
   }
 };

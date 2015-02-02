@@ -14,7 +14,7 @@ angular.module(app.name).factory('interceptor',
 
         var lang = $translate.use();
         if (lang) {
-          config.headers['Accept-Language'] = lang == 'zh-cn' ? 'zh-CN' : 'en-US';
+          config.headers['Accept-Language'] = (lang == 'zh-CN') ? 'zh-CN' : 'en-US';
         }
         return config;
       },

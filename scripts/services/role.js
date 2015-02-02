@@ -2,10 +2,16 @@
 angular.module(app.name).service('$roleService',
   function ($http)
   {
-    this.search = function (params) {
-      return $http.get(app.api + '/roles', {
-        params: params
-      });
+
+    var roleCache = false;
+
+    this.getRoles = function () {
+      if (roleCache === false) {
+        roleCache = $http.get(app.api + '/roles', {
+          params: {}
+        });
+      }
+      return roleCache;
     };
   }
 );

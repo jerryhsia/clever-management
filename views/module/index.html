@@ -47,7 +47,7 @@
               <td>{{'field_input_' + field.input|translate}}</td>
               <td><i ng-click="toggle(field, 'is_null', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_null == 0,'fa fa-check-circle-o text-success':field.is_null == 1}"></i></td>
               <td><i ng-click="toggle(field, 'is_list', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_list == 0,'fa fa-check-circle-o text-success':field.is_list == 1}"></i></td>
-              <td><i ng-click="toggle(field, 'is_search', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_search == 0,'fa fa-check-circle-o text-success':field.is_search == 1}"></i></td>
+              <td><i ng-if="field.can_search" ng-click="toggle(field, 'is_search', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_search == 0,'fa fa-check-circle-o text-success':field.is_search == 1}"></i></td>
               <td>
                 <i class="fa fa-edit pointer" ng-click="editField(field, $index)"></i>&nbsp;&nbsp;
                 <i class="fa fa-trash pointer" ng-class="{'vhidden': field.is_default == 1}" ng-click="deleteField(field, $index)"></i>

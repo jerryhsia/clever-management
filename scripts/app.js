@@ -26,6 +26,10 @@ angular.module(app.name, [
     url: '/login',
     templateUrl: 'views/login.html',
     controller: 'loginCtrl'
+  }).state('home', {
+    url: '/',
+    templateUrl: 'views/index.html',
+    controller: 'indexCtrl'
   }).state('index', {
     url: '/index',
     templateUrl: 'views/index.html',
@@ -51,7 +55,7 @@ angular.module(app.name, [
 }).run(function ($rootScope, $translate, $state, $userService, $location) {
   $rootScope.app = app;
   $rootScope.alerts = [];
-  $translate.use('zh-CN');$state.go('role');
+  $translate.use(app.lang);
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
     var loginedUser = $userService.getLoginedUser();

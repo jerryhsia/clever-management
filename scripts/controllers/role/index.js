@@ -10,7 +10,7 @@ angular.module(app.name).controller('roleIndexCtrl',
     };
 
     function loadRoles() {
-      $roleService.search().success(function(data) {
+      $roleService.getRoles().success(function(data) {
         $scope.roles = data;
         if ($scope.roles.length > 0) {
           $scope.selectRole($scope.roles[0]);

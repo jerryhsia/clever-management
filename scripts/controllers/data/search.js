@@ -35,8 +35,8 @@ angular.module(app.name).controller('dataSearchCtrl',
       var fields = [];
       var userFields = {};
       angular.forEach(data.fields, function(field, key) {
-        if (field.name == 'id' || (data.module.is_user && field.name == 'user_id')) return;
-        if (data.module.is_user && field.is_user_field) {
+        if (!field.is_search) return;
+        if (field.is_user_field) {
           userFields[field.name] = field;
         } else {
           fields.push(field);
@@ -44,7 +44,7 @@ angular.module(app.name).controller('dataSearchCtrl',
       });
       if (angular.isDefined(userFields['role_ids'])) {
         $scope.form['role_ids'] = [];
-        $roleService.search().success(function(data) {
+        $roleService.getRoles().success(function(data) {
           $scope.roles = data;
         });
       }
