@@ -2,7 +2,7 @@
 angular.module(app.name).controller('fieldEditCtrl',
   function($scope, $modalInstance, $moduleService, module, field)
   {
-    $scope.form = field ? angular.copy(field) : {};
+    $scope.form = angular.copy(field);
 
     $scope.save = function () {
       var p;

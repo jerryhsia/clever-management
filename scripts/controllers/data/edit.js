@@ -3,7 +3,7 @@ angular.module(app.name).controller('dataEditCtrl',
   function($scope, $modalInstance, $translate, $moduleService, $dataService, $roleService, $fileService, module, data)
   {
     $scope.module = module;
-    $scope.form = data ? angular.copy(data) : {};
+    $scope.form = angular.copy(data);
 
     $scope.cancel = function () {
       $modalInstance.dismiss();

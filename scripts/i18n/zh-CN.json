@@ -5,6 +5,10 @@
   "close": "关闭",
   "save": "保存",
   "edit": "编辑",
+  "create": "创建",
+  "update": "更新",
+  "list": "列表",
+  "view": "查看",
   "delete": "删除",
   "search": "搜索",
   "reset": "重置",
@@ -20,6 +24,16 @@
   "drag_and_sort": "拖动调整排序",
 
   "role": "角色",
+  "role_name": "角色名称",
+  "create_role": "新建角色",
+  "edit_role": "编辑角色",
+
+  "permission": "权限",
+  "data_permission": "数据权限",
+  "data_condition": "数据条件",
+  "field_permission": "字段权限",
+  "select_all": "全选",
+  "invert_select": "反选",
 
   "module": "模块",
   "create_module": "新建模块",

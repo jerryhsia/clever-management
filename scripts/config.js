@@ -7,6 +7,7 @@ var app = {
   debug: true,
   alert_time: 5000,
   default_module_id: 1,
+  default_role_id: 1,
   field: {
     input: [
       'input',
