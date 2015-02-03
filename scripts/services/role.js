@@ -32,5 +32,19 @@ angular.module(app.name).service('$roleService',
       clearRoleCache();
       return $http.delete(app.api + '/roles/' + role.id);
     };
+
+    this.getPermission = function(role, params) {
+      return $http.get(app.api + '/roles/' + role.id + '/permissions', {
+        params: params
+      });
+    };
+
+    this.updatePermission = function(role, attributes) {
+      return $http.post(app.api + '/roles/' + role.id + '/permissions', attributes, {
+        params: {
+          
+        }
+      });
+    };
   }
 );

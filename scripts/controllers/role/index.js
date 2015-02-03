@@ -6,9 +6,16 @@ angular.module(app.name).controller('roleIndexCtrl',
     $scope.selectedRole = null;
     $scope.selectedIndex = 0;
 
+    $scope.selectedModule = null;
+    $scope.permission = {};
+
     $scope.selectRole = function (role, index) {
       $scope.selectedRole = angular.copy(role);
       $scope.selectedIndex = index;
+
+      if ($scope.selectedModule) {
+        loadFields();
+      }
     };
 
     $scope.editRole = function (role, index) {
@@ -61,30 +68,50 @@ angular.module(app.name).controller('roleIndexCtrl',
     }
 
     function parsePermission() {
-      if (!angular.isDefined($scope.selectRole.permission.data_permission)) {
-        $scope.selectRole.permission.data_permission = {
+      if (!angular.isDefined($scope.permission.data_permission) || !angular.isObject($scope.permission.data_permission)) {
+        $scope.permission.data_permission = {
           list: false,
           create: false,
           update: false,
           view: false
         };
       }
+      if (!angular.isDefined($scope.permission.data_condition)) {
+        $scope.permission.data_condition = '';
+      }
+      if (!angular.isDefined($scope.permission.field_permission) || !angular.isObject($scope.permission.field_permission)) {
+        $scope.permission.field_permission = {};
+      }
     }
 
-    function loadFields(module) {
-      $moduleService.getFields(module).success(function(data) {
+    function loadPermisson() {
+      $roleService.getPermission($scope.selectedRole, {module_id: $scope.selectedModule.id}).success(function(data) {
+        if (!angular.isObject(data)) {
+          data = {};
+        }
+        if (!angular.isDefined(data.permission) || !angular.isObject(data.permission)) {
+          data.permission = {};
+        }
+        $scope.permission = data.permission;
+        parsePermission();
+      });
+    }
+
+    function loadFields() {
+      $moduleService.getFields($scope.selectedModule).success(function(data) {
         $scope.fields = data;
+        loadPermisson();
       });
     }
 
     $scope.selectModule = function(module) {
       $scope.selectedModule = module;
-      loadFields(module);
+      loadFields();
     };
 
     $scope.selectAll = function() {
       angular.forEach($scope.fields, function(field, key) {
-        $scope.selectedRole.permission.field_permission[field.name] = {
+        $scope.permission.field_permission[field.name] = {
           create: true,
           update: true,
           view: true
@@ -95,8 +122,8 @@ angular.module(app.name).controller('roleIndexCtrl',
     $scope.invertSelect = function() {
       var actions = ['create', 'update', 'view'];
       angular.forEach($scope.fields, function(field, key) {
-        if (!angular.isDefined($scope.selectedRole.permission.field_permission[field.name])) {
-          $scope.selectedRole.permission.field_permission[field.name] = {
+        if (!angular.isDefined($scope.permission.field_permission[field.name])) {
+          $scope.permission.field_permission[field.name] = {
             create: true,
             update: true,
             view: true
@@ -104,12 +131,12 @@ angular.module(app.name).controller('roleIndexCtrl',
         } else {
           for (var i = actions.length - 1; i >= 0; i--) {
             if (
-              angular.isDefined($scope.selectedRole.permission.field_permission[field.name][actions[i]]) && 
-              $scope.selectedRole.permission.field_permission[field.name][actions[i]]
+              angular.isDefined($scope.permission.field_permission[field.name][actions[i]]) && 
+              $scope.permission.field_permission[field.name][actions[i]]
               ) {
-              $scope.selectedRole.permission.field_permission[field.name][actions[i]] = false;
+              $scope.permission.field_permission[field.name][actions[i]] = false;
             } else {
-              $scope.selectedRole.permission.field_permission[field.name][actions[i]] = true;
+              $scope.permission.field_permission[field.name][actions[i]] = true;
             }
           };
         }
@@ -117,9 +144,12 @@ angular.module(app.name).controller('roleIndexCtrl',
     };
 
     $scope.savePermission = function() {
-      $roleService.updateRole($scope.selectedRole).success(function(data) {
-        $scope.roles[$scope.selectedIndex] = data;
-      });
+      var attributes = {
+        module_id: $scope.selectedModule.id,
+        role_id: $scope.selectedRole.id,
+        permission: $scope.permission
+      };
+      $roleService.updatePermission($scope.selectedRole, attributes);
     };
 
     (function () {
