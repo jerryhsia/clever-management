@@ -98,6 +98,22 @@ angular.module(app.name).controller('dataIndexCtrl',
       }
     };
 
+    $scope.exportData = function () {
+      var modal = $modal.open({
+        templateUrl: 'views/data/export.html',
+        controller: 'dataExportCtrl',
+        windowClass: 'middle-modal',
+        resolve: {
+          fields: function () {
+            return $scope.fields;
+          }
+        }
+      });
+      modal.result.then(function(data) {
+        console.log(data);
+      });
+    };
+
     (function () {
       loadModules();
     })();
