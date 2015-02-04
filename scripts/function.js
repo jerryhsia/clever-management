@@ -25,7 +25,7 @@ function indexBy (array, column) {
 function stringToDate(date) {
   if (date.indexOf('-') == -1) return date;
   date = date.substring(0, 10);
-  date = t.split('-');
+  date = date.split('-');
   return new Date(date[0], date[1] - 1, date[2]);
 }
 

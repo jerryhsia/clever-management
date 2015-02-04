@@ -6,7 +6,7 @@
         <li ng-class="{active: selectedModule.id == module.id}" ng-repeat="module in modules">
           <a class="module" href="#" ng-click="selectModule(module)">{{module.title}}</a>
           <a class="edit" href="#" ng-click="editModule(module, $index)"><i class="fa fa-edit"></i></a>
-          <a class="trash" ng-class="{'vhidden':module.id == app.default_module_id}" href="#" ng-click="deleteModule(module)"><i class="fa fa-trash"></i></a>
+          <a class="trash" ng-class="{'vhidden':module.id == app.module.default_module_id}" href="#" ng-click="deleteModule(module)"><i class="fa fa-trash"></i></a>
         </li>
       </ul>
       <button class="btn btn-primary" ng-click="editModule({})">

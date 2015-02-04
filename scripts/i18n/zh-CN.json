@@ -27,6 +27,7 @@
   "role_name": "角色名称",
   "create_role": "新建角色",
   "edit_role": "编辑角色",
+  "super_role_tip": "超级管理员拥有全部管理权限",
 
   "permission": "权限",
   "data_permission": "数据权限",

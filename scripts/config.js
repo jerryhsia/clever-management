@@ -6,8 +6,12 @@ var app = {
   api : 'http://backend.clever.ts',
   debug: true,
   alert_time: 5000,
-  default_module_id: 1,
-  default_role_id: 1,
+  role: {
+    super_role_id: 1
+  },
+  module: {
+    default_module_id: 1
+  },
   field: {
     input: [
       'input',
