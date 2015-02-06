@@ -19,7 +19,7 @@ angular.module(app.name).controller('dataExportCtrl',
       $scope.fields = fields;
       $scope.form = {
         fields: [],
-        format: 'xls',
+        format: 'json',
         mode: 'origin',
       };
 

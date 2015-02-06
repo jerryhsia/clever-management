@@ -21,7 +21,7 @@ angular.module(app.name).controller('dataSearchCtrl',
       });
 
       $scope.$parent.clear();
-      $scope.$parent.params = params;
+      $scope.$parent.searchs = params;
       $scope.$parent.loadDatas();
     };
 

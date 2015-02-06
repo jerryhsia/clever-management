@@ -13,6 +13,11 @@ angular.module(app.name).controller('dataIndexCtrl',
       $moduleService.getFields($scope.selectedModule).success(function(data) {
         $scope.fields = data;
         $scope.$broadcast('loadedFields', {module: $scope.selectedModule, fields: data});
+        var listFields = [];
+        angular.forEach(data, function(field, key) {
+          if (field.is_list) listFields.push(field.name);
+        });
+        $scope.listFields = listFields.join(',');
         $scope.loadDatas();
       });
     }
@@ -20,6 +25,7 @@ angular.module(app.name).controller('dataIndexCtrl',
     $scope.pagination = getPagination();
     $scope.params = {};
     $scope.sorts = {};
+    $scope.searchs = {};
 
     $scope.toggleSort = function(name) {
       if (angular.isDefined($scope.sorts[name])) {
@@ -30,7 +36,7 @@ angular.module(app.name).controller('dataIndexCtrl',
       $scope.loadDatas();
     };
 
-    function beforeLoad() {
+    function getParams() {
       $scope.params.per_page = $scope.pagination.perPage;
       $scope.params.page = $scope.pagination.currentPage;
 
@@ -41,18 +47,22 @@ angular.module(app.name).controller('dataIndexCtrl',
           sorts.push(re+field.name);
         }
       });
-      $scope.params.sort = sorts.join(',');
+
+      var other = {
+        sort: sorts.join(','),
+        fields: $scope.listFields
+      };
+      return angular.extend($scope.params, other, $scope.searchs);
     }
 
     $scope.clear = function() {
-      $scope.params = {};
       $scope.pagination.currentPage = 1;
       $scope.sorts = {};
+      $scope.searchs = {};
     };
 
     $scope.loadDatas = function() {
-      beforeLoad();
-      $dataService.search($scope.selectedModule, $scope.params).success(function(data, status, headers) {
+      $dataService.search($scope.selectedModule, getParams()).success(function(data, status, headers) {
         $scope.datas = data;
         $scope.pagination = getPagination(headers);
       });
@@ -110,7 +120,11 @@ angular.module(app.name).controller('dataIndexCtrl',
         }
       });
       modal.result.then(function(data) {
-        console.log(data);
+        var params = getParams();
+        data['fields'] = data.fields.join(',');
+        params = angular.extend(params, data);
+        var url = $dataService.getExportUrl($scope.selectedModule, params);
+        window.open(url);
       });
     };
 
