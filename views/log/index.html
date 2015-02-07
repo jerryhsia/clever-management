@@ -1,0 +1,91 @@
+<ng-include src="'views/header.html'" ng-controller="headerCtrl"></ng-include>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li ng-class="{active: selectedRole.id == role.id}" ng-repeat="role in roles">
+          <a class="module" href="#" ng-click="selectRole(role)">{{role.name}}</a>
+          <a class="edit" href="#" ng-click="editRole(role, $index)"><i class="fa fa-edit"></i></a>
+          <a class="trash" ng-class="{'vhidden':role.id == app.role.super_role_id}" href="#" ng-click="deleteRole(role)"><i class="fa fa-trash"></i></a>
+        </li>
+      </ul>
+      <button class="btn btn-primary" ng-click="editRole({})">
+        <span class="fa fa-plus"></span> {{'create_role'|translate}}
+      </button>
+    </div>
+    <div ng-if="selectedRole.id == app.role.super_role_id" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="alert alert-success" role="alert"><i class="fa fa-check"></i> {{'super_role_tip'|translate}}</div>
+    </div>
+    <div ng-if="selectedRole.id != app.role.super_role_id" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="page-header">
+        <ui-select ng-if="modules" ng-model="selectedModule" on-select="selectModule($model)">
+          <ui-select-match placeholder="{{'please_select'|translate}}{{'module'|translate}}">{{$select.selected.title}}</ui-select-match>
+          <ui-select-choices repeat="module in modules">
+            <div ng-bind-html="module.title|highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <form class="form-horizontal permission-form" method="post" ng-submit="savePermission()">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+                {{'data_permission'|translate}}
+              </label>
+              <div class="col-sm-10 fix-height">
+                <input type="checkbox" ng-model="permission.data_permission.list"> {{'list'|translate}}
+                &nbsp;&nbsp;
+                <input type="checkbox" ng-model="permission.data_permission.create"> {{'create'|translate}}
+                &nbsp;&nbsp;
+                <input type="checkbox" ng-model="permission.data_permission.update"> {{'update'|translate}}
+                &nbsp;&nbsp;
+                <input type="checkbox" ng-model="permission.data_permission.view"> {{'view'|translate}}
+                &nbsp;&nbsp;
+                <input type="checkbox" ng-model="permission.data_permission.delete"> {{'delete'|translate}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+                {{'data_condition'|translate}}
+              </label>
+              <div class="col-sm-10">
+                <textarea class="form-control" rows="3" ng-model="permission.data_condition"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+                {{'field_permission'|translate}}
+              </label>
+              <div class="col-sm-10 fix-height">
+                <button type="button" class="btn btn-default btn-xs" ng-click="selectAll()">{{'select_all'|translate}}
+</button>
+                <button type="button" class="btn btn-default btn-xs" ng-click="invertSelect()">{{'invert_select'|translate}}</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+              </label>
+              <div class="col-sm-10 row fix-height field-list">
+                <div class="item" ng-repeat="field in fields">
+                  <div class="left">{{field.title}}</div>
+                  <div class="right">
+                    <input class="field-action" type="checkbox" ng-model="permission.field_permission[field.name].create"> {{'create'|translate}}
+                    <input type="checkbox" ng-model="permission.field_permission[field.name].update"> {{'update'|translate}}
+                    <input type="checkbox" ng-model="permission.field_permission[field.name].view"> {{'view'|translate}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+              </label>
+              <div class="col-sm-10 row fix-height field-list">
+                <button type="submit" class="btn btn-primary" ng-disabled="submiting">{{'save'|translate}}</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

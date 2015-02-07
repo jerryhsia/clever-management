@@ -38,6 +38,10 @@ angular.module(app.name, [
     url: '/roles',
     templateUrl: 'views/role/index.html',
     controller: 'roleIndexCtrl'
+  }).state('log', {
+    url: '/logs',
+    templateUrl: 'views/log/index.html',
+    controller: 'logIndexCtrl'
   }).state('module', {
     url: '/modules',
     templateUrl: 'views/module/index.html',

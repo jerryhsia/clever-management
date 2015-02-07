@@ -3,11 +3,22 @@ angular.module(app.name).controller('dataEditCtrl',
   function($scope, $modalInstance, $translate, $moduleService, $dataService, $roleService, $fileService, module, data)
   {
     $scope.module = module;
-    $scope.form = angular.copy(data);
 
     $scope.cancel = function () {
       $modalInstance.dismiss();
     };
+
+    function loadData() {
+      if (angular.isDefined(data.id)) {
+        $dataService.view(module, data.id).success(function(data) {
+          $scope.form = data;
+          loadFields();
+        });
+      } else {
+        $scope.form = data;
+        loadFields();
+      }
+    }
 
     function loadFields() {
       $moduleService.getFields(module).success(function(data) {
@@ -43,13 +54,8 @@ angular.module(app.name).controller('dataEditCtrl',
       }
     }
 
-    function beforeSave() {
-
-    }
-
     $scope.save = function () {
       var p;
-      beforeSave();
       if (angular.isDefined($scope.form.id)) {
         p = $dataService.update(module, $scope.form);
       } else {
@@ -61,7 +67,7 @@ angular.module(app.name).controller('dataEditCtrl',
     };
 
     (function() {
-      loadFields();
+      loadData();
     })();
   }
 );

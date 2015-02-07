@@ -94,25 +94,25 @@ angular.module(app.name).directive('cleverField',
                 delete $scope.uploadInfo[field.name];
               });
           }
+        };
 
-          $scope.deleteFile = function(field, index) {
-            if (confirm($translate.instant('confirm_delete'))) {
-              if (field.input == 'file') {
-                $scope.form[field.name] = '';
-                $scope.form[field.model_field] = null;
-              }
-
-              if (field.input == 'multiple_file') {
-                var file = $scope.form[field.model_field][index];
-                angular.forEach($scope.form[field.name], function(value, key) {
-                  if (value == file.id) {
-                    $scope.form[field.name].splice(key, 1);
-                  }
-                });
-                $scope.form[field.model_field].splice(index, 1);
-              }
+        $scope.deleteFile = function(field, index) {
+          if (confirm($translate.instant('confirm_delete'))) {
+            if (field.input == 'file') {
+              $scope.form[field.name] = '';
+              $scope.form[field.model_field] = null;
             }
-          };
+
+            if (field.input == 'multiple_file') {
+              var file = $scope.form[field.model_field][index];
+              angular.forEach($scope.form[field.name], function(value, key) {
+                if (value == file.id) {
+                  $scope.form[field.name].splice(key, 1);
+                }
+              });
+              $scope.form[field.model_field].splice(index, 1);
+            }
+          }
         };
       }
     }

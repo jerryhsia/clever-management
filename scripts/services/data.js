@@ -20,6 +20,10 @@ angular.module(app.name).service('$dataService',
       return $http.delete(app.api + '/datas/' + module.name + '/' + data.id);
     };
 
+    this.view = function(module, id) {
+      return $http.get(app.api + '/datas/' + module.name + '/' + id);
+    }
+
     this.getExportUrl = function(module, params) {
       params.export = true;
       params._lang = $translate.use();
