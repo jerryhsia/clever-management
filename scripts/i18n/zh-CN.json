@@ -47,7 +47,7 @@
   "data_to_string": "数据格式",
 
   "user": "用户",
-  "identity": "用户名或邮箱",
+  "account": "账号",
   "password": "密码",
   "remember_me": "记住我",
   "sign_in": "登录系统",
@@ -105,6 +105,7 @@
   "log_action_1": "新增",
   "log_action_2": "更新",
   "log_action_3": "删除",
+  "view_log": "查看日志",
 
   "setting": "设置"
 }

@@ -30,6 +30,19 @@ angular.module(app.name).controller('logIndexCtrl',
       loadLogs();
     };
 
+    $scope.view = function (log) {
+      $modal.open({
+        templateUrl: 'views/log/view.html',
+        controller: 'logViewCtrl',
+        windowClass: 'middle-modal',
+        resolve: {
+          log: function () {
+            return log;
+          }
+        }
+      });
+    };
+
     (function() {
       loadModules();
       loadLogs();

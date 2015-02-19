@@ -3,7 +3,7 @@ angular.module(app.name).controller('loginCtrl',
   function($scope, $userService, $state)
   {
     $scope.form = {
-      identity: '',
+      account: '',
       password: '',
       alert: false,
       remember: true

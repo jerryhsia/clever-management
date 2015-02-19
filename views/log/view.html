@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <button class="close" ng-click="cancel()">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">{{'close'|translate}}</span>
+  </button>
+  <h4 class="modal-title ng-cloak" ng-cloak>{{'view_log'|translate}}</h4>
+</div>
+<div class="modal-body">
+  <table class="table table-bordered">
+    <tr>
+      <th width="20%">{{'field'|translate}}</th>
+      <th width="80%">{{'value'}}</th>
+    </tr>
+    <tr ng-repeat="(key, value) in log.data">
+      <td>{{key}}</td>
+      <td>
+        <p ng-class="{'text-danger':log.changed[key]}" ng-if="log.changed[key]">- {{log.changed[key]}}</p>
+        <p ng-class="{'text-success':log.changed[key]}"><span ng-if="log.changed[key]">+</span> {{value}}</p>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="cancel()">{{'close'|translate}}</button>
+</div>
