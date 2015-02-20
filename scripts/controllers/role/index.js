@@ -85,16 +85,11 @@ angular.module(app.name).controller('roleIndexCtrl',
     }
 
     function loadPermisson() {
-      $roleService.getPermission($scope.selectedRole, {module_id: $scope.selectedModule.id}).success(function(data) {
-        if (!angular.isObject(data)) {
-          data = {};
-        }
-        if (!angular.isDefined(data.permission) || !angular.isObject(data.permission)) {
-          data.permission = {};
-        }
-        $scope.permission = data.permission;
-        parsePermission();
-      });
+      if (!angular.isObject($scope.selectedRole.permission)) {
+        $scope.selectedRole.permission = {};
+      }
+      $scope.permission = $scope.selectedRole.permission;
+       parsePermission();
     }
 
     function loadFields() {
@@ -144,12 +139,7 @@ angular.module(app.name).controller('roleIndexCtrl',
     };
 
     $scope.savePermission = function() {
-      var attributes = {
-        module_id: $scope.selectedModule.id,
-        role_id: $scope.selectedRole.id,
-        permission: $scope.permission
-      };
-      $roleService.updatePermission($scope.selectedRole, attributes);
+      $roleService.updateRole($scope.selectedRole);
     };
 
     (function () {
