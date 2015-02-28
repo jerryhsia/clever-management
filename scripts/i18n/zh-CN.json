@@ -1,6 +1,5 @@
 {
-  "app": "",
-  "app_name": "Clever CMS",
+  "system_name": "Clever CMS",
   "operate": "操作",
   "close": "关闭",
   "save": "保存",
@@ -37,6 +36,12 @@
   "field_permission": "字段权限",
   "select_all": "全选",
   "invert_select": "反选",
+
+  "app": "应用",
+  "app_name": "应用名称",
+  "app_access_token": "访问密钥",
+  "create_app": "创建应用",
+  "edit_app": "编辑应用",
 
   "module": "模块",
   "create_module": "新建模块",

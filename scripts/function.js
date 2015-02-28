@@ -1,6 +1,6 @@
 'use strict';
 function debug(object) {
-  if (app.debug) {
+  if (clever.debug) {
     console.log(object);
   }
 }
@@ -45,7 +45,7 @@ function getPagination(headers, oldPagination) {
   if (typeof oldPagination !== 'undefined') {
     pagination = oldPagination;
   } else {
-    pagination = app.pagination;
+    pagination = clever.pagination;
   }
 
   if (typeof headers !== 'undefined') {

@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('roleEditCtrl',
+angular.module(clever.name).controller('roleEditCtrl',
   function($scope, $modalInstance, $roleService, role)
   {
     $scope.form = angular.copy(role);

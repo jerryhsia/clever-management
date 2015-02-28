@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).service('$moduleService',
+angular.module(clever.name).service('$moduleService',
   function ($http)
   {
     var moduleCache = false;
@@ -10,7 +10,7 @@ angular.module(app.name).service('$moduleService',
 
     this.getModules = function () {
       if (moduleCache === false) {
-        moduleCache = $http.get(app.api + '/modules', {
+        moduleCache = $http.get(clever.api + '/modules', {
           params: {}
         });
       }
@@ -19,17 +19,17 @@ angular.module(app.name).service('$moduleService',
 
     this.createModule = function (module) {
       clearModuleCache();
-      return $http.post(app.api + '/modules', module);
+      return $http.post(clever.api + '/modules', module);
     };
 
     this.updateModule = function (module) {
       clearModuleCache();
-      return $http.put(app.api + '/modules/' + module.id, module);
+      return $http.put(clever.api + '/modules/' + module.id, module);
     };
 
     this.deleteModule = function(module) {
       clearModuleCache();
-      return $http.delete(app.api + '/modules/' + module.id);
+      return $http.delete(clever.api + '/modules/' + module.id);
     };
 
     var fieldCache = {};
@@ -40,7 +40,7 @@ angular.module(app.name).service('$moduleService',
 
     this.getFields = function (module) {
       if (!angular.isDefined(fieldCache[module.id])) {
-        fieldCache[module.id] = $http.get(app.api + '/modules/' + module.id + '/fields', {
+        fieldCache[module.id] = $http.get(clever.api + '/modules/' + module.id + '/fields', {
           params: {}
         });
       }
@@ -50,22 +50,22 @@ angular.module(app.name).service('$moduleService',
 
     this.createField = function (module, field) {
       clearFieldCache(module);
-      return $http.post(app.api + '/modules/' + module.id + '/fields', field);
+      return $http.post(clever.api + '/modules/' + module.id + '/fields', field);
     };
 
     this.updateField = function (module, field) {
       clearFieldCache(module);
-      return $http.put(app.api + '/modules/' + module.id + '/fields/' + field.id, field);
+      return $http.put(clever.api + '/modules/' + module.id + '/fields/' + field.id, field);
     };
 
     this.batchUpdateField = function (module, fields) {
       clearFieldCache(module);
-      return $http.put(app.api + '/modules/' + module.id + '/fields', fields);
+      return $http.put(clever.api + '/modules/' + module.id + '/fields', fields);
     };
 
     this.deleteField = function (module, field) {
       clearFieldCache(module);
-      return $http.delete(app.api + '/modules/' + module.id + '/fields/' + field.id);
+      return $http.delete(clever.api + '/modules/' + module.id + '/fields/' + field.id);
     };
   }
 );

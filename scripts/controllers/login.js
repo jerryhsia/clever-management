@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('loginCtrl',
+angular.module(clever.name).controller('loginCtrl',
   function($scope, $userService, $state)
   {
     $scope.form = {

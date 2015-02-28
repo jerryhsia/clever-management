@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <button class="close" ng-click="cancel()">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">{{'close'|translate}}</span>
+  </button>
+  <h4 class="modal-title ng-cloak" ng-cloak>{{form.id?'edit_app':'create_app'|translate}}</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal app-form" method="post" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="name">
+        {{'app_name'|translate}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="name" placeholder="{{'please_input'|translate}}{{'app_name'|translate}}" ng-model="form.name" required>
+      </div>
+    </div>
+    <input type="submit" class="form-submit">
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" onclick="$('.app-form').find('input[type=submit]').click();" ng-disabled="submiting">{{'save'|translate}}</button>
+  <button class="btn btn-default" ng-click="cancel()">{{'close'|translate}}</button>
+</div>

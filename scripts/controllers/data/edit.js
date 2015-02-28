@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('dataEditCtrl',
+angular.module(clever.name).controller('dataEditCtrl',
   function($scope, $modalInstance, $translate, $moduleService, $dataService, $roleService, $fileService, module, data)
   {
     $scope.module = module;

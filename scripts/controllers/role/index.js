@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('roleIndexCtrl',
+angular.module(clever.name).controller('roleIndexCtrl',
   function($scope, $modal, $roleService, $moduleService, $translate)
   {
 

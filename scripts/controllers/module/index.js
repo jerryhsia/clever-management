@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('moduleIndexCtrl',
+angular.module(clever.name).controller('moduleIndexCtrl',
   function($scope, $modal, $moduleService, $translate)
   {
     $scope.selectedModule = null;

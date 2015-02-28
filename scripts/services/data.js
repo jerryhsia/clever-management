@@ -1,27 +1,27 @@
 'use strict';
-angular.module(app.name).service('$dataService',
+angular.module(clever.name).service('$dataService',
   function ($http, $userService, $translate)
   {
     this.search = function (module, params) {
-      return $http.get(app.api + '/datas/' + module.name, {
+      return $http.get(clever.api + '/datas/' + module.name, {
         params: params
       });
     };
 
     this.create = function (module, data) {
-      return $http.post(app.api + '/datas/' + module.name, data);
+      return $http.post(clever.api + '/datas/' + module.name, data);
     };
 
     this.update = function (module, data) {
-      return $http.put(app.api + '/datas/' + module.name + '/' + data.id, data);
+      return $http.put(clever.api + '/datas/' + module.name + '/' + data.id, data);
     };
 
     this.delete = function (module, data) {
-      return $http.delete(app.api + '/datas/' + module.name + '/' + data.id);
+      return $http.delete(clever.api + '/datas/' + module.name + '/' + data.id);
     };
 
     this.view = function(module, id) {
-      return $http.get(app.api + '/datas/' + module.name + '/' + id);
+      return $http.get(clever.api + '/datas/' + module.name + '/' + id);
     }
 
     this.getExportUrl = function(module, params) {
@@ -31,7 +31,7 @@ angular.module(app.name).service('$dataService',
       var loginedUser = $userService.getLoginedUser();
       params['access-token'] = loginedUser['access_token'];
 
-      var url = app.api + '/datas/' + module.name;
+      var url = clever.api + '/datas/' + module.name;
       var strings = [];
 
       angular.forEach(params, function(value, key) {

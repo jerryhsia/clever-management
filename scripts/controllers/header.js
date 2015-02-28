@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('headerCtrl',
+angular.module(clever.name).controller('headerCtrl',
   function($scope, $translate, $userService, $state)
   {
     $scope.menu = [
@@ -10,10 +10,16 @@ angular.module(app.name).controller('headerCtrl',
         icon: 'users'
       },
       {
+        name: 'app',
+        title: $translate.instant('app'),
+        url: '/apps',
+        icon: 'th-large'
+      },
+      {
         name: 'module',
         title: $translate.instant('module'),
         url: '/modules',
-        icon: 'th-large'
+        icon: 'th'
       },
       {
         name: 'data',

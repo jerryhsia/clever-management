@@ -1,0 +1,36 @@
+<ng-include src="'views/header.html'" ng-controller="headerCtrl"></ng-include>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 main table-view">
+      <div class="header">
+        <span class="h3">{{'app'|translate}}</span>
+        <button class="btn btn-primary pull-right" ng-click="editApp({})">
+          <span class="fa fa-plus"></span> {{'create_app'|translate}}
+        </button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped field-list">
+          <thead>
+            <tr>
+              <th width="60">#</th>
+              <th>{{'app_name'|translate}}</th>
+              <th>{{'app_access_token'|translate}}</th>
+              <th width="80">{{'operate'|translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="app in apps">
+              <td>{{app.id}}</td>
+              <td>{{app.name}}</td>
+              <td>{{app.access_token}}</td>
+              <td>
+                <i class="fa fa-edit pointer" ng-click="editApp(app, $index)"></i>&nbsp;&nbsp;
+                <i class="fa fa-trash pointer" ng-click="deleteApp(app, $index)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,7 +31,7 @@
       <div class="col-sm-4">
         <ui-select ng-if="!form.id" ng-model="form.input">
           <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_input'|translate}}">{{'field_input_'+$select.selected|translate}}</ui-select-match>
-          <ui-select-choices repeat="input in app.field.input">
+          <ui-select-choices repeat="input in clever.field.input">
             <div ng-bind-html="'field_input_'+input |translate |highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
@@ -63,7 +63,7 @@
       <div class="col-sm-4">
         <ui-select ng-model="form.relation_type">
           <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_relation_type'|translate}}">{{'field_relation_type_'+$select.selected|translate}}</ui-select-match>
-          <ui-select-choices repeat="type in app.field.relation_type">
+          <ui-select-choices repeat="type in clever.field.relation_type">
             <div ng-bind-html="'field_relation_type_'+type|translate|highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>

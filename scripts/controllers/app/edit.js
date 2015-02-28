@@ -1,29 +1,29 @@
 'use strict';
-angular.module(clever.name).controller('fieldEditCtrl',
-  function($scope, $modalInstance, $moduleService, module, field)
+angular.module(clever.name).controller('appEditCtrl',
+  function($scope, $modalInstance, $appService, app)
   {
-    $scope.form = angular.copy(field);
+    $scope.form = angular.copy(app);
 
     $scope.save = function () {
       var p;
       if (angular.isDefined($scope.form.id)) {
-        p = $moduleService.updateField(module, $scope.form);
+        p = $appService.updateApp($scope.form);
       } else {
-        p = $moduleService.createField(module, $scope.form);
+        p = $appService.createApp($scope.form);
       }
       p.success(function(data) {
         $modalInstance.close(data);
       });
     };
 
-    function loadModules() {
-      $moduleService.getModules().success(function(data) {
+    function loadApps() {
+      $appService.getApps().success(function(data) {
         angular.forEach(data, function(value, key) {
-          if (value.id == module.id) {
+          if (value.id == clever.id) {
             data.splice(key, 1);
           }
         });
-        $scope.modules = data;
+        $scope.apps = data;
       });
     }
 
@@ -33,7 +33,7 @@ angular.module(clever.name).controller('fieldEditCtrl',
 
     (function(){
       if (!angular.isDefined($scope.form.id)) {
-        loadModules();
+        //loadApps();
       }
     })();
   }

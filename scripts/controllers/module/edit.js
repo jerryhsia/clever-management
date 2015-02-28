@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('moduleEditCtrl',
+angular.module(clever.name).controller('moduleEditCtrl',
   function($scope, $modalInstance, $moduleService, module)
   {
     $scope.form = angular.copy(module);

@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).directive('fieldInList',
+angular.module(clever.name).directive('fieldInList',
   function ()
   {
     function controller ($scope) {

@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('logViewCtrl',
+angular.module(clever.name).controller('logViewCtrl',
   function($scope, $modalInstance, log)
   {
     $scope.log = log;

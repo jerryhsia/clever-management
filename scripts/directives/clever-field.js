@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).directive('cleverField',
+angular.module(clever.name).directive('cleverField',
   function ()
   {
     function controller ($scope, $translate, $dataService, $fileService) {
@@ -24,7 +24,7 @@ angular.module(app.name).directive('cleverField',
           };
           break;
         case 'editor':
-          $scope.editor = app.editor;
+          $scope.editor = clever.editor;
           break;
         case 'checkbox':
           $scope.form[tempField] = {};
@@ -76,7 +76,7 @@ angular.module(app.name).directive('cleverField',
         $scope.upload = function(field) {
           if (angular.isArray($scope.files[field.name]) && $scope.files[field.name].length > 0) {
             $scope.uploadInfo[field.name] = {uploading: true, uploaded: 0};
-            $fileService.upload(app.api + '/files', $scope.files[field.name][0])
+            $fileService.upload(clever.api + '/files', $scope.files[field.name][0])
               .success(function(data) {
                 if (field.input == 'file') {
                   $scope.form[field.name] = data.id;

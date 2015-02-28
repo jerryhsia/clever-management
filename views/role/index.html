@@ -6,17 +6,17 @@
         <li ng-class="{active: selectedRole.id == role.id}" ng-repeat="role in roles">
           <a class="module" href="#" ng-click="selectRole(role)">{{role.name}}</a>
           <a class="edit" href="#" ng-click="editRole(role, $index)"><i class="fa fa-edit"></i></a>
-          <a class="trash" ng-class="{'vhidden':role.id == app.role.super_role_id}" href="#" ng-click="deleteRole(role)"><i class="fa fa-trash"></i></a>
+          <a class="trash" ng-class="{'vhidden':role.id == clever.role.super_role_id}" href="#" ng-click="deleteRole(role)"><i class="fa fa-trash"></i></a>
         </li>
       </ul>
       <button class="btn btn-primary" ng-click="editRole({})">
         <span class="fa fa-plus"></span> {{'create_role'|translate}}
       </button>
     </div>
-    <div ng-if="selectedRole.id == app.role.super_role_id" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div ng-if="selectedRole.id == clever.role.super_role_id" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <div class="alert alert-success" role="alert"><i class="fa fa-check"></i> {{'super_role_tip'|translate}}</div>
     </div>
-    <div ng-if="selectedRole.id != app.role.super_role_id" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div ng-if="selectedRole.id != clever.role.super_role_id" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <div class="page-header">
         <ui-select ng-if="modules" ng-model="selectedModule" on-select="selectModule($model)">
           <ui-select-match placeholder="{{'please_select'|translate}}{{'module'|translate}}">{{$select.selected.title}}</ui-select-match>

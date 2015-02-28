@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).filter('toString', function() {
+angular.module(clever.name).filter('toString', function() {
   return function(item) {
     if (angular.isArray(item)) {
       var result = [];

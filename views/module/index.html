@@ -6,7 +6,7 @@
         <li ng-class="{active: selectedModule.id == module.id}" ng-repeat="module in modules">
           <a class="module" href="#" ng-click="selectModule(module)">{{module.title}}</a>
           <a class="edit" href="#" ng-click="editModule(module, $index)"><i class="fa fa-edit"></i></a>
-          <a class="trash" ng-class="{'vhidden':module.id == app.module.default_module_id}" href="#" ng-click="deleteModule(module)"><i class="fa fa-trash"></i></a>
+          <a class="trash" ng-class="{'vhidden':module.id == clever.module.default_module_id}" href="#" ng-click="deleteModule(module)"><i class="fa fa-trash"></i></a>
         </li>
       </ul>
       <button class="btn btn-primary" ng-click="editModule({})">
@@ -40,9 +40,9 @@
               <td>{{field.name}}</td>
               <td>{{field.title}}</td>
               <td>{{'field_input_' + field.input|translate}}</td>
-              <td><i ng-click="toggle(field, 'is_null', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_null == 0,'fa fa-check-circle-o text-success':field.is_null == 1}"></i></td>
-              <td><i ng-click="toggle(field, 'is_list', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_list == 0,'fa fa-check-circle-o text-success':field.is_list == 1}"></i></td>
-              <td><i ng-if="field.can_search" ng-click="toggle(field, 'is_search', $index)" class="fa pointer" ng-class="{'fa-ban text-danger':field.is_search == 0,'fa fa-check-circle-o text-success':field.is_search == 1}"></i></td>
+              <td><i ng-click="toggle(field, 'is_null', $index)" class="fa pointer" ng-class="{'fa-toggle-off text-danger':field.is_null == 0,'fa-toggle-on text-success':field.is_null == 1}"></i></td>
+              <td><i ng-click="toggle(field, 'is_list', $index)" class="fa pointer" ng-class="{'fa-toggle-off text-danger':field.is_list == 0,'fa-toggle-on text-success':field.is_list == 1}"></i></td>
+              <td><i ng-if="field.can_search" ng-click="toggle(field, 'is_search', $index)" class="fa pointer" ng-class="{'fa-toggle-off text-danger':field.is_search == 0,'fa-toggle-on text-success':field.is_search == 1}"></i></td>
               <td>
                 <i class="fa fa-edit pointer" ng-click="editField(field, $index)"></i>&nbsp;&nbsp;
                 <i class="fa fa-trash pointer" ng-class="{'vhidden': field.is_default == 1}" ng-click="deleteField(field, $index)"></i>

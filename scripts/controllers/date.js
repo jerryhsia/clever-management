@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('datepickerCtrl', function ($scope) {
+angular.module(clever.name).controller('datepickerCtrl', function ($scope) {
 
   $scope.open = function($event) {
     $event.preventDefault();

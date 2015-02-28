@@ -1,19 +1,19 @@
 'use strict';
-angular.module(app.name).service('$logService',
+angular.module(clever.name).service('$logService',
   function ($http)
   {
     this.getModules = function() {
-      return $http.get(app.api + '/logs/modules');
+      return $http.get(clever.api + '/logs/modules');
     };
 
     this.getLogs = function(params) {
-      return $http.get(app.api + '/logs', {
+      return $http.get(clever.api + '/logs', {
         params: params
       });
     };
 
     this.deleteLog = function(id) {
-      return $http.delete(app.api + '/logs/'+id);
+      return $http.delete(clever.api + '/logs/'+id);
     };
   }
 );

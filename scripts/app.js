@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name, [
+angular.module(clever.name, [
   'ngRoute',
   'ngSanitize',
   'ui.bootstrap',
@@ -46,6 +46,10 @@ angular.module(app.name, [
     url: '/modules',
     templateUrl: 'views/module/index.html',
     controller: 'moduleIndexCtrl'
+  }).state('app', {
+    url: '/apps',
+    templateUrl: 'views/app/index.html',
+    controller: 'appIndexCtrl'
   }).state('data', {
     url: '/datas',
     templateUrl: 'views/data/index.html',
@@ -57,9 +61,9 @@ angular.module(app.name, [
     suffix: '.json'
   });
 }).run(function ($rootScope, $translate, $state, $userService, $location) {
-  $rootScope.app = app;
+  $rootScope.clever = clever;
   $rootScope.alerts = [];
-  $translate.use(app.lang);
+  $translate.use(clever.lang);
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
     var loginedUser = $userService.getLoginedUser();

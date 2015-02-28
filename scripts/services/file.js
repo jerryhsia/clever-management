@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).service('$fileService',
+angular.module(clever.name).service('$fileService',
   function ($upload)
   {
     this.upload = function (url, file, data) {

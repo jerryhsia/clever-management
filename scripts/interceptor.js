@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).factory('interceptor',
+angular.module(clever.name).factory('interceptor',
   function($rootScope, $q, $alertService, $translate, $cookieStore)
   {
     return {

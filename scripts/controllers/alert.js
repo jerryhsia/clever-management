@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).service('$alertService',
+angular.module(clever.name).service('$alertService',
   function ($rootScope, $timeout)
   {
 
@@ -9,7 +9,7 @@ angular.module(app.name).service('$alertService',
         if ($rootScope.alerts.length > 0) {
           shift();
         }
-      }, app.alert_time);
+      }, clever.alert_time);
     }
 
     this.push = function (message) {
@@ -28,7 +28,7 @@ angular.module(app.name).service('$alertService',
     };
   }
 );
-angular.module(app.name).controller('alertCtrl',
+angular.module(clever.name).controller('alertCtrl',
   function($scope, $rootScope, $alertService) {
     $scope.close = function (index) {
       $alertService.remove(index);

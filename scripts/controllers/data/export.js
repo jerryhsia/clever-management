@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('dataExportCtrl',
+angular.module(clever.name).controller('dataExportCtrl',
   function($scope, $modalInstance, fields)
   {
     $scope.cancel = function () {

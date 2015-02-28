@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('dataSearchCtrl',
+angular.module(clever.name).controller('dataSearchCtrl',
   function($scope, $roleService)
   {
     $scope.isOpened = false;

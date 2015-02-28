@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).service('$roleService',
+angular.module(clever.name).service('$roleService',
   function ($http)
   {
 
@@ -11,7 +11,7 @@ angular.module(app.name).service('$roleService',
 
     this.getRoles = function () {
       if (roleCache === false) {
-        roleCache = $http.get(app.api + '/roles', {
+        roleCache = $http.get(clever.api + '/roles', {
           params: {}
         });
       }
@@ -20,27 +20,27 @@ angular.module(app.name).service('$roleService',
 
     this.createRole = function (role) {
       clearRoleCache();
-      return $http.post(app.api + '/roles', role);
+      return $http.post(clever.api + '/roles', role);
     };
 
     this.updateRole = function (role) {
       clearRoleCache();
-      return $http.put(app.api + '/roles/' + role.id, role);
+      return $http.put(clever.api + '/roles/' + role.id, role);
     };
 
     this.deleteRole = function(role) {
       clearRoleCache();
-      return $http.delete(app.api + '/roles/' + role.id);
+      return $http.delete(clever.api + '/roles/' + role.id);
     };
 
     this.getPermission = function(role, params) {
-      return $http.get(app.api + '/roles/' + role.id + '/permissions', {
+      return $http.get(clever.api + '/roles/' + role.id + '/permissions', {
         params: params
       });
     };
 
     this.updatePermission = function(role, attributes) {
-      return $http.post(app.api + '/roles/' + role.id + '/permissions', attributes, {
+      return $http.post(clever.api + '/roles/' + role.id + '/permissions', attributes, {
         params: {
           
         }

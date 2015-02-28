@@ -1,5 +1,5 @@
 'use strict';
-var app = {
+var clever = {
   name: 'clever-cms',
   title: 'Clever CMS',
   lang: 'zh-CN',//zh-CN or en-US

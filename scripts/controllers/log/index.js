@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('logIndexCtrl',
+angular.module(clever.name).controller('logIndexCtrl',
   function($scope, $modal, $logService, $translate)
   {
     function loadModules() {
