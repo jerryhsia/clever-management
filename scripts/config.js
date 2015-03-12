@@ -3,7 +3,7 @@ var clever = {
   name: 'clever-cms',
   title: 'Clever CMS',
   lang: 'zh-CN',//zh-CN or en-US
-  api : 'http://backend.clever.ts',
+  api : 'http://clever.ts',
   debug: true,
   alert_time: 5000,
   role: {

@@ -40,6 +40,7 @@
   "app": "应用",
   "app_name": "应用名称",
   "app_access_token": "访问密钥",
+  "app_role_ids": "所属角色",
   "create_app": "创建应用",
   "edit_app": "编辑应用",
 

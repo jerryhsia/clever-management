@@ -14,6 +14,7 @@
             <tr>
               <th width="60">#</th>
               <th>{{'app_name'|translate}}</th>
+              <th>{{'app_role_ids'|translate}}</th>
               <th>{{'app_access_token'|translate}}</th>
               <th width="80">{{'operate'|translate}}</th>
             </tr>
@@ -22,6 +23,7 @@
             <tr ng-repeat="app in apps">
               <td>{{app.id}}</td>
               <td>{{app.name}}</td>
+              <td>{{app.role_ids_models|toString}}</td>
               <td>{{app.access_token}}</td>
               <td>
                 <i class="fa fa-edit pointer" ng-click="editApp(app, $index)"></i>&nbsp;&nbsp;

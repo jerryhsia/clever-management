@@ -1,6 +1,6 @@
 'use strict';
 angular.module(clever.name).controller('appEditCtrl',
-  function($scope, $modalInstance, $appService, app)
+  function($scope, $modalInstance, $appService, $roleService, app)
   {
     $scope.form = angular.copy(app);
 
@@ -16,14 +16,9 @@ angular.module(clever.name).controller('appEditCtrl',
       });
     };
 
-    function loadApps() {
-      $appService.getApps().success(function(data) {
-        angular.forEach(data, function(value, key) {
-          if (value.id == clever.id) {
-            data.splice(key, 1);
-          }
-        });
-        $scope.apps = data;
+    function loadRoles() {
+      $roleService.getRoles().success(function(data) {
+        $scope.roles = data;
       });
     }
 
@@ -32,9 +27,7 @@ angular.module(clever.name).controller('appEditCtrl',
     };
 
     (function(){
-      if (!angular.isDefined($scope.form.id)) {
-        //loadApps();
-      }
+      loadRoles();
     })();
   }
 );

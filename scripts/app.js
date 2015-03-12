@@ -57,7 +57,7 @@ angular.module(clever.name, [
   });
 
   $translateProvider.useStaticFilesLoader({
-    prefix: 'scripts/i18n/',
+    prefix: 'i18n/',
     suffix: '.json'
   });
 }).run(function ($rootScope, $translate, $state, $userService, $location) {
