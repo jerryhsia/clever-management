@@ -25,7 +25,7 @@ angular.module(clever.name, [
   });
 
   $urlRouterProvider.otherwise('/datas');
-  $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(false);
 
   $stateProvider.state('login', {
     url: '/login',

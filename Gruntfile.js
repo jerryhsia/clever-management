@@ -67,6 +67,12 @@ module.exports = function (grunt) {
           },
           {
             expand: true,
+            cwd: '<%= app.src %>/i18n',
+            src: ['**'],
+            dest: '<%= app.dist %>/i18n'
+          },
+          {
+            expand: true,
             cwd: '<%= app.src %>',
             src: ['index.html', 'views/**/*.html'],
             dest: '<%= app.dist %>'
@@ -77,6 +83,10 @@ module.exports = function (grunt) {
 
     uglify: {
       generated: {
+        options: {
+          mangle: false,
+          report: "min"
+        },
         files: [
           {
             expand: true,
@@ -169,18 +179,15 @@ module.exports = function (grunt) {
         }
       }
     }
-
   });
 
-  grunt.registerTask('serve', function () {
-    grunt.task.run([
-      'clean:temp',
-      'less',
-      'copy:dev',
-      'connect:dev',
-      'watch'
-    ]);
-  });
+  grunt.registerTask('serve', [
+    'clean:temp',
+    'less',
+    'copy:dev',
+    'connect:dev',
+    'watch'
+  ]);
 
   grunt.registerTask('build', [
     'clean',

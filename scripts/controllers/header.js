@@ -6,31 +6,31 @@ angular.module(clever.name).controller('headerCtrl',
       {
         name: 'role',
         title: $translate.instant('role'),
-        url: '/roles',
+        url: '/#/roles',
         icon: 'users'
       },
       {
         name: 'app',
         title: $translate.instant('app'),
-        url: '/apps',
+        url: '/#/apps',
         icon: 'th-large'
       },
       {
         name: 'module',
         title: $translate.instant('module'),
-        url: '/modules',
+        url: '/#/modules',
         icon: 'th'
       },
       {
         name: 'data',
         title: $translate.instant('data'),
-        url: '/datas',
+        url: '/#/datas',
         icon: 'hdd-o'
       },
       {
         name: 'log',
         title: $translate.instant('log'),
-        url: '/logs',
+        url: '/#/logs',
         icon: 'list'
       }
     ];
