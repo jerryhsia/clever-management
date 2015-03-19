@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).controller('moduleIndexCtrl',
+angular.module(clever.name).controller('moduleIndexCtrl',
   function($scope, $modal, $moduleService, $translate)
   {
     $scope.selectedModule = null;
@@ -9,8 +9,14 @@ angular.module(app.name).controller('moduleIndexCtrl',
       loadFields();
     };
 
+    function loadFields() {
+      $moduleService.getFields($scope.selectedModule).success(function(data) {
+        $scope.fields = data;
+      });
+    }
+
     function loadModules() {
-      $moduleService.searchModule().success(function(data) {
+      $moduleService.getModules().success(function(data) {
         $scope.modules = data;
         if ($scope.modules.length > 0) {
           $scope.selectModule($scope.modules[0]);
@@ -18,9 +24,9 @@ angular.module(app.name).controller('moduleIndexCtrl',
       });
     }
 
-    $scope.editModule = function (module) {
+    $scope.editModule = function (module, index) {
       var modal = $modal.open({
-        templateUrl: 'views/module/module-edit.html',
+        templateUrl: 'views/module/edit.html',
         controller: 'moduleEditCtrl',
         windowClass: 'middle-modal',
         resolve: {
@@ -30,7 +36,11 @@ angular.module(app.name).controller('moduleIndexCtrl',
         }
       });
       modal.result.then(function(module) {
-        loadModules();
+        if (angular.isDefined(index)) {
+          $scope.modules[index] = module;
+        } else {
+          loadModules();
+        }
       });
     };
 
@@ -41,15 +51,9 @@ angular.module(app.name).controller('moduleIndexCtrl',
       });
     };
 
-    function loadFields() {
-      $moduleService.searchField($scope.selectedModule).success(function(data) {
-        $scope.fields = data;
-      });
-    }
-
-    $scope.editField = function (field) {
+    $scope.editField = function (field, index) {
       var modal = $modal.open({
-        templateUrl: 'views/module/field-edit.html',
+        templateUrl: 'views/field/edit.html',
         controller: 'fieldEditCtrl',
         windowClass: 'middle-modal',
         resolve: {
@@ -62,15 +66,36 @@ angular.module(app.name).controller('moduleIndexCtrl',
         }
       });
       modal.result.then(function(field) {
-        $scope.selectModule($scope.selectedModule);
+        if (angular.isDefined(index)) {
+          $scope.fields[index] = field;
+        } else {
+          loadFields();
+        }
       });
     };
 
-    $scope.deleteField = function(field) {
+    $scope.deleteField = function(field, index) {
       if (!confirm($translate.instant('confirm_delete'))) return false;
       $moduleService.deleteField($scope.selectedModule, field).success(function(data) {
-        loadFields();
+        $scope.fields.splice(index, 1);
       });
+    };
+
+    $scope.toggle = function(field, name, index) {
+      field[name] = field[name] == 1 ? 0 : 1;
+      $moduleService.updateField($scope.selectedModule, field).success(function(data) {
+        $scope.fields[index] = data;
+      });
+    };
+
+    $scope.sortableOptions = {
+      stop: function(e, ui) {
+        var result = [];
+        angular.forEach($scope.fields, function(field, index) {
+          result.push({id: field.id, sort: index});
+        });
+        $moduleService.batchUpdateField($scope.selectedModule, result);
+      }
     };
 
     (function () {

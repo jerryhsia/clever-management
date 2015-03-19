@@ -5,37 +5,47 @@
       <ul class="nav nav-sidebar">
         <li ng-class="{active: selectedModule.id == module.id}" ng-repeat="module in modules">
           <a class="module" href="#" ng-click="selectModule(module)">{{module.title}}</a>
-          <a class="edit" href="#" ng-click="editModule(module)"><span class="glyphicon glyphicon-edit"></span></a>
-          <a class="trash" href="#" ng-click="deleteModule(module)"><span class="glyphicon glyphicon-trash"></span></a>
+          <a class="edit" href="#" ng-click="editModule(module, $index)"><i class="fa fa-edit"></i></a>
+          <a class="trash" ng-class="{'vhidden':module.id == clever.module.default_module_id}" href="#" ng-click="deleteModule(module)"><i class="fa fa-trash"></i></a>
         </li>
       </ul>
-      <button class="btn btn-primary" ng-click="editModule({})">{{'create_module'|translate}}</button>
+      <button class="btn btn-primary" ng-click="editModule({})">
+        <span class="fa fa-plus"></span> {{'create_module'|translate}}
+      </button>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-view">
       <div class="header">
         <span class="h3">{{'field'|translate}}</span>
-        <button class="btn btn-primary pull-right" ng-click="editField({})">{{'create_field'|translate}}</button>
+        <button class="btn btn-primary pull-right" ng-click="editField({})">
+          <span class="fa fa-plus"></span> {{'create_field'|translate}}
+        </button>
       </div>
       <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table table-striped field-list">
           <thead>
             <tr>
               <th width="60">#</th>
               <th>{{'field_name'|translate}}</th>
               <th>{{'field_title'|translate}}</th>
               <th>{{'field_input'|translate}}</th>
+              <th>{{'is_null'|translate}}</th>
+              <th>{{'is_list'|translate}}</th>
+              <th>{{'is_search'|translate}}</th>
               <th width="80">{{'operate'|translate}}</th>
             </tr>
           </thead>
-          <tbody>
-            <tr ng-repeat="field in fields">
+          <tbody ui-sortable="sortableOptions" ng-model="fields">
+            <tr ng-repeat="field in fields" class="field-item" title="">
               <td>{{field.id}}</td>
               <td>{{field.name}}</td>
               <td>{{field.title}}</td>
               <td>{{'field_input_' + field.input|translate}}</td>
+              <td><i ng-click="toggle(field, 'is_null', $index)" class="fa pointer" ng-class="{'fa-toggle-off text-danger':field.is_null == 0,'fa-toggle-on text-success':field.is_null == 1}"></i></td>
+              <td><i ng-click="toggle(field, 'is_list', $index)" class="fa pointer" ng-class="{'fa-toggle-off text-danger':field.is_list == 0,'fa-toggle-on text-success':field.is_list == 1}"></i></td>
+              <td><i ng-if="field.can_search" ng-click="toggle(field, 'is_search', $index)" class="fa pointer" ng-class="{'fa-toggle-off text-danger':field.is_search == 0,'fa-toggle-on text-success':field.is_search == 1}"></i></td>
               <td>
-                <i class="glyphicon glyphicon-edit pointer" ng-click="editField(field)"></i>&nbsp;&nbsp;
-                <i class="glyphicon glyphicon-remove pointer" ng-click="deleteField(field)"></i>
+                <i class="fa fa-edit pointer" ng-click="editField(field, $index)"></i>&nbsp;&nbsp;
+                <i class="fa fa-trash pointer" ng-class="{'vhidden': field.is_default == 1}" ng-click="deleteField(field, $index)"></i>
               </td>
             </tr>
           </tbody>

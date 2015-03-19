@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <button class="close" ng-click="cancel()">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">{{'close'|translate}}</span>
+  </button>
+  <h4 class="modal-title ng-cloak" ng-cloak>{{form.id?'edit_data':'create_data'|translate}}</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal data-form" method="post" ng-submit="save()">
+    <div ng-if="module.is_user" class="form-group">
+      <label class="col-sm-2 control-label">
+        {{userFields['username'].title}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" placeholder="{{'please_input'|translate}}{{userFields['username'].title}}" ng-model="form.username" required>
+      </div>
+      <label class="col-sm-2 control-label">
+        {{userFields['password'].title}}
+        <span class="text-danger" ng-if="!form.id">*</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" placeholder="{{form.passwordTip}}" ng-model="form.password" ng-required="!form.id">
+      </div>
+    </div>
+    <div ng-if="module.is_user" class="form-group">
+      <label class="col-sm-2 control-label">
+        {{userFields['name'].title}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" placeholder="{{'please_input'|translate}}{{userFields['name'].title}}" ng-model="form.name" required>
+      </div>
+      <label class="col-sm-2 control-label">
+        {{userFields['email'].title}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" placeholder="{{'please_input'|translate}}{{userFields['email'].title}}" ng-model="form.email" required>
+      </div>
+    </div>
+    <div class="form-group" ng-if="module.is_user && roles">
+      <label class="col-sm-2 control-label">
+        {{userFields['role_ids'].title}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-10">
+        <ui-select multiple ng-model="form.role_ids">
+          <ui-select-match placeholder="{{'please_select'|translate}}{{userFields['role_ids'].title}}">{{$item.name}}</ui-select-match>
+          <ui-select-choices repeat="role.id as role in roles">
+            <div ng-bind-html="role.name | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+    <div class="form-group fields">
+      <div class="field" ng-init="is_full = (field.input == 'textarea' || field.input == 'editor')" ng-repeat="field in fields"
+            ng-class="{
+            'col-sm-12 full': is_full,
+            'col-sm-6': !is_full,
+            }">
+        <label ng-if="!is_full" class="col-sm-4 control-label" for="{{field.name}}">
+          {{field.title}}
+          <span class="text-danger" ng-if="field.is_null == 0">*</span>
+        </label>
+        <div class="input" ng-class="{
+        'col-sm-8':!is_full,
+        'col-sm-12':is_full,
+        'fix-height':field.input == 'checkbox'||field.input == 'radio',
+        'editor':field.input == 'editor'
+        }">
+          <clever-field field="field" ng-model="form"></clever-field>
+        </div>
+      </div>
+    </div>
+    <input type="submit" class="form-submit">
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" onclick="$('.data-form').find('input[type=submit]').click();" ng-disabled="submiting">{{'save'|translate}}</button>
+  <button class="btn btn-default" ng-click="cancel()">{{'close'|translate}}</button>
+</div>

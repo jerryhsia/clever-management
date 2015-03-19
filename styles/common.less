@@ -2,6 +2,10 @@ body {
   padding-top: 50px;
 }
 
+a:focus {
+  outline: none;
+}
+
 .h3 {
   font-size: 24px;
 }
@@ -42,4 +46,37 @@ body {
 
 .pointer {
   cursor: pointer;
+}
+
+.vhidden {
+  visibility: hidden;
+}
+
+.glyphicon {
+  &.primary {
+    color: #428bca;
+  }
+  &.success {
+    color: #5CB85E;
+  }
+  &.danger {
+    color: #d9534f;
+  }
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.caret {
+  &.up {
+    border-top: 0;
+    border-bottom: 4px solid;
+  }
+}
+
+.ml10 {
+  margin-left: 10px;
 }

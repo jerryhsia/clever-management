@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="bower_components/angular-minieditor/angular-minieditor.css">
   </head>
-<body class="{{toState.name}}">
+<body class="{{currentState.name}}">
   <!--[if lt IE 9]>
   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
@@ -25,6 +27,7 @@
   <!-- build:js scripts/vendor.js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -36,6 +39,8 @@
   <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
   <script src="bower_components/angular-ui-select/dist/select.js"></script>
   <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+  <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+  <script src="bower_components/angular-minieditor/angular-minieditor.js"></script>
   <!-- endbuild -->
 
   <!-- build:js scripts/scripts.js -->
@@ -48,18 +53,32 @@
 
   <script src="scripts/services/user.js"></script>
   <script src="scripts/services/role.js"></script>
+  <script src="scripts/services/app.js"></script>
   <script src="scripts/services/module.js"></script>
   <script src="scripts/services/data.js"></script>
+  <script src="scripts/services/file.js"></script>
+  <script src="scripts/services/log.js"></script>
 
   <script src="scripts/controllers/login.js"></script>
   <script src="scripts/controllers/header.js"></script>
   <script src="scripts/controllers/alert.js"></script>
   <script src="scripts/controllers/index.js"></script>
+  <script src="scripts/controllers/date.js"></script>
   <script src="scripts/controllers/role/index.js"></script>
+  <script src="scripts/controllers/role/edit.js"></script>
+  <script src="scripts/controllers/app/index.js"></script>
+  <script src="scripts/controllers/app/edit.js"></script>
   <script src="scripts/controllers/module/index.js"></script>
-  <script src="scripts/controllers/module/module-edit.js"></script>
-  <script src="scripts/controllers/module/field-edit.js"></script>
+  <script src="scripts/controllers/module/edit.js"></script>
+  <script src="scripts/controllers/field/edit.js"></script>
   <script src="scripts/controllers/data/index.js"></script>
-  <script src="scripts/controllers/data/data-edit.js"></script>
+  <script src="scripts/controllers/data/edit.js"></script>
+  <script src="scripts/controllers/data/search.js"></script>
+  <script src="scripts/controllers/data/export.js"></script>
+  <script src="scripts/controllers/log/index.js"></script>
+  <script src="scripts/controllers/log/view.js"></script>
+
+  <script src="scripts/directives/field-in-list.js"></script>
+  <script src="scripts/directives/clever-field.js"></script>
   </body>
 </html>

@@ -1,0 +1,130 @@
+.form-horizontal {
+  .fix-height {
+    padding-top: 7px;
+  }
+
+  .btn-file {
+    padding: 0;
+    width: 34px;
+    height: 34px;
+    vertical-align: middle;
+    img {
+      border-radius: 4px;
+    }
+    .glyphicon {
+      margin-top: 7px;
+    }
+  }
+
+  .btn-bottom {
+    vertical-align: bottom;
+  }
+}
+
+.modal-content form {
+  .control-label {
+    text-align: left;
+    padding-right: 0;
+  }
+  .form-group > div {
+    padding-left: 0;
+  }
+
+  .fields {
+    margin-bottom: 0;
+    .field {
+      height: 35px;
+      margin-bottom: 15px;
+      float: left;
+    }
+    .input {
+      padding-left: 5px;
+      padding-right: 0;
+    }
+    .full {
+      padding-left: 12px;
+      height: auto;
+    }
+  }
+
+  .with-padding {
+    padding-left: 15px !important;
+  }
+}
+
+.data-search {
+  width: 300px;
+  height: 100%;
+  padding: 0 15px 15px 15px;
+  position: fixed;
+  background: rgba(34, 34, 34, 1);
+  top: 0;
+  z-index: 1049;
+  color: #FFF;
+  &.opened {
+    right: 0;
+  }
+  &.closed {
+    right: -300px;
+  }
+  form {
+    height: 100%;
+    overflow-y: scroll;
+    .datepicker {
+      color: #000;
+    }
+  }
+  .toggle {
+    position: absolute;
+    left: -40px;
+    top: 40%;
+    width: 40px;
+    height: 80px;
+    line-height: 80px;
+    background: rgba(34, 34, 34, 1);
+    font-size: 20px;
+    border-radius: 10px 0 0 10px;
+    i {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+}
+
+.permission-form {
+  label {
+    text-align: left !important;
+    padding-right: 0;
+  }
+  div.col-sm-10 {
+    padding-left: 0;
+  }
+  .field-list {
+    padding-left: 15px !important;
+    .item {
+      width: 250px;
+      float: left;
+      margin-bottom: 5px;
+      .left {
+        width: 33%;
+        float: left;
+        overflow: hidden;
+      }
+      .right {
+        width: 67%;
+        float: left;
+      }
+    }
+  }
+}
+
+.export-form {
+  .field-list {
+    .item {
+      width: 100px;
+      overflow: hidden;
+      float: left;
+      padding-top: 7px;
+    }
+  }
+}

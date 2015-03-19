@@ -1,15 +1,15 @@
 <div class="container">
   <form class="form-signin" role="form" ng-submit="login()">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <label for="identity" class="sr-only">Email address</label>
-    <input type="text" id="identity" ng-model="form.identity" class="form-control"  placeholder="{{'identity'|translate}}" required autofocus>
-    <label for="password" class="sr-only">Password</label>
-    <input type="password" id="password" ng-model="form.password" class="form-control" placeholder="{{'password'|translate}}" required>
+    <h2 class="form-signin-heading">{{clever.title}}</h2>
+    <label for="account" class="sr-only">{{'account'|translate}}</label>
+    <input type="text" id="account" ng-model="form.account" class="form-control"  placeholder="{{'please_input'|translate}}{{'account'|translate}}" required autofocus>
+    <label for="password" class="sr-only">{{'password'|translate}}</label>
+    <input type="password" id="password" ng-model="form.password" class="form-control" placeholder="{{'please_input'|translate}}{{'password'|translate}}" required>
     <div class="checkbox">
       <label>
-        <input type="checkbox" ng-model="form.remember"> Remember me
+        <input type="checkbox" ng-model="form.remember"> {{'remember_me'|translate}}
       </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">{{'sign_in'|translate}}</button>
   </form>
 </div>

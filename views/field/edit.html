@@ -1,0 +1,83 @@
+<div class="modal-header">
+  <button class="close" ng-click="cancel()">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">{{'close'|translate}}</span>
+  </button>
+  <h4 class="modal-title ng-cloak" ng-cloak>{{form.id?'edit_field':'create_field'|translate}}</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal field-form" method="post" ng-submit="save()">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="title">
+        {{'field_title'|translate}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" class="form-control" id="title" placeholder="{{'please_input'|translate}}{{'field_title'|translate}}" ng-model="form.title" required>
+      </div>
+      <label class="col-sm-2 control-label" for="name">
+        {{'field_name'|translate}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" ng-disabled="form.id" class="form-control" id="name" placeholder="{{'please_input'|translate}}{{'field_name'|translate}}" ng-model="form.name" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">
+        {{'field_input'|translate}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-4">
+        <ui-select ng-if="!form.id" ng-model="form.input">
+          <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_input'|translate}}">{{'field_input_'+$select.selected|translate}}</ui-select-match>
+          <ui-select-choices repeat="input in clever.field.input">
+            <div ng-bind-html="'field_input_'+input |translate |highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+        <p ng-if="form.id" class="form-control-static">{{'field_input_'+form.input|translate}}</p>
+      </div>
+      <label class="col-sm-2 control-label" for="size">
+        {{'field_size'|translate}}
+        <span class="text-danger">*</span>
+      </label>
+      <div class="col-sm-4">
+        <input type="text" ng-disabled="form.id" class="form-control" id="size" placeholder="{{'please_input'|translate}}{{'field_size'|translate}}" ng-model="form.size" required>
+      </div>
+    </div>
+    <div class="form-group" ng-if="!form.id">
+      <label class="col-sm-2 control-label">
+        {{'field_relation_module'|translate}}
+      </label>
+      <div class="col-sm-4">
+        <ui-select ng-model="form.relation_id">
+          <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_relation_module'|translate}}">{{$select.selected.title}}</ui-select-match>
+          <ui-select-choices repeat="item.id as item in modules">
+            <div ng-bind-html="item.title|highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      <label class="col-sm-2 control-label">
+        {{'field_relation_type'|translate}}
+      </label>
+      <div class="col-sm-4">
+        <ui-select ng-model="form.relation_type">
+          <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'field_relation_type'|translate}}">{{'field_relation_type_'+$select.selected|translate}}</ui-select-match>
+          <ui-select-choices repeat="type in clever.field.relation_type">
+            <div ng-bind-html="'field_relation_type_'+type|translate|highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+    <div class="form-group" ng-if="!form.id || (form.id && form.is_multiple && form.is_from_source == 0)">
+      <div class="col-sm-12 with-padding">
+        <textarea class="form-control" rows="3" ng-model="form.option" placeholder="{{'option_tip'|translate}}"></textarea>
+      </div>
+    </div>
+    <input type="submit" class="form-submit">
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" onclick="$('.field-form').find('input[type=submit]').click();" ng-disabled="submiting">{{'save'|translate}}</button>
+  <button class="btn btn-default" ng-click="cancel()">{{'close'|translate}}</button>
+</div>

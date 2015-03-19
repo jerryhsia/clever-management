@@ -1,13 +1,17 @@
 'use strict';
-angular.module(app.name).controller('moduleEditCtrl',
+angular.module(clever.name).controller('moduleEditCtrl',
   function($scope, $modalInstance, $moduleService, module)
   {
-    $scope.form = module ? angular.copy(module) : {};
+    $scope.form = angular.copy(module);
+
+    if (!angular.isDefined($scope.form.id)) {
+      $scope.form.is_user = 0;
+    }
 
     $scope.save = function () {
       var p;
       if (angular.isDefined($scope.form.id)) {
-        p = $moduleService.patchModule($scope.form);
+        p = $moduleService.updateModule($scope.form);
       } else {
         p = $moduleService.createModule($scope.form);
       }

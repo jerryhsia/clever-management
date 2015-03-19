@@ -1,5 +1,5 @@
 'use strict';
-angular.module(app.name).service('$settingService',
+angular.module(clever.name).service('$settingService',
   function ($http)
   {
 

@@ -1,29 +1,45 @@
 'use strict';
-angular.module(app.name).service('$dataService',
-  function ($http, $translate)
+angular.module(clever.name).service('$dataService',
+  function ($http, $userService, $translate)
   {
-    this.searchModule = function (params) {
-      return $http.get(app.api + '/modules', {
+    this.search = function (module, params) {
+      return $http.get(clever.api + '/datas/' + module.name, {
         params: params
       });
     };
 
-    this.searchField = function (module, params) {
-      return $http.get(app.api + '/modules/' + module.id + '/fields', {
-        params: params
+    this.create = function (module, data) {
+      return $http.post(clever.api + '/datas/' + module.name, data);
+    };
+
+    this.update = function (module, data) {
+      return $http.put(clever.api + '/datas/' + module.name + '/' + data.id, data);
+    };
+
+    this.delete = function (module, data) {
+      return $http.delete(clever.api + '/datas/' + module.name + '/' + data.id);
+    };
+
+    this.view = function(module, id) {
+      return $http.get(clever.api + '/datas/' + module.name + '/' + id);
+    }
+
+    this.getExportUrl = function(module, params) {
+      params.export = true;
+      params._lang = $translate.use();
+      
+      var loginedUser = $userService.getLoginedUser();
+      params['access-token'] = loginedUser['access_token'];
+
+      var url = clever.api + '/datas/' + module.name;
+      var strings = [];
+
+      angular.forEach(params, function(value, key) {
+        strings.push(key+'='+value);
       });
-    };
 
-    this.createField = function (module, field) {
-      return $http.post(app.api + '/modules/' + module.id + '/fields', field);
-    };
-
-    this.patchField = function (module, field) {
-      return $http.put(app.api + '/modules/' + module.id + '/fields/' + field.id, field);
-    };
-
-    this.deleteField = function (module, field) {
-      return $http.delete(app.api + '/modules/' + module.id + '/fields/' + field.id);
+      strings = strings.join('&');
+      return url + '?' + strings;
     };
   }
 );

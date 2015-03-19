@@ -1,0 +1,49 @@
+<div class="data-search" ng-class="{'opened': isOpened,'closed':!isOpened}">
+  <form role="form" ng-submit="search()">
+    <h4 class="header"><i class="fa fa-search"></i> {{'search_data'|translate}}</h4>
+    <div class="toggle" ng-class="{'opened': isOpened,'closed':!isOpened}">
+      <i class="fa" ng-class="{'fa-forward':isOpened,'fa-search':!isOpened}" ng-click="toggle()"></i>
+    </div>
+    <div class="form-group" ng-if="userFields.name">
+      <label>{{userFields.name.title}}</label>
+      <div>
+        <input type="text" class="form-control" placeholder="{{'please_input'|translate}}{{userFields.name.title}}" ng-model="form.name">
+      </div>
+    </div>
+    <div class="form-group" ng-if="userFields.username">
+      <label>{{userFields.username.title}}</label>
+      <div>
+        <input type="text" class="form-control" placeholder="{{'please_input'|translate}}{{userFields.username.title}}" ng-model="form.username">
+      </div>
+    </div>
+    <div class="form-group" ng-if="userFields.email">
+      <label>{{userFields.email.title}}</label>
+      <div>
+        <input type="text" class="form-control" placeholder="{{'please_input'|translate}}{{userFields.email.title}}" ng-model="form.email">
+      </div>
+    </div>
+    <div class="form-group" ng-if="userFields.role_ids && roles">
+      <label>{{userFields.role_ids.title}}</label>
+      <div>
+        <ui-select multiple ng-model="form.role_ids">
+          <ui-select-match placeholder="{{'please_select'|translate}}{{userFields['role_ids'].title}}">{{$item.name}}</ui-select-match>
+          <ui-select-choices repeat="role.id as role in roles">
+            <div ng-bind-html="role.name | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+    <div class="form-group" ng-repeat="field in fields">
+      <label>{{field.title}}</label>
+      <div>
+        <clever-field field="field" sence="search" ng-model="form"></clever-field>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">
+      <i class="fa fa-search"></i> {{'search'|translate}}
+    </button>
+    <button type="button" class="btn btn-default" ng-click="reset()">
+      <i class="fa fa-refresh"></i> {{'reset'|translate}}
+    </button>
+  </form>
+</div>

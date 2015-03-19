@@ -5,5 +5,7 @@
 
 bower_components
 node_modules
-dist/*
+dist
+fonts/*
+styles/*.css
 !.gitkeep

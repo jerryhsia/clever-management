@@ -1,18 +1,18 @@
 'use strict';
-angular.module(app.name).controller('loginCtrl',
-  function($scope, $userService, $http)
+angular.module(clever.name).controller('loginCtrl',
+  function($scope, $userService, $state)
   {
     $scope.form = {
-      identity: '',
+      account: '',
       password: '',
-      remember: false
+      alert: false,
+      remember: true
     };
-
-    $http.post(app.api+'/1.php', {name: 'xiajie'}, {withCredentials: true});
 
     $scope.login = function() {
       $userService.login($scope.form).success(function(data) {
-        debug(data);
+        $userService.setLoginedUser(data);
+        $state.go('index');
       });
     }
   }

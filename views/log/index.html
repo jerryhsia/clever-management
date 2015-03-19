@@ -1,0 +1,80 @@
+<ng-include src="'views/header.html'" ng-controller="headerCtrl"></ng-include>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <form role="form" ng-submit="search()">
+        <div class="form-group" ng-if="modules">
+          <label>{{'log_module'|translate}}</label>
+          <div>
+            <ui-select ng-model="params.module_id">
+              <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'log_module'|translate}}">{{$select.selected.name}}</ui-select-match>
+              <ui-select-choices repeat="module.id as module in modules">
+                <div ng-bind-html="module.name | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{'log_data_id'|translate}}</label>
+          <div>
+            <input type="text" class="form-control" placeholder="{{'please_input'|translate}}{{'log_data_id'|translate}}" ng-model="params.data_id">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{'log_action'|translate}}</label>
+          <div>
+            <ui-select ng-model="params.action">
+              <ui-select-match allow-clear="true" placeholder="{{'please_select'|translate}}{{'log_action'|translate}}">{{$select.selected|translate}}</ui-select-match>
+              <ui-select-choices repeat="action in ['insert', 'update', 'delete']">
+                <div ng-bind-html="action |translate| highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-search"></i> {{'search'|translate}}
+        </button>
+        <button type="button" class="btn btn-default" ng-click="reset()">
+          <i class="fa fa-refresh"></i> {{'reset'|translate}}
+        </button>
+      </form>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main table-view">
+      <div class="header">
+        <span class="h3">{{'log'|translate}}</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped field-list">
+          <thead>
+            <tr>
+              <th width="60">#</th>
+              <th>{{'log_data_id'|translate}}</th>
+              <th>{{'log_module'|translate}}</th>
+              <th>{{'log_action'|translate}}</th>
+              <th>{{'log_created_at'|translate}}</th>
+              <th>{{'log_created_ip'|translate}}</th>
+              <th>{{'log_created_by'|translate}}</th>
+              <th width="80">{{'operate'|translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="log in logs" class="field-item" title="">
+              <td>{{log.id}}</td>
+              <td>{{log.data_id}}</td>
+              <td>{{log.module.name}}</td>
+              <td>{{log.action|translate}}</td>
+              <td>{{log.created_at}}</td>
+              <td>{{log.created_ip}}</td>
+              <td>{{log.user.name}}({{log.user.username}})</td>
+              <td>
+                <i class="fa fa-code pointer" ng-click="view(log)"></i>&nbsp;&nbsp;
+                <i class="fa fa-trash pointer" ng-click="delete(log.id, $index)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination class="pull-left" boundary-links="true" total-items="pagination.totalItems" max-size="pagination.maxSize" num-pages="pagination.numPages" ng-model="pagination.currentPage" items-per-page="pagination.perPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-change="loadLogs()"></pagination>
+      </div>
+    </div>
+  </div>
+</div>
