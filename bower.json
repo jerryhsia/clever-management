@@ -1,6 +1,17 @@
 {
-  "name": "Clever CMS",
+  "name": "clever-management",
   "version": "1.0.0",
+  "description": "Powerful content management system",
+  "author": {
+    "name": "Jerry Hsia",
+    "url": "http://xiajie.me/",
+    "email": "xiajie9916@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jerryhsia/clever-management"
+  },
+  "license": "Apache2",
   "dependencies": {
     "jquery": "2.1.3",
     "bootstrap": "3.3.1",
@@ -18,6 +29,6 @@
     "angular-loading-bar": "0.6.0",
     "angular-minieditor": "1.0.1",
     "ng-file-upload": "2.0.5",
-    "font-awesome": ">= 4.2.0"
+    "font-awesome": "4.3.0"
   }
 }

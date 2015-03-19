@@ -6,38 +6,20 @@ module.exports = function (grunt) {
   grunt.initConfig({
     app: {
       src: '.',
-      temp: '.temp',
-      dist: '.dist'
+      temp: '.tmp',
+      dist: 'dist',
+      bower: './bower_components',
     },
 
-    watch: {
-      /*js: {
-        files: [
-          '<%= app.src %>/scripts/*.js',
-          '<%= app.src %>/scripts/controllers/*.js',
-          '<%= app.src %>/scripts/services/*.js'
-        ],
-        tasks: ['watch:js'],
-        options: {
-          livereload: true
+    less: {
+      main: {
+        files: {
+          '<%= app.src %>/styles/main.css': '<%= app.src %>/styles/main.less'
         }
-      },*/
-      less: {
-        files: ['<%= app.src %>/styles/**/*.less'],
-        tasks: ['less:dev', 'concat:dev', 'watch:less']
       }
     },
 
     clean: {
-      dev: {
-        files: [{
-          dot: true,
-          src: [
-            '<%= app.temp %>',
-            '<%= app.src %>/styles/*.css'
-          ]
-        }]
-      },
       temp: {
         files: [{
           dot: true,
@@ -45,60 +27,173 @@ module.exports = function (grunt) {
             '<%= app.temp %>'
           ]
         }]
-      }
-    },
-
-    less: {
-      dev: {
-        files: {
-          '<%= app.temp %>/styles/bootstrap.css': '<%= app.src %>/bower_components/bootstrap/less/bootstrap.less',
-          '<%= app.temp %>/styles/main.css': '<%= app.src %>/styles/main.less'
-        }
+      },
+      dist: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= app.dist %>'
+          ]
+        }]
       }
     },
 
     copy: {
       dev: {
+        fonts: {
+          files: [
+            {
+              expand: true,
+              cwd: '<%= app.bower %>/font-awesome/fonts',
+              src: ['**'],
+              dest: '<%= app.src %>/fonts'
+            }
+          ]
+        }
+      },
+      prod: {
         files: [
           {
             expand: true,
-            cwd: 'bower_components/font-awesome/fonts',
+            cwd: '<%= app.bower %>/font-awesome/fonts',
             src: ['**'],
-            dest: '<%= app.src %>/fonts/'
+            dest: '<%= app.dist %>/fonts'
           },
           {
             expand: true,
-            cwd: 'bower_components/bootstrap/fonts',
+            cwd: '<%= app.src %>/images',
             src: ['**'],
-            dest: '<%= app.src %>/fonts/'
+            dest: '<%= app.dist %>/images'
+          },
+          {
+            expand: true,
+            cwd: '<%= app.src %>',
+            src: ['index.html', 'views/**/*.html'],
+            dest: '<%= app.dist %>'
           }
         ]
       }
     },
 
-    concat: {
+    uglify: {
+      generated: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= app.temp%>/concat/scripts',
+            src: ['*.js'],
+            dest: '<%= app.dist%>/scripts'
+          }
+        ]
+      }
+    },
+
+    htmlmin: {
+      main: {
+        options: {
+          collapseWhitespace: true,
+          collapseBooleanAttributes: true,
+          removeCommentsFromCDATA: true,
+          removeOptionalTags: true
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= app.dist %>',
+          src: ['index.html', 'views/**/*.html'],
+          dest: '<%= app.dist %>'
+        }]
+      }
+    },
+    
+    useminPrepare: {
+      html: '<%= app.src %>/index.html',
       options: {
-        separator: "\n"
+        dest: '<%= app.dist %>',
+        flow: {
+          html: {
+            steps: {
+              js: ['concat', 'uglifyjs'],
+              css: ['cssmin']
+            },
+            post: {}
+          }
+        }
+      }
+    },
+
+    usemin: {
+      html: ['<%= app.dist %>/index.html'],
+      css: ['<%= app.dist %>/styles/*.css'],
+      js: ['<%= app.dist %>/scripts/*.js'],
+      options: {
+        assetsDirs: ['<%= app.dist %>']
+      }
+    },
+
+    filerev: {
+      options: {
+        algorithm: 'md5',
+        length: 8
+      },
+      main: {
+        src: ['<%= app.dist %>/styles/*.css', '<%= app.dist %>/scripts/*.js']
+      }
+    },
+
+    connect: {
+      options: {
+        port: 3000,
+        hostname: '*'
       },
       dev: {
-        files: {
-          '<%= app.src %>/styles/main.css': [
-            '<%= app.temp %>/styles/bootstrap.css',
-            '<%= app.temp %>/styles/main.css'
-          ]
+        options: {
+          open: true,
+          livereload: 35729,
+          base: '<%= app.src %>',
+        }
+      },
+      prod: {
+        options: {
+          keepalive: true,
+          base: '<%= app.dist %>',
+        }
+      }
+    },
+
+    watch: {
+      dev: {
+        files: ['<%= app.src %>/scripts/**/*.js', '<%= app.src %>/styles/*.js'],
+        tasks: ['watch'],
+        options: {
+          livereload: true
         }
       }
     }
+
   });
 
   grunt.registerTask('serve', function () {
     grunt.task.run([
-      'clean:dev',
-      'less:dev',
-      'concat:dev',
-      'copy:dev',
       'clean:temp',
+      'less',
+      'copy:dev',
+      'connect:dev',
       'watch'
     ]);
   });
+
+  grunt.registerTask('build', [
+    'clean',
+    'less',
+    'copy:prod',
+    'useminPrepare',
+    'concat:generated',
+    'cssmin:generated',
+    'uglify:generated',
+    'filerev',
+    'usemin',
+    'htmlmin',
+    'connect:prod',
+    'clean:temp'
+  ]);
 };

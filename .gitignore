@@ -1,11 +1,10 @@
-.idea
-.DS_Store
-.temp
-.dist
+.*
 
 bower_components
 node_modules
-dist
 fonts/*
 styles/*.css
-!.gitkeep
+scripts/main.js
+scripts/vendor.js
+dist
+!.gitignore

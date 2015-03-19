@@ -7,11 +7,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="styles/main.css">
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="bower_components/angular-minieditor/angular-minieditor.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
   </head>
 <body class="{{currentState.name}}">
   <!--[if lt IE 9]>
@@ -24,10 +27,9 @@
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="close($index)">{{alert.message}}</alert>
   </div>
 
-  <!-- build:js scripts/vendor.js -->
+  <!-- build:js scripts/vendor-1.js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -39,17 +41,20 @@
   <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
   <script src="bower_components/angular-ui-select/dist/select.js"></script>
   <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js scripts/vendor-2.js -->
+  <script src="bower_components/jquery-ui/jquery-ui.js"></script>
   <script src="bower_components/angular-ui-sortable/sortable.js"></script>
   <script src="bower_components/angular-minieditor/angular-minieditor.js"></script>
   <!-- endbuild -->
 
-  <!-- build:js scripts/scripts.js -->
+  <!-- build:js scripts/main.js -->
   <script src="scripts/config.js"></script>
   <script src="scripts/function.js"></script>
   <script src="scripts/app.js"></script>
   <script src="scripts/interceptor.js"></script>
   <script src="scripts/filter.js"></script>
-  <!-- endbuild -->
 
   <script src="scripts/services/user.js"></script>
   <script src="scripts/services/role.js"></script>
@@ -80,5 +85,6 @@
 
   <script src="scripts/directives/field-in-list.js"></script>
   <script src="scripts/directives/clever-field.js"></script>
+  <!-- endbuild -->
   </body>
 </html>

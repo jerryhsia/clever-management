@@ -1,16 +1,31 @@
 {
   "name": "clever-management",
   "version": "1.0.0",
-  "description": "",
-  "author": "Jerry",
+  "description": "Powerful content management system",
+  "author": {
+    "name": "Jerry Hsia",
+    "url": "http://xiajie.me/",
+    "email": "xiajie9916@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jerryhsia/clever-management"
+  },
+  "license": "Apache2",
   "dependencies": {
     "grunt": "0.4.5",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-concat": "0.5.0",
     "grunt-contrib-cssmin": "0.9.0",
     "grunt-contrib-less": "0.11.0",
-    "grunt-contrib-watch": "0.1.4",
+    "grunt-contrib-watch": "0.5.3",
     "grunt-contrib-copy": "0.5.0",
+    "grunt-contrib-cssmin": "0.12.2",
+    "grunt-contrib-uglify": "0.8.0",
+    "grunt-contrib-htmlmin": "0.4.0",
+    "grunt-contrib-connect": "0.9.0",
+    "grunt-usemin": "3.0.0",
+    "grunt-filerev": "2.2.0",
     "load-grunt-tasks": "0.4.0",
     "time-grunt": "0.3.1"
   }
