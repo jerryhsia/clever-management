@@ -1,5 +1,5 @@
 {
-  "name": "clever-frontend",
+  "name": "clever-management",
   "version": "1.0.0",
   "description": "",
   "author": "Jerry",
@@ -13,6 +13,5 @@
     "grunt-contrib-copy": "0.5.0",
     "load-grunt-tasks": "0.4.0",
     "time-grunt": "0.3.1"
-  },
-  "main": "index.js"
+  }
 }

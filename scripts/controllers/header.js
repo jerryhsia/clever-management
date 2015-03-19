@@ -32,12 +32,6 @@ angular.module(clever.name).controller('headerCtrl',
         title: $translate.instant('log'),
         url: '/logs',
         icon: 'list'
-      },
-      {
-        name: 'setting',
-        title: $translate.instant('setting'),
-        url: '/settings',
-        icon: 'cog'
       }
     ];
 

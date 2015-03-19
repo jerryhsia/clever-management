@@ -1,26 +1,31 @@
 'use strict';
 angular.module(clever.name, [
-  'ngRoute',
   'ngSanitize',
+  'ngCookies',
   'ui.bootstrap',
   'ui.router',
   'ui.select',
   'ui.sortable',
-  'ngCookies',
   'angularFileUpload',
   'pascalprecht.translate',
   'angular-loading-bar',
   'jerryhsia.minieditor'
 ]).config(function ($stateProvider, $locationProvider, $urlRouterProvider, $translateProvider, $httpProvider, uiSelectConfig, cfpLoadingBarProvider) {
 
-  $urlRouterProvider.otherwise('/');
-  $locationProvider.html5Mode(true);
   $httpProvider.interceptors.push('interceptor');
 
   uiSelectConfig.theme = 'bootstrap';
   uiSelectConfig.resetSearchInput = true;
 
   cfpLoadingBarProvider.includeSpinner = false;
+
+  $translateProvider.useStaticFilesLoader({
+    prefix: 'i18n/',
+    suffix: '.json'
+  });
+
+  $urlRouterProvider.otherwise('/datas');
+  $locationProvider.html5Mode(true);
 
   $stateProvider.state('login', {
     url: '/login',
@@ -54,11 +59,6 @@ angular.module(clever.name, [
     url: '/datas',
     templateUrl: 'views/data/index.html',
     controller: 'dataIndexCtrl'
-  });
-
-  $translateProvider.useStaticFilesLoader({
-    prefix: 'i18n/',
-    suffix: '.json'
   });
 }).run(function ($rootScope, $translate, $state, $userService, $location) {
   $rootScope.clever = clever;
