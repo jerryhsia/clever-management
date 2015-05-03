@@ -172,7 +172,7 @@ module.exports = function (grunt) {
 
     watch: {
       dev: {
-        files: ['<%= app.src %>/scripts/**/*.js', '<%= app.src %>/styles/*.js'],
+        files: ['<%= app.src %>/scripts/**/*.js', '<%= app.src %>/styles/*.css'],
         tasks: ['watch'],
         options: {
           livereload: true
